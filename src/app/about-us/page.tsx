@@ -41,8 +41,29 @@ export default function AboutUsPage() {
         </div>
       </section>
 
-      {/* 2. Mission Statement Card */}
-      <section className="relative z-20 -mt-10 container-boxed mb-20">
+      {/* 2. Company Achievements & Industry Recognition */}
+      <section className="relative z-20 -mt-10 sm:-mt-12 container-boxed mb-12">
+        <div className="bg-white rounded-[28px] p-6 sm:p-8 lg:p-10 border border-gray-200/90 shadow-[0_15px_45px_-10px_rgba(0,45,98,0.08)] flex flex-col items-center">
+          <div className="flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider bg-amber-50 text-amber-800 border border-amber-200 mb-6 self-start sm:self-center">
+            <Award className="w-3.5 h-3.5 text-amber-600" />
+            <span>Industry Recognition & Achievements</span>
+          </div>
+
+          <div className="w-full max-w-4xl overflow-hidden rounded-2xl bg-gradient-to-br from-slate-50 via-white to-slate-50 p-2 sm:p-4 border border-gray-100 flex justify-center items-center">
+            <Image
+              src="/images/about/company-achievements.png"
+              alt="Xana Medtec - Healthcare Testing Company of the Year 2023 UK Award Winner by Global Healthcare & Pharma"
+              width={1024}
+              height={354}
+              priority
+              className="w-full h-auto max-h-[380px] object-contain rounded-xl"
+            />
+          </div>
+        </div>
+      </section>
+
+      {/* 3. Mission Statement Card */}
+      <section className="container-boxed mb-20">
         <div className="bg-white rounded-[28px] p-8 sm:p-12 lg:p-16 border border-gray-200/90 shadow-[0_15px_45px_-10px_rgba(0,45,98,0.08)]">
           <span className="inline-block px-3.5 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider bg-teal-50 text-teal-700 border border-teal-200 mb-6">
             CORE MISSION
