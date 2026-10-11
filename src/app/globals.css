@@ -1,0 +1,124 @@
+@import "tailwindcss";
+
+@theme {
+  --color-brand-navy: #002D62;
+  --color-brand-navy-deep: #002678;
+  --color-brand-teal: #20B2AA;
+  --color-brand-mint: #23CCAD;
+  --color-brand-yellow: #FDEC8A;
+  --color-text-dark: #323232;
+  --color-text-body: #606367;
+  --color-text-muted: #6B7280;
+  --color-surface-light: #F8F9FA;
+  --color-surface-offwhite: #ECECEC;
+  --color-border-subtle: rgba(107, 114, 128, 0.25);
+
+  --font-lato: var(--font-lato), "Lato", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-lexend: var(--font-lexend), "Lexend", sans-serif;
+  --font-sans: var(--font-lato), "Lato", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+
+  --radius-card: 20px;
+  --radius-pill: 24px;
+  --radius-pill-lg: 40px;
+}
+
+:root {
+  --background: #ffffff;
+  --foreground: #323232;
+}
+
+html {
+  scroll-behavior: smooth;
+  font-family: var(--font-lato), "Lato", sans-serif;
+}
+
+body {
+  background-color: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-lato), "Lato", sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Custom utility classes matching Elementor kit tokens */
+.container-boxed {
+  max-width: 1140px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 1.25rem;
+  padding-right: 1.25rem;
+}
+
+.container-wide {
+  max-width: 1320px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 1.25rem;
+  padding-right: 1.25rem;
+}
+
+/* Glassmorphism utility */
+.glass-panel {
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  box-shadow: 0 20px 40px -15px rgba(0, 45, 98, 0.15);
+}
+
+.glass-panel-dark {
+  background: rgba(0, 45, 98, 0.88);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.4);
+}
+
+@keyframes float-slow {
+  0%, 100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-14px) rotate(1.5deg);
+  }
+}
+
+@keyframes float-reverse {
+  0%, 100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  50% {
+    transform: translateY(14px) rotate(-1.5deg);
+  }
+}
+
+@keyframes float-drift {
+  0%, 100% {
+    transform: translate(0px, 0px) rotate(0deg);
+  }
+  33% {
+    transform: translate(12px, -18px) rotate(2deg);
+  }
+  66% {
+    transform: translate(-10px, 10px) rotate(-1.5deg);
+  }
+}
+
+.animate-float-slow {
+  animation: float-slow 14s ease-in-out infinite;
+}
+
+.animate-float-reverse {
+  animation: float-reverse 16s ease-in-out infinite;
+}
+
+.animate-float-drift {
+  animation: float-drift 22s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-float-slow,
+  .animate-float-reverse,
+  .animate-float-drift {
+    animation: none;
+  }
+}
