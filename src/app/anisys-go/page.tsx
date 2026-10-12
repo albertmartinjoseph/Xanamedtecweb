@@ -199,8 +199,13 @@ export default function AnisysGoPage() {
             <p className="text-base text-slate-200 max-w-2xl mx-auto mb-8 leading-relaxed">
               Contact our clinical specialists to request technical dossiers, organize an in-hospital clinical demonstration, or discuss international territorial distribution.
             </p>
-            <ModalTriggerButton variant="teal" size="lg" className="px-9 py-3.5 shadow-lg">
-              Request Clinical Trial or Dossier
+            <ModalTriggerButton
+              variant="teal"
+              size="lg"
+              className="px-9 py-3.5 shadow-lg"
+              modalTitle="Book Demonstration or Inquire"
+            >
+              Book Demonstration or Inquire
             </ModalTriggerButton>
           </div>
         </div>
