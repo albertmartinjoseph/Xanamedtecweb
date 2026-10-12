@@ -129,36 +129,33 @@ const testimonials = [
 
 export default function ClinicalServicesPage() {
   return (
-    <div className="min-h-screen bg-[#F8F9FA] text-[#323232] font-sans">
+    <div className="page-surface min-h-screen text-[#1F2A3A] font-sans">
       {/* 1. Hero Banner */}
-      <section className="relative bg-[#002D62] text-white pt-36 sm:pt-40 lg:pt-44 pb-28 sm:pb-32 overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-r from-[#002D62]/95 via-[#002D62]/85 to-[#002678]/80 pointer-events-none" />
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,_var(--tw-gradient-stops))] from-[#20B2AA]/20 via-transparent to-transparent pointer-events-none" />
+      <section className="hero-light relative overflow-hidden pt-10 sm:pt-12 lg:pt-14 pb-10 sm:pb-12">
 
         <div className="container-boxed relative z-10">
           <div className="max-w-3xl">
-            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider bg-[#20B2AA]/20 text-teal-300 border border-[#20B2AA]/30 mb-6">
-              <span className="w-2 h-2 rounded-full bg-[#20B2AA] animate-pulse" />
+            <div className="eyebrow text-teal-700 mb-6">
               <span>Accredited Pathology & Diagnostic Health</span>
             </div>
 
-            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-black text-white tracking-tight leading-[1.1] mb-6">
+            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-black text-[#002D62] tracking-tight leading-[1.1] mb-6">
               Clinical & Diagnostic Services
             </h1>
 
-            <p className="text-lg sm:text-xl text-slate-200 font-light leading-relaxed max-w-2xl mb-8">
+            <p className="text-lg sm:text-xl text-[#4B5563] leading-relaxed max-w-2xl mb-8">
               Fast, accurate, and doctor-reviewed blood testing services. Gain comprehensive health insights with quick turnaround from UKAS-accredited laboratories.
             </p>
 
             <div className="flex flex-wrap items-center gap-4">
-              <ModalTriggerButton variant="teal" size="lg" className="px-8 py-3.5 shadow-lg">
+              <ModalTriggerButton variant="teal" size="lg" className="px-8 py-3.5">
                 Book an Appointment
               </ModalTriggerButton>
               <Link
                 href="/blood-test-recommendation"
-                className="inline-flex items-center px-7 py-3.5 rounded-full font-bold text-sm bg-white/10 text-white hover:bg-white/20 transition-colors border border-white/20"
+                className="inline-flex items-center px-7 py-3.5 rounded-full font-bold text-sm bg-white text-[#002D62] hover:bg-[#002D62] hover:text-white transition-colors border border-[#002D62]/25"
               >
-                <Search className="w-4 h-4 mr-2 text-teal-300" />
+                <Search className="w-4 h-4 mr-2 text-teal-700" />
                 <span>Find Your Test</span>
               </Link>
             </div>
@@ -167,35 +164,35 @@ export default function ClinicalServicesPage() {
       </section>
 
       {/* 2. Key Pillars Strip */}
-      <section className="relative z-20 -mt-10 container-boxed mb-16">
-        <div className="bg-white rounded-[24px] p-6 sm:p-8 border border-gray-200/90 shadow-[0_12px_35px_-8px_rgba(0,45,98,0.08)] grid grid-cols-1 sm:grid-cols-3 gap-6 text-center sm:text-left">
+      <section className="relative z-20 container-boxed mt-12 mb-16">
+        <div className="bg-white rounded-2xl p-6 sm:p-8 border border-gray-200 grid grid-cols-1 sm:grid-cols-3 gap-6 text-center sm:text-left">
           <div className="flex items-center gap-4 p-2">
-            <div className="w-12 h-12 rounded-2xl bg-teal-50 text-teal-600 flex items-center justify-center shrink-0">
+            <div className="w-12 h-12 rounded-2xl icon-tile flex items-center justify-center shrink-0">
               <Clock className="w-6 h-6" />
             </div>
             <div>
               <div className="font-bold text-[#002D62] text-sm sm:text-base">Fast Turnaround</div>
-              <div className="text-xs text-[#606367]">24 to 48 hour electronic results</div>
+              <div className="text-xs text-[#4B5563]">24 to 48 hour electronic results</div>
             </div>
           </div>
 
           <div className="flex items-center gap-4 p-2 sm:border-l sm:border-r border-gray-100 sm:px-6">
-            <div className="w-12 h-12 rounded-2xl bg-blue-50 text-blue-700 flex items-center justify-center shrink-0">
+            <div className="w-12 h-12 rounded-2xl icon-tile flex items-center justify-center shrink-0">
               <ShieldCheck className="w-6 h-6" />
             </div>
             <div>
               <div className="font-bold text-[#002D62] text-sm sm:text-base">UKAS Accredited</div>
-              <div className="text-xs text-[#606367]">Certified laboratory quality standards</div>
+              <div className="text-xs text-[#4B5563]">Certified laboratory quality standards</div>
             </div>
           </div>
 
           <div className="flex items-center gap-4 p-2">
-            <div className="w-12 h-12 rounded-2xl bg-teal-50 text-teal-600 flex items-center justify-center shrink-0">
+            <div className="w-12 h-12 rounded-2xl icon-tile flex items-center justify-center shrink-0">
               <Award className="w-6 h-6" />
             </div>
             <div>
               <div className="font-bold text-[#002D62] text-sm sm:text-base">Clinical Expertise</div>
-              <div className="text-xs text-[#606367]">Doctor-reviewed diagnostic reports</div>
+              <div className="text-xs text-[#4B5563]">Doctor-reviewed diagnostic reports</div>
             </div>
           </div>
         </div>
@@ -205,7 +202,7 @@ export default function ClinicalServicesPage() {
       <section className="container-boxed py-12 sm:py-16">
         <div className="flex flex-col md:flex-row md:items-end justify-between mb-12">
           <div>
-            <span className="inline-block px-3.5 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider bg-teal-50 text-teal-700 border border-teal-200 mb-3">
+            <span className="eyebrow text-teal-700 mb-3">
               POPULAR HEALTH SCREENINGS
             </span>
             <h2 className="text-3xl sm:text-4xl font-bold text-[#002D62] tracking-tight">
@@ -215,7 +212,7 @@ export default function ClinicalServicesPage() {
           <div className="mt-4 md:mt-0">
             <Link
               href="/tests-list-page"
-              className="inline-flex items-center font-bold text-sm text-[#20B2AA] hover:text-[#002D62] transition-colors"
+              className="inline-flex items-center font-bold text-sm text-teal-700 hover:text-[#002D62] transition-colors"
             >
               <span>View All Health Tests</span>
               <ArrowRight className="w-4 h-4 ml-2" />
@@ -227,27 +224,27 @@ export default function ClinicalServicesPage() {
           {popularTests.map((test) => (
             <div
               key={test.slug}
-              className="bg-white rounded-[26px] p-7 sm:p-8 border border-gray-200/90 shadow-[0_4px_25px_-5px_rgba(0,45,98,0.06)] hover:border-[#20B2AA]/50 hover:shadow-[0_15px_40px_-8px_rgba(0,45,98,0.12)] hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between group"
+              className="bg-white rounded-2xl p-7 sm:p-8 border border-gray-200 hover:border-[#20B2AA]/50 hover:shadow-md hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between group"
             >
               <div>
-                <div className="flex items-center justify-between mb-4">
-                  <span className="text-xs font-bold text-teal-700 bg-teal-50 px-3 py-1 rounded-full uppercase tracking-wider">
+                <div className="flex items-start justify-between gap-3 mb-4">
+                  <span className="text-xs font-bold text-teal-700 bg-teal-50 px-3 py-1 rounded-2xl uppercase tracking-wider">
                     {test.sample}
                   </span>
-                  <span className="text-xl font-black text-[#002D62]">
+                  <span className="text-xl font-black text-[#002D62] shrink-0">
                     {test.price}
                   </span>
                 </div>
 
-                <h3 className="text-xl font-bold text-[#002D62] tracking-tight mb-1 group-hover:text-[#20B2AA] transition-colors">
+                <h3 className="text-xl font-bold text-[#002D62] tracking-tight mb-1 group-hover:text-teal-700 transition-colors">
                   {test.name}
                 </h3>
 
-                <div className="text-xs font-semibold text-slate-400 mb-3">
+                <div className="text-xs font-semibold text-slate-500 mb-3">
                   {test.tagline}
                 </div>
 
-                <p className="text-sm text-[#606367] leading-relaxed mb-6">
+                <p className="text-sm text-[#4B5563] leading-relaxed mb-6">
                   {test.description}
                 </p>
               </div>
@@ -276,15 +273,15 @@ export default function ClinicalServicesPage() {
       </section>
 
       {/* 5. Patient Reviews Section (Preserving real feedback & star ratings) */}
-      <section className="container-boxed py-16 sm:py-24">
+      <section className="container-boxed py-12 sm:py-16">
         <div className="text-center max-w-2xl mx-auto mb-16">
-          <span className="inline-block px-3.5 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider bg-teal-50 text-teal-700 border border-teal-200 mb-3">
+          <span className="eyebrow text-teal-700 mb-3">
             VERIFIED PATIENT FEEDBACK
           </span>
           <h2 className="text-3xl sm:text-4xl font-bold text-[#002D62] tracking-tight mb-3">
             What Our Patients Say
           </h2>
-          <p className="text-base text-[#606367]">
+          <p className="text-base text-[#4B5563]">
             Trusted by individuals and healthcare providers across the UK.
           </p>
         </div>
@@ -293,7 +290,7 @@ export default function ClinicalServicesPage() {
           {testimonials.map((t, idx) => (
             <div
               key={idx}
-              className="bg-white rounded-[24px] p-7 border border-gray-200/90 shadow-[0_4px_25px_-5px_rgba(0,45,98,0.06)] hover:shadow-md transition-shadow flex flex-col justify-between"
+              className="bg-white rounded-2xl p-7 border border-gray-200 hover:shadow-md transition-shadow flex flex-col justify-between"
             >
               <div>
                 <div className="flex items-center gap-1 text-amber-400 mb-4">
@@ -302,14 +299,14 @@ export default function ClinicalServicesPage() {
                   ))}
                 </div>
 
-                <p className="text-xs sm:text-sm text-[#606367] leading-relaxed italic mb-6">
+                <p className="text-xs sm:text-sm text-[#4B5563] leading-relaxed italic mb-6">
                   &ldquo;{t.review}&rdquo;
                 </p>
               </div>
 
-              <div className="pt-4 border-t border-gray-100 flex items-center justify-between">
-                <span className="text-xs font-bold text-[#002D62]">{t.name}</span>
-                <span className="text-[10px] font-semibold text-teal-600 bg-teal-50 px-2.5 py-0.5 rounded-full">
+              <div className="pt-4 border-t border-gray-100 flex flex-wrap items-center justify-between gap-2">
+                <span className="text-sm font-bold text-[#002D62]">{t.name}</span>
+                <span className="text-xs font-semibold text-teal-700 bg-teal-50 px-2.5 py-0.5 rounded-full whitespace-nowrap">
                   Verified Patient
                 </span>
               </div>

@@ -50,11 +50,11 @@ export const Tabs: React.FC<TabsProps> = ({
   return (
     <div className={`w-full ${className}`}>
       {/* Tab toggle buttons */}
-      <div className="flex justify-center mb-8">
+      <div className="flex justify-center mb-12">
         <div
           role="tablist"
           aria-label="Partner options"
-          className="inline-flex p-1.5 bg-[#F8F9FA] rounded-[30px] border border-gray-200/70 shadow-inner"
+          className="inline-flex max-w-full p-1.5 bg-white rounded-full border border-gray-200"
         >
           {tabs.map((tab, idx) => {
             const isActive = activeTab === tab.id;
@@ -72,10 +72,10 @@ export const Tabs: React.FC<TabsProps> = ({
                 tabIndex={isActive ? 0 : -1}
                 onClick={() => setActiveTab(tab.id)}
                 onKeyDown={(e) => handleKeyDown(e, idx)}
-                className={`px-6 sm:px-8 py-2.5 rounded-[24px] text-sm sm:text-base font-semibold transition-all duration-300 cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-[#20B2AA] ${
+                className={`px-5 sm:px-9 py-3 rounded-full text-sm sm:text-base font-semibold transition-all duration-300 cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-[#20B2AA] ${
                   isActive
-                    ? 'bg-[#002D62] text-white shadow-md'
-                    : 'text-[#606367] hover:text-[#002D62]'
+                    ? 'bg-[#002D62] text-white'
+                    : 'text-[#4B5563] hover:text-[#002D62]'
                 }`}
               >
                 {tab.label}

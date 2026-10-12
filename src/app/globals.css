@@ -6,54 +6,217 @@
   --color-brand-teal: #20B2AA;
   --color-brand-mint: #23CCAD;
   --color-brand-yellow: #FDEC8A;
-  --color-text-dark: #323232;
-  --color-text-body: #606367;
+  --color-text-dark: #1F2A3A;
+  --color-text-body: #4B5563;
   --color-text-muted: #6B7280;
   --color-surface-light: #F8F9FA;
   --color-surface-offwhite: #ECECEC;
   --color-border-subtle: rgba(107, 114, 128, 0.25);
 
-  --font-lato: var(--font-lato), "Lato", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-  --font-lexend: var(--font-lexend), "Lexend", sans-serif;
-  --font-sans: var(--font-lato), "Lato", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-sans: var(--font-manrope), -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-serif: var(--font-display-serif), "Iowan Old Style", Georgia, serif;
+  --font-wordmark: var(--font-lexend), var(--font-manrope), sans-serif;
 
-  --radius-card: 20px;
-  --radius-pill: 24px;
-  --radius-pill-lg: 40px;
+  /* Legibility: lift the two smallest steps of the type scale (12->13px, 14->15px) */
+  --text-xs: 0.8125rem;
+  --text-xs--line-height: 1.5;
+  --text-sm: 0.9375rem;
+  --text-sm--line-height: 1.6;
+
+  /* Navy-tinted neutrals; elevation is used sparingly, hairlines do the work */
+  --color-gray-100: #EEF2F7;
+  --color-gray-200: #E2E8F0;
+  --shadow-sm: 0 1px 2px rgba(0, 45, 98, 0.04);
+  --shadow-md: 0 10px 28px -14px rgba(0, 45, 98, 0.18);
+  --shadow-lg: 0 18px 44px -18px rgba(0, 45, 98, 0.22);
+  --shadow-xl: 0 28px 60px -22px rgba(0, 45, 98, 0.28);
+
+  --radius-card: 16px;
+  --radius-pill: 999px;
+  --radius-pill-lg: 999px;
 }
 
 :root {
   --background: #ffffff;
-  --foreground: #323232;
+  --foreground: #1F2A3A;
 }
 
 html {
   scroll-behavior: smooth;
-  font-family: var(--font-lato), "Lato", sans-serif;
+  scroll-padding-top: 6rem;
+  font-family: var(--font-sans);
 }
 
 body {
   background-color: var(--background);
   color: var(--foreground);
-  font-family: var(--font-lato), "Lato", sans-serif;
+  font-family: var(--font-sans);
   -webkit-font-smoothing: antialiased;
 }
 
-/* Custom utility classes matching Elementor kit tokens */
+/* Editorial type: serif display for page and section titles, sans for the rest.
+   Unlayered on purpose so it wins over the per-page weight utilities. */
+h1,
+h2 {
+  font-family: var(--font-serif);
+  font-weight: 400;
+  letter-spacing: -0.01em;
+  line-height: 1.12;
+  text-wrap: balance;
+}
+
+h1 {
+  font-size: clamp(2.25rem, 4.2vw, 3.5rem);
+}
+
+h1.display-xl {
+  font-size: clamp(2.5rem, 5.6vw, 4.75rem);
+  line-height: 1.06;
+}
+
+/* Small in-card h2 labels stay in the sans */
+h2[class*="text-sm"],
+h2[class*="text-base"],
+h2[class*="text-lg"] {
+  font-family: var(--font-sans);
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  line-height: 1.3;
+}
+
+/* Section-level h3s (the large ones) follow the display serif too */
+h3[class*="text-2xl"],
+h3[class*="text-3xl"],
+h3[class*="text-4xl"] {
+  font-family: var(--font-serif);
+  font-weight: 400;
+  letter-spacing: -0.015em;
+  line-height: 1.12;
+}
+
+h3,
+h4 {
+  letter-spacing: -0.01em;
+  text-wrap: balance;
+}
+
+p,
+li {
+  text-wrap: pretty;
+}
+
+::selection {
+  background: rgba(32, 178, 170, 0.28);
+}
+
+/* Layered so `focus:outline-none` + ring utilities can replace it instead of doubling up */
+@layer base {
+  :focus-visible {
+    outline: 2px solid #20B2AA;
+    outline-offset: 3px;
+  }
+}
+
 .container-boxed {
-  max-width: 1140px;
+  max-width: 1180px;
   margin-left: auto;
   margin-right: auto;
-  padding-left: 1.25rem;
-  padding-right: 1.25rem;
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
 }
 
 .container-wide {
   max-width: 1320px;
   margin-left: auto;
   margin-right: auto;
-  padding-left: 1.25rem;
-  padding-right: 1.25rem;
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+}
+
+/* Barely-there cool wash down the page so white cards have something to sit on */
+.page-surface {
+  background-color: #ffffff;
+  background-image: linear-gradient(180deg, #FFFFFF 0%, #F4F8FB 28%, #FFFFFF 58%, #F4F8FB 100%);
+}
+
+/* Section label: a short rule and tracked small caps instead of a pill */
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.7rem;
+  font-size: 0.75rem;
+  line-height: 1.4;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+.eyebrow::before {
+  content: "";
+  flex: none;
+  width: 1.75rem;
+  height: 1px;
+  background: currentColor;
+  opacity: 0.7;
+}
+
+.eyebrow:has(svg)::before {
+  display: none;
+}
+
+/* Quiet icon tile */
+.icon-tile {
+  background-color: #002D62;
+  color: #ffffff;
+  border-radius: 14px;
+  box-shadow: 0 10px 20px -12px rgba(0, 45, 98, 0.7), inset 0 0 0 1px rgba(127, 227, 220, 0.3);
+}
+
+.icon-tile svg {
+  color: #7FE3DC;
+}
+
+/* Navy hero and call-to-action surfaces: deepening navy with a faint brand
+   hexagon lattice on the right, above the overlays and below the content. */
+.hero-surface {
+  background-image:
+    radial-gradient(38rem 22rem at 100% 0%, rgba(32, 178, 170, 0.3), transparent 62%),
+    linear-gradient(180deg, #002D62 0%, #00224C 100%);
+}
+
+.hero-surface::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='56' height='97' viewBox='0 0 56 97'%3E%3Cpath d='M28 0 56 16.17V48.5L28 64.67 0 48.5V16.17ZM28 64.67V97' fill='none' stroke='%237FE3DC' stroke-width='1'/%3E%3C/svg%3E");
+  opacity: 0.22;
+  -webkit-mask-image: linear-gradient(100deg, transparent 45%, #000 100%);
+  mask-image: linear-gradient(100deg, transparent 45%, #000 100%);
+}
+
+/* Navigation link underline */
+.nav-link {
+  position: relative;
+}
+
+.nav-link::after {
+  content: "";
+  position: absolute;
+  left: 0.75rem;
+  right: 0.75rem;
+  bottom: 0.25rem;
+  height: 1.5px;
+  background: #20B2AA;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.3s ease;
+}
+
+.nav-link:hover::after,
+.nav-link[aria-expanded="true"]::after {
+  transform: scaleX(1);
 }
 
 /* Glassmorphism utility */
@@ -71,6 +234,59 @@ body {
   -webkit-backdrop-filter: blur(16px);
   border: 1px solid rgba(255, 255, 255, 0.12);
   box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.4);
+}
+
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes settle {
+  from {
+    transform: scale(1.08);
+  }
+  to {
+    transform: none;
+  }
+}
+
+@keyframes hero-away {
+  to {
+    opacity: 0;
+    transform: translateY(-3rem);
+  }
+}
+
+@keyframes draw-x {
+  from {
+    transform: scaleX(0);
+  }
+  to {
+    transform: scaleX(1);
+  }
+}
+
+@keyframes scroll-cue {
+  0% {
+    transform: translateY(-100%);
+  }
+  60%, 100% {
+    transform: translateY(260%);
+  }
+}
+
+.scroll-cue::after {
+  content: "";
+  display: block;
+  width: 100%;
+  height: 40%;
+  background: #7FE3DC;
 }
 
 @keyframes float-slow {
@@ -115,10 +331,178 @@ body {
   animation: float-drift 22s ease-in-out infinite;
 }
 
+@media (prefers-reduced-motion: no-preference) {
+  /* Hero copy rises in, one line after another, on page load.
+     :first-child keeps this off mid-page navy sections that reuse .hero-surface,
+     where it would override the .reveal scroll timeline. */
+  .hero-surface:first-child > .container-boxed > div > * {
+    animation: rise 0.8s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+  }
+
+  .hero-surface:first-child > .container-boxed > div > :nth-child(2) {
+    animation-delay: 0.1s;
+  }
+
+  .hero-surface:first-child > .container-boxed > div > :nth-child(3) {
+    animation-delay: 0.2s;
+  }
+
+  .hero-surface:first-child > .container-boxed > div > :nth-child(n + 4) {
+    animation-delay: 0.3s;
+  }
+
+  /* Scroll reveal, native and progressive: no JS, skipped where unsupported */
+  @supports (animation-timeline: view()) {
+    /* Every content block below a page header eases up as it scrolls into view;
+       siblings in a row arrive one after another. */
+    .reveal,
+    .page-surface section.container-boxed > *,
+    .page-surface section > .container-boxed > * {
+      animation: rise linear both;
+      animation-timeline: view();
+      animation-range: entry 0% entry 38%;
+    }
+
+    .reveal:nth-child(2) {
+      animation-range: entry 6% entry 46%;
+    }
+
+    .reveal:nth-child(3) {
+      animation-range: entry 12% entry 54%;
+    }
+
+    .reveal:nth-child(n + 4) {
+      animation-range: entry 18% entry 62%;
+    }
+
+    .hero-light > .container-boxed > *,
+    .hero-surface > .container-boxed > * {
+      animation: none;
+    }
+
+    /* Home hero copy eases up and out as the page scrolls past it */
+    .hero-home > .container-boxed {
+      animation: hero-away linear both;
+      animation-timeline: view();
+      animation-range: exit 15% exit 85%;
+    }
+
+    /* Teal rule draws across the top of the eight stages */
+    .draw-x {
+      transform-origin: left;
+      animation: draw-x linear both;
+      animation-timeline: view();
+      animation-range: entry 30% cover 55%;
+    }
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   .animate-float-slow,
   .animate-float-reverse,
   .animate-float-drift {
     animation: none;
+  }
+}
+
+/* Inner-page header: light, typographic, with the brand lattice (or the page's
+   own photograph) fading in from the right */
+.hero-light {
+  background-image:
+    radial-gradient(42rem 24rem at 100% 0%, rgba(32, 178, 170, 0.16), transparent 62%),
+    linear-gradient(180deg, #EEF3F8 0%, #FFFFFF 100%);
+  border-bottom: 1px solid #E2E8F0;
+  color: #002D62;
+}
+
+.hero-light::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='56' height='97' viewBox='0 0 56 97'%3E%3Cpath d='M28 0 56 16.17V48.5L28 64.67 0 48.5V16.17ZM28 64.67V97' fill='none' stroke='%23002D62' stroke-width='1'/%3E%3C/svg%3E");
+  opacity: 0.13;
+  -webkit-mask-image: linear-gradient(100deg, transparent 52%, #000 100%);
+  mask-image: linear-gradient(100deg, transparent 52%, #000 100%);
+}
+
+/* The brand mark, large and faint, drifting behind headers that have no photo */
+.hero-light::before {
+  content: "";
+  position: absolute;
+  z-index: 1;
+  pointer-events: none;
+  right: -3rem;
+  top: calc(50% - 9rem);
+  width: 16rem;
+  aspect-ratio: 231 / 255;
+  background: url("/images/logo-mark.png") center / contain no-repeat;
+  opacity: 0.075;
+  rotate: 12deg;
+}
+
+@media (min-width: 1024px) {
+  .hero-light::before {
+    right: 6%;
+    top: calc(50% - 13rem);
+    width: 24rem;
+  }
+}
+
+.hero-light:has(.hero-media)::before,
+.hero-light:has(.hero-media)::after {
+  display: none;
+}
+
+.hero-media {
+  display: none;
+}
+
+@media (min-width: 1024px) {
+  .hero-media {
+    display: block;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    width: 46%;
+    -webkit-mask-image: linear-gradient(90deg, transparent 0%, #000 42%);
+    mask-image: linear-gradient(90deg, transparent 0%, #000 42%);
+  }
+
+  .hero-light:has(.hero-media) > .container-boxed > div {
+    max-width: 34rem;
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .hero-light::before {
+    animation: float-slow 16s ease-in-out infinite;
+  }
+
+  .scroll-cue::after {
+    animation: scroll-cue 2.2s cubic-bezier(0.6, 0, 0.3, 1) infinite;
+  }
+
+  .hero-media img,
+  .hero-surface video {
+    animation: settle 2.4s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+  }
+
+  .hero-light > .container-boxed > div > * {
+    animation: rise 0.8s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+  }
+
+  .hero-light > .container-boxed > div > :nth-child(2) {
+    animation-delay: 0.1s;
+  }
+
+  .hero-light > .container-boxed > div > :nth-child(3) {
+    animation-delay: 0.2s;
+  }
+
+  .hero-light > .container-boxed > div > :nth-child(n + 4) {
+    animation-delay: 0.3s;
   }
 }

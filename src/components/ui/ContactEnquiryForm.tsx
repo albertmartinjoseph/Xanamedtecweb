@@ -83,7 +83,7 @@ export const ContactEnquiryForm: React.FC<ContactEnquiryFormProps> = ({
       <div className="text-center py-8 px-4">
         <CheckCircle2 className="w-16 h-16 text-[#20B2AA] mx-auto mb-4 animate-bounce" />
         <h3 className="text-2xl font-bold text-[#002D62] mb-2">Enquiry Received</h3>
-        <p className="text-[#606367] max-w-md mx-auto">
+        <p className="text-[#4B5563] max-w-md mx-auto">
           Thank you for getting in touch. Your message has been routed to our team at{' '}
           <strong className="text-[#002D62]">info@xanamedtec.com</strong>. We will respond promptly.
         </p>
@@ -111,7 +111,7 @@ export const ContactEnquiryForm: React.FC<ContactEnquiryFormProps> = ({
               className={`px-3 py-2 text-xs font-semibold rounded-lg border text-left transition-all ${
                 category === item.id
                   ? 'border-[#20B2AA] bg-[#20B2AA]/10 text-[#002D62] font-bold shadow-sm'
-                  : 'border-gray-200 text-[#606367] hover:border-gray-300'
+                  : 'border-gray-200 text-[#4B5563] hover:border-gray-300'
               }`}
             >
               {item.label}
@@ -134,25 +134,25 @@ export const ContactEnquiryForm: React.FC<ContactEnquiryFormProps> = ({
       {/* Name & Email */}
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
         <div>
-          <label className="block text-xs font-medium text-[#606367] mb-1">Full Name *</label>
+          <label className="block text-xs font-medium text-[#4B5563] mb-1">Full Name *</label>
           <input
             type="text"
             required
             value={formData.name}
             onChange={(e) => setFormData({ ...formData, name: e.target.value })}
             placeholder="e.g. Dr. Jane Smith"
-            className="w-full px-4 py-2.5 rounded-lg border border-gray-200 focus:outline-none focus:border-[#20B2AA] focus:ring-1 focus:ring-[#20B2AA] text-sm text-[#323232]"
+            className="w-full px-4 py-2.5 rounded-lg border border-gray-200 focus:outline-none focus:border-[#20B2AA] focus:ring-1 focus:ring-[#20B2AA] text-sm text-[#1F2A3A]"
           />
         </div>
         <div>
-          <label className="block text-xs font-medium text-[#606367] mb-1">Email Address *</label>
+          <label className="block text-xs font-medium text-[#4B5563] mb-1">Email Address *</label>
           <input
             type="email"
             required
             value={formData.email}
             onChange={(e) => setFormData({ ...formData, email: e.target.value })}
             placeholder="jane@example.com"
-            className="w-full px-4 py-2.5 rounded-lg border border-gray-200 focus:outline-none focus:border-[#20B2AA] focus:ring-1 focus:ring-[#20B2AA] text-sm text-[#323232]"
+            className="w-full px-4 py-2.5 rounded-lg border border-gray-200 focus:outline-none focus:border-[#20B2AA] focus:ring-1 focus:ring-[#20B2AA] text-sm text-[#1F2A3A]"
           />
         </div>
       </div>
@@ -160,37 +160,37 @@ export const ContactEnquiryForm: React.FC<ContactEnquiryFormProps> = ({
       {/* Phone & Organization */}
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
         <div>
-          <label className="block text-xs font-medium text-[#606367] mb-1">Phone Number (Optional)</label>
+          <label className="block text-xs font-medium text-[#4B5563] mb-1">Phone Number (Optional)</label>
           <input
             type="tel"
             value={formData.phone}
             onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
             placeholder="+44 7123 456789"
-            className="w-full px-4 py-2.5 rounded-lg border border-gray-200 focus:outline-none focus:border-[#20B2AA] focus:ring-1 focus:ring-[#20B2AA] text-sm text-[#323232]"
+            className="w-full px-4 py-2.5 rounded-lg border border-gray-200 focus:outline-none focus:border-[#20B2AA] focus:ring-1 focus:ring-[#20B2AA] text-sm text-[#1F2A3A]"
           />
         </div>
         <div>
-          <label className="block text-xs font-medium text-[#606367] mb-1">Organization / Clinic</label>
+          <label className="block text-xs font-medium text-[#4B5563] mb-1">Organization / Clinic</label>
           <input
             type="text"
             value={formData.company}
             onChange={(e) => setFormData({ ...formData, company: e.target.value })}
             placeholder="e.g. Manchester Health Trust"
-            className="w-full px-4 py-2.5 rounded-lg border border-gray-200 focus:outline-none focus:border-[#20B2AA] focus:ring-1 focus:ring-[#20B2AA] text-sm text-[#323232]"
+            className="w-full px-4 py-2.5 rounded-lg border border-gray-200 focus:outline-none focus:border-[#20B2AA] focus:ring-1 focus:ring-[#20B2AA] text-sm text-[#1F2A3A]"
           />
         </div>
       </div>
 
       {/* Message */}
       <div>
-        <label className="block text-xs font-medium text-[#606367] mb-1">Message / Requirements *</label>
+        <label className="block text-xs font-medium text-[#4B5563] mb-1">Message / Requirements *</label>
         <textarea
           required
           rows={3}
           value={formData.message}
           onChange={(e) => setFormData({ ...formData, message: e.target.value })}
           placeholder="Please describe your enquiry, requested testing services, or distribution region..."
-          className="w-full px-4 py-2.5 rounded-lg border border-gray-200 focus:outline-none focus:border-[#20B2AA] focus:ring-1 focus:ring-[#20B2AA] text-sm text-[#323232]"
+          className="w-full px-4 py-2.5 rounded-lg border border-gray-200 focus:outline-none focus:border-[#20B2AA] focus:ring-1 focus:ring-[#20B2AA] text-sm text-[#1F2A3A]"
         />
       </div>
 
@@ -204,7 +204,7 @@ export const ContactEnquiryForm: React.FC<ContactEnquiryFormProps> = ({
           onChange={(e) => setFormData({ ...formData, consent: e.target.checked })}
           className="mt-1 h-4 w-4 rounded border-gray-300 text-[#20B2AA] focus:ring-[#20B2AA] cursor-pointer"
         />
-        <label htmlFor="consent-check" className="text-xs text-[#606367] leading-relaxed cursor-pointer">
+        <label htmlFor="consent-check" className="text-xs text-[#4B5563] leading-relaxed cursor-pointer">
           I consent to Xana Medtec Ltd processing my information to respond to this enquiry in accordance with the{' '}
           <Link href="/privacy-policy" className="text-[#002D62] font-semibold underline hover:text-[#20B2AA]">
             Privacy Policy

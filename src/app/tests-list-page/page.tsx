@@ -21,24 +21,21 @@ export default function TestsListPage() {
   });
 
   return (
-    <div className="min-h-screen bg-[#F8F9FA] text-[#323232] font-sans">
+    <div className="page-surface min-h-screen text-[#1F2A3A] font-sans">
       {/* 1. Directory Banner */}
-      <section className="relative bg-[#002D62] text-white pt-36 sm:pt-40 lg:pt-44 pb-28 sm:pb-32 overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-r from-[#002D62]/95 via-[#002D62]/85 to-[#002678]/80 pointer-events-none" />
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,_var(--tw-gradient-stops))] from-[#20B2AA]/20 via-transparent to-transparent pointer-events-none" />
+      <section className="hero-light relative overflow-hidden pt-10 sm:pt-12 lg:pt-14 pb-10 sm:pb-12">
 
         <div className="container-boxed relative z-10">
           <div className="max-w-3xl">
-            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider bg-[#20B2AA]/20 text-teal-300 border border-[#20B2AA]/30 mb-6">
-              <span className="w-2 h-2 rounded-full bg-[#20B2AA] animate-pulse" />
+            <div className="eyebrow text-teal-700 mb-6">
               <span>Full Diagnostic Directory</span>
             </div>
 
-            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-black text-white tracking-tight leading-[1.1] mb-6">
+            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-black text-[#002D62] tracking-tight leading-[1.1] mb-6">
               All Health & Blood Tests
             </h1>
 
-            <p className="text-lg sm:text-xl text-slate-200 font-light leading-relaxed max-w-2xl mb-8">
+            <p className="text-lg sm:text-xl text-[#4B5563] leading-relaxed max-w-2xl mb-8">
               Explore our comprehensive range of doctor-reviewed clinical pathology and screening packages with fast accredited turnaround.
             </p>
 
@@ -52,7 +49,7 @@ export default function TestsListPage() {
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
                 placeholder="Search tests by biomarker, organ, or condition (e.g. Thyroid, Kidney, Testosterone)..."
-                className="w-full pl-12 pr-4 py-4 rounded-2xl bg-white text-[#323232] placeholder-slate-400 text-sm focus:outline-none focus:ring-2 focus:ring-[#20B2AA] shadow-lg border border-white/20"
+                className="w-full pl-12 pr-4 py-4 rounded-2xl bg-white text-[#1F2A3A] placeholder-slate-400 text-sm focus:outline-none focus:ring-2 focus:ring-[#20B2AA] border border-[#002D62]/25"
               />
             </div>
           </div>
@@ -60,9 +57,9 @@ export default function TestsListPage() {
       </section>
 
       {/* 2. Test Cards Grid */}
-      <section className="container-boxed py-16 sm:py-24">
+      <section className="container-boxed py-12 sm:py-16">
         <div className="flex items-center justify-between mb-8">
-          <div className="text-sm font-semibold text-[#606367]">
+          <div className="text-sm font-semibold text-[#4B5563]">
             Showing <span className="font-bold text-[#002D62]">{filteredTests.length}</span> tests
           </div>
           {searchTerm && (
@@ -79,11 +76,11 @@ export default function TestsListPage() {
           {filteredTests.map((test) => (
             <div
               key={test.slug}
-              className="bg-white rounded-[26px] p-7 sm:p-8 border border-gray-200/90 shadow-[0_4px_25px_-5px_rgba(0,45,98,0.06)] hover:border-[#20B2AA]/50 hover:shadow-[0_15px_40px_-8px_rgba(0,45,98,0.12)] hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between group"
+              className="bg-white rounded-2xl p-7 sm:p-8 border border-gray-200 hover:border-[#20B2AA]/50 hover:shadow-md hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between group"
             >
               <div>
                 <div className="flex items-center justify-between mb-4">
-                  <span className="text-xs font-bold text-teal-700 bg-teal-50 px-3 py-1 rounded-full uppercase tracking-wider">
+                  <span className="eyebrow text-teal-700">
                     {test.turnaround}
                   </span>
                   <span className="text-2xl font-black text-[#002D62]">
@@ -91,15 +88,15 @@ export default function TestsListPage() {
                   </span>
                 </div>
 
-                <h2 className="text-xl font-bold text-[#002D62] tracking-tight mb-1 group-hover:text-[#20B2AA] transition-colors">
+                <h2 className="font-sans text-lg font-bold text-[#002D62] tracking-tight mb-1 group-hover:text-teal-700 transition-colors">
                   {test.name}
                 </h2>
 
-                <div className="text-xs font-semibold text-slate-400 mb-3">
+                <div className="text-xs font-semibold text-slate-500 mb-3">
                   {test.subtitle}
                 </div>
 
-                <p className="text-sm text-[#606367] leading-relaxed mb-6">
+                <p className="text-sm text-[#4B5563] leading-relaxed mb-6">
                   {test.overview}
                 </p>
               </div>

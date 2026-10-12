@@ -26,13 +26,13 @@ export const ModalTriggerButton: React.FC<ModalTriggerButtonProps> = ({
   const { openModal } = useModal();
 
   const baseStyles =
-    'inline-flex items-center justify-center font-sans font-bold transition-all duration-300 cursor-pointer group rounded-full';
+    'inline-flex items-center justify-center font-sans font-bold transition-all duration-300 cursor-pointer hover:-translate-y-0.5 active:translate-y-0 group rounded-full';
 
   const variants = {
-    teal: 'bg-[#20B2AA] text-white hover:bg-[#002D62] shadow-md',
-    primary: 'bg-[#002D62] text-white hover:bg-[#20B2AA] shadow-md',
+    teal: 'bg-[#002D62] text-white hover:bg-[#147F79]',
+    primary: 'bg-[#002D62] text-white hover:bg-[#147F79]',
     outline: 'bg-transparent text-[#002D62] border-2 border-[#002D62] hover:bg-[#002D62] hover:text-white',
-    white: 'bg-white text-[#002D62] hover:bg-[#20B2AA] hover:text-white shadow-md',
+    white: 'bg-white text-[#002D62] hover:bg-[#20B2AA] hover:text-white',
   };
 
   const sizes = {

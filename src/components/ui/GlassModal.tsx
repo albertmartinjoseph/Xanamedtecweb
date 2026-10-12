@@ -73,26 +73,26 @@ export const GlassModal: React.FC<GlassModalProps> = ({
       />
 
       {/* Translucent Panel with thin light border */}
-      <div className="relative w-full max-w-lg bg-white/95 backdrop-blur-2xl rounded-[24px] border border-white/60 shadow-[0_25px_60px_-15px_rgba(0,45,98,0.35)] p-6 sm:p-8 z-10 animate-in fade-in zoom-in-95 duration-200">
+      <div className="relative w-full max-w-lg bg-white/95 backdrop-blur-2xl rounded-2xl border border-white/60 shadow-[0_25px_60px_-15px_rgba(0,45,98,0.35)] p-6 sm:p-8 z-10 animate-in fade-in zoom-in-95 duration-200">
         {/* Close Button */}
         <button
           onClick={onClose}
           type="button"
           aria-label="Close dialog"
-          className="absolute top-5 right-5 p-2 rounded-full bg-gray-100 text-[#606367] hover:bg-[#002D62] hover:text-white transition-colors cursor-pointer"
+          className="absolute top-5 right-5 p-2 rounded-full bg-gray-100 text-[#4B5563] hover:bg-[#002D62] hover:text-white transition-colors cursor-pointer"
         >
           <X className="w-5 h-5" />
         </button>
 
         {/* Modal Header */}
         <div className="mb-6 pr-8">
-          <span className="inline-block px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider bg-[#20B2AA]/15 text-[#20B2AA] mb-2">
+          <span className="eyebrow text-[#20B2AA] mb-2">
             Direct Contact
           </span>
           <h2 className="text-xl sm:text-2xl font-bold text-[#002D62] tracking-tight">
             {title}
           </h2>
-          <p className="mt-1 text-sm text-[#606367] leading-relaxed">{subtitle}</p>
+          <p className="mt-1 text-sm text-[#4B5563] leading-relaxed">{subtitle}</p>
         </div>
 
         {/* Contact Cards: Email & Location */}
@@ -104,7 +104,7 @@ export const GlassModal: React.FC<GlassModalProps> = ({
                 <Mail className="w-5 h-5" />
               </div>
               <div>
-                <span className="block text-xs font-medium text-[#606367] uppercase tracking-wider">
+                <span className="block text-xs font-medium text-[#4B5563] uppercase tracking-wider">
                   Email Us
                 </span>
                 <a
@@ -129,7 +129,7 @@ export const GlassModal: React.FC<GlassModalProps> = ({
                 </>
               ) : (
                 <>
-                  <Copy className="w-3.5 h-3.5 text-[#606367]" />
+                  <Copy className="w-3.5 h-3.5 text-[#4B5563]" />
                   <span>Copy</span>
                 </>
               )}
@@ -142,7 +142,7 @@ export const GlassModal: React.FC<GlassModalProps> = ({
               <MapPin className="w-5 h-5 text-[#20B2AA]" />
             </div>
             <div>
-              <span className="block text-xs font-medium text-[#606367] uppercase tracking-wider">
+              <span className="block text-xs font-medium text-[#4B5563] uppercase tracking-wider">
                 Headquarters
               </span>
               <p className="text-sm font-semibold text-[#002D62] mt-0.5 leading-snug">
@@ -157,7 +157,7 @@ export const GlassModal: React.FC<GlassModalProps> = ({
 
         {/* Modal Footer Note */}
         <div className="mt-6 pt-4 border-t border-gray-100 text-center">
-          <p className="text-xs text-[#606367]">
+          <p className="text-xs text-[#4B5563]">
             Clicking the email link will open your default email application.
           </p>
         </div>

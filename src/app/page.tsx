@@ -2,11 +2,11 @@
 
 import React from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { useModal } from '@/context/ModalContext';
 import { TimelineStepper } from '@/components/landing/TimelineStepper';
 import { FlowingHexBackground } from '@/components/landing/FlowingHexBackground';
 import { Tabs } from '@/components/ui/Tabs';
-import { Card } from '@/components/ui/Card';
 import {
   ArrowRight,
   Globe2,
@@ -17,313 +17,303 @@ import {
   Target,
   Truck,
   TrendingUp,
+  type LucideIcon,
 } from 'lucide-react';
+
+interface Benefit {
+  number: string;
+  title: string;
+  description: string;
+  icon: LucideIcon;
+}
+
+const distributorBenefits: Benefit[] = [
+  {
+    number: '01',
+    title: 'Exclusive Territory',
+    description: 'Secured market exclusivity to protect and drive your local distribution growth.',
+    icon: Award,
+  },
+  {
+    number: '02',
+    title: 'Regulatory Support',
+    description: 'Comprehensive compliance and certification documentation ready for swift onboarding.',
+    icon: ShieldCheck,
+  },
+  {
+    number: '03',
+    title: 'Sales & Training',
+    description: 'Dedicated technical training and continuous marketing collateral for your team.',
+    icon: BookOpen,
+  },
+];
+
+const manufacturerBenefits: Benefit[] = [
+  {
+    number: '01',
+    title: 'Targeted Placement',
+    description: 'Match your technology with pre-vetted distributors seeking active clinical solutions.',
+    icon: Target,
+  },
+  {
+    number: '02',
+    title: 'Streamlined Logistics',
+    description: 'End-to-end management from initial product trial to global supply chain rollout.',
+    icon: Truck,
+  },
+  {
+    number: '03',
+    title: 'Accelerated Growth',
+    description: 'Minimize time-to-market across target international healthcare networks.',
+    icon: TrendingUp,
+  },
+];
+
+const PartnerPanel: React.FC<{
+  title: string;
+  intro: string;
+  benefits: Benefit[];
+  cta: string;
+  onCta: () => void;
+}> = ({ title, intro, benefits, cta, onCta }) => (
+  <div className="animate-in fade-in duration-200">
+    <div className="text-center max-w-2xl mx-auto mb-12">
+      <h3 className="font-serif font-normal text-3xl sm:text-4xl text-[#002D62] leading-tight mb-3">
+        {title}
+      </h3>
+      <p className="text-base sm:text-lg text-[#4B5563] leading-relaxed">{intro}</p>
+    </div>
+
+    <div className="grid grid-cols-1 md:grid-cols-3 border-y border-gray-200 md:divide-x divide-y md:divide-y-0 divide-gray-200">
+      {benefits.map(({ number, title: benefitTitle, description, icon: Icon }) => (
+        <div key={number} className="group py-9 md:px-9">
+          <div className="flex items-start justify-between mb-8">
+            <span className="font-serif text-6xl leading-none text-teal-600">{number}</span>
+            <Icon
+              className="w-7 h-7 text-[#002D62]/40 transition-colors duration-300 group-hover:text-[#002D62]"
+              strokeWidth={1.25}
+            />
+          </div>
+          <h4 className="text-xl font-bold text-[#002D62] mb-2">{benefitTitle}</h4>
+          <p className="text-base text-[#4B5563] leading-relaxed">{description}</p>
+        </div>
+      ))}
+    </div>
+
+    <div className="mt-12 text-center">
+      <button
+        type="button"
+        onClick={onCta}
+        className="group inline-flex items-center gap-4 rounded-full pl-8 pr-2 py-2 bg-[#002D62] text-white font-semibold text-base hover:bg-[#147F79] transition-colors duration-300 cursor-pointer"
+      >
+        <span>{cta}</span>
+        <span className="w-11 h-11 rounded-full bg-white text-[#002D62] flex items-center justify-center transition-transform duration-300 group-hover:translate-x-1">
+          <ArrowRight className="w-4 h-4" />
+        </span>
+      </button>
+    </div>
+  </div>
+);
+
+const pathways = [
+  {
+    href: '/international-distribution',
+    label: 'Global Network',
+    title: 'International Distribution',
+    description: 'Partnering with accredited global healthcare distributors to deliver solutions worldwide.',
+    cta: 'Explore Network',
+    icon: Globe2,
+  },
+  {
+    href: '/clinical-services',
+    label: 'Diagnostic & Clinical',
+    title: 'Clinical Services',
+    description: 'Comprehensive diagnostic support, equipment integration, and workflow assistance.',
+    cta: 'View Services',
+    icon: Stethoscope,
+  },
+];
 
 export default function HomePage() {
   const { openModal } = useModal();
 
   return (
-    <div className="min-h-screen bg-[#F8F9FA] text-[#323232] font-sans">
-      {/* 1. Hero Section (Spec Section 4: Dark Navy, Background Video, Geometric Typography, Small Teal Pill) */}
-      <section className="relative bg-[#002D62] text-white pt-36 sm:pt-40 lg:pt-44 pb-36 sm:pb-40 lg:pb-44 overflow-hidden">
-        {/* Background Video Layer from Reference Folder - Vivid & Colorful */}
+    <div className="page-surface min-h-screen text-[#1F2A3A] font-sans">
+      {/* 1. Hero: background video, headline anchored low */}
+      <section className="hero-surface hero-home relative overflow-hidden bg-[#002D62] text-white min-h-[calc(100svh-3.75rem)] flex items-center py-12">
         <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
           <video
             autoPlay
             loop
             muted
             playsInline
-            className="w-full h-full object-cover opacity-85 saturate-[1.3] contrast-[1.08] scale-105 transition-opacity duration-1000"
+            className="w-full h-full object-cover opacity-80 saturate-[1.15]"
           >
             <source src="/videos/hero-banner.mp4" type="video/mp4" />
           </video>
-          {/* Gradients: dark high-contrast scrim on left for WCAG AA readability, open on right for vivid video colors */}
-          <div className="absolute inset-0 bg-gradient-to-r from-[#002D62]/95 via-[#002D62]/70 to-[#002D62]/20" />
-          <div className="absolute inset-0 bg-gradient-to-t from-[#002D62] via-transparent to-[#002D62]/50" />
-          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,_var(--tw-gradient-stops))] from-[#20B2AA]/20 via-transparent to-transparent" />
+          {/* Scrims keep the copy at WCAG AA contrast and leave the right side open */}
+          <div className="absolute inset-0 bg-gradient-to-r from-[#002D62]/95 via-[#002D62]/60 to-[#002D62]/10" />
+          <div className="absolute inset-0 bg-gradient-to-t from-[#001B3D] via-[#002D62]/30 to-transparent" />
         </div>
 
-        <div className="container-boxed relative z-10">
-          <div className="max-w-3xl">
-            {/* Small box / pill label above the headline */}
-            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider bg-[#20B2AA]/20 text-teal-300 border border-[#20B2AA]/30 mb-6">
-              <span className="w-2 h-2 rounded-full bg-[#20B2AA] animate-pulse" />
+        <div className="container-boxed relative z-10 w-full">
+          <div className="max-w-4xl">
+            {/* Brand lockup: the symbol is artwork, the name is live text */}
+            <div className="flex items-center gap-4 sm:gap-6 mb-8 sm:mb-10">
+              <Image
+                src="/images/logo-mark.png"
+                alt=""
+                width={231}
+                height={255}
+                preload
+                className="w-16 sm:w-24 lg:w-28 h-auto"
+              />
+              <div className="font-wordmark inline-flex flex-col leading-none">
+                <span className="text-5xl sm:text-7xl lg:text-[5.5rem] font-extrabold text-white tracking-tight">
+                  Xana
+                </span>
+                <span className="mt-2 sm:mt-3 rounded-lg bg-gradient-to-r from-[#0A7BD1] to-[#20B2AA] py-1 sm:py-1.5 text-center text-sm sm:text-xl font-semibold tracking-[0.32em] pl-[0.32em] text-white">
+                  MEDTEC
+                </span>
+              </div>
+            </div>
+
+            <div className="eyebrow text-teal-300 mb-6">
               <span>International Medical Distribution</span>
             </div>
 
-            {/* H1 Headline */}
-            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-black text-white tracking-tight leading-[1.1] mb-6">
-              From Market Entry to Clinical Adoption
+            <h1 className="display-xl text-white mb-6">
+              From Market Entry to <span className="italic text-teal-300">Clinical Adoption</span>
             </h1>
 
-            {/* Intro Copy */}
-            <p className="text-lg sm:text-xl text-slate-200 font-light leading-relaxed max-w-2xl mb-8">
+            <p className="text-lg sm:text-xl text-slate-100 font-light leading-relaxed max-w-2xl">
               Your medical device deserves more than a distributor. It needs the right market strategy, the right partners and the right clinical support to succeed.
             </p>
           </div>
         </div>
+
+        {/* Scroll cue */}
+        <span className="scroll-cue hidden sm:block absolute z-10 bottom-0 left-1/2 w-px h-14 overflow-hidden bg-white/25" aria-hidden="true" />
       </section>
 
-      {/* 2. Two Navigation Boxes Directly Below Hero (Cards, Whole Card Clickable) */}
-      <section className="relative z-20 -mt-16 sm:-mt-20 container-boxed mb-20 sm:mb-24">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8">
-          {/* Card 1: International Distribution */}
-          <Link
-            href="/international-distribution"
-            className="group block bg-white rounded-[24px] p-8 sm:p-10 border border-gray-200/90 shadow-[0_10px_35px_-5px_rgba(0,45,98,0.08)] hover:shadow-[0_20px_45px_-5px_rgba(0,45,98,0.14)] hover:border-[#20B2AA]/50 hover:-translate-y-1 transition-all duration-300"
-          >
-            <div className="flex items-center justify-between mb-6">
-              <div className="w-14 h-14 rounded-2xl bg-[#002D62]/10 text-[#002D62] group-hover:bg-[#20B2AA]/15 group-hover:text-[#20B2AA] flex items-center justify-center transition-colors">
-                <Globe2 className="w-7 h-7" />
+      {/* 2. Two ways in: one bordered panel split by a hairline, each half a link */}
+      <section className="container-boxed py-12 sm:py-16">
+        <div className="reveal grid grid-cols-1 md:grid-cols-2 bg-white border border-gray-200 rounded-2xl overflow-hidden divide-y md:divide-y-0 md:divide-x divide-gray-200">
+          {pathways.map(({ href, label, title, description, cta, icon: Icon }) => (
+            <Link
+              key={href}
+              href={href}
+              className="group relative overflow-hidden flex flex-col p-8 sm:p-10 lg:p-12 transition-colors duration-500 hover:bg-[#002D62]"
+            >
+              {/* Brand mark watermark, comes forward on hover */}
+              <Image
+                src="/images/logo-mark.png"
+                alt=""
+                width={231}
+                height={255}
+                className="pointer-events-none absolute -right-10 -bottom-14 w-56 h-auto opacity-[0.07] transition-all duration-700 group-hover:opacity-25 group-hover:scale-110 group-hover:-rotate-6"
+              />
+              <div className="relative flex items-center justify-between mb-10 sm:mb-14">
+                <span className="eyebrow text-teal-700 transition-colors duration-500 group-hover:text-teal-300">
+                  {label}
+                </span>
+                <Icon
+                  className="w-9 h-9 text-[#002D62] transition-colors duration-500 group-hover:text-teal-300"
+                  strokeWidth={1.1}
+                />
               </div>
-              <span className="text-xs font-bold uppercase tracking-wider text-teal-600 bg-teal-50 px-3 py-1 rounded-full">
-                Global Network
-              </span>
-            </div>
 
-            <h2 className="text-2xl sm:text-3xl font-bold text-[#002D62] tracking-tight group-hover:text-[#002678] transition-colors mb-3">
-              International Distribution
-            </h2>
+              <h2 className="relative text-3xl sm:text-4xl text-[#002D62] transition-colors duration-500 group-hover:text-white mb-4">
+                {title}
+              </h2>
 
-            <p className="text-sm sm:text-base text-[#606367] leading-relaxed mb-6">
-              Partnering with accredited global healthcare distributors to deliver solutions worldwide.
-            </p>
+              <p className="relative text-base sm:text-lg text-[#4B5563] transition-colors duration-500 group-hover:text-slate-200 leading-relaxed max-w-md mb-10">
+                {description}
+              </p>
 
-            <div className="inline-flex items-center font-bold text-sm text-[#20B2AA] group-hover:text-[#1a938c] transition-colors">
-              <span>Explore Network</span>
-              <ArrowRight className="w-4 h-4 ml-2 transition-transform duration-200 group-hover:translate-x-1" />
-            </div>
-          </Link>
-
-          {/* Card 2: Clinical Services */}
-          <Link
-            href="/clinical-services"
-            className="group block bg-white rounded-[24px] p-8 sm:p-10 border border-gray-200/90 shadow-[0_10px_35px_-5px_rgba(0,45,98,0.08)] hover:shadow-[0_20px_45px_-5px_rgba(0,45,98,0.14)] hover:border-[#20B2AA]/50 hover:-translate-y-1 transition-all duration-300"
-          >
-            <div className="flex items-center justify-between mb-6">
-              <div className="w-14 h-14 rounded-2xl bg-[#20B2AA]/10 text-[#20B2AA] group-hover:bg-[#002D62]/10 group-hover:text-[#002D62] flex items-center justify-center transition-colors">
-                <Stethoscope className="w-7 h-7" />
+              <div className="relative mt-auto inline-flex items-center gap-4 font-semibold text-[#002D62] transition-colors duration-500 group-hover:text-white">
+                <span>{cta}</span>
+                <span className="w-11 h-11 rounded-full border border-current flex items-center justify-center transition-transform duration-300 group-hover:translate-x-1.5">
+                  <ArrowRight className="w-4 h-4" />
+                </span>
               </div>
-              <span className="text-xs font-bold uppercase tracking-wider text-blue-800 bg-blue-50 px-3 py-1 rounded-full">
-                Diagnostic & Clinical
-              </span>
-            </div>
-
-            <h2 className="text-2xl sm:text-3xl font-bold text-[#002D62] tracking-tight group-hover:text-[#002678] transition-colors mb-3">
-              Clinical Services
-            </h2>
-
-            <p className="text-sm sm:text-base text-[#606367] leading-relaxed mb-6">
-              Comprehensive diagnostic support, equipment integration, and workflow assistance.
-            </p>
-
-            <div className="inline-flex items-center font-bold text-sm text-[#20B2AA] group-hover:text-[#1a938c] transition-colors">
-              <span>View Services</span>
-              <ArrowRight className="w-4 h-4 ml-2 transition-transform duration-200 group-hover:translate-x-1" />
-            </div>
-          </Link>
+            </Link>
+          ))}
         </div>
       </section>
 
-      {/* 3. Section: WHAT MAKES US DIFFERENT (01-08 Connected Timeline with Flowing Hexagonal Contour Background) */}
-      <FlowingHexBackground className="py-20 sm:py-28 my-8 shadow-2xl">
+      {/* 3. WHAT MAKES US DIFFERENT: the eight stages as one hairline grid */}
+      <FlowingHexBackground className="py-14 sm:py-20">
         <div className="container-boxed">
-          <div className="text-center max-w-3xl mx-auto mb-16 sm:mb-20">
-            <span className="inline-block px-3.5 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider bg-[#20B2AA]/20 text-teal-300 border border-[#20B2AA]/30 mb-4">
-              WHAT MAKES US DIFFERENT
-            </span>
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black text-white tracking-tight mb-4">
+          <div className="text-center max-w-3xl mx-auto mb-14 sm:mb-16">
+            <span className="eyebrow text-teal-300 mb-5">WHAT MAKES US DIFFERENT</span>
+            <h2 className="text-4xl sm:text-5xl text-white mb-5">
               We Stay With the Product
             </h2>
-            <p className="text-base sm:text-lg text-slate-300 leading-relaxed">
+            <p className="text-base sm:text-lg text-slate-200 leading-relaxed">
               Most market-entry companies stop at the distributor. We don’t. Commercial strategy and clinical adoption work best together.
             </p>
           </div>
 
-          {/* 8 Numbered Connected Steps Timeline */}
           <TimelineStepper />
         </div>
       </FlowingHexBackground>
 
-      {/* 4. Section: One Partner, Two Ways to Win (Tabs inside one panel) */}
-      <section className="container-boxed py-16 sm:py-24 border-t border-gray-200/80 mb-12">
-        <div className="bg-white rounded-[28px] p-8 sm:p-12 lg:p-16 border border-gray-200/90 shadow-[0_15px_45px_-10px_rgba(0,45,98,0.08)]">
-          <div className="text-center max-w-2xl mx-auto mb-10">
-            <span className="inline-block px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider bg-[#002D62]/10 text-[#002D62] mb-3">
-              Strategic Collaboration
-            </span>
-            <h2 className="text-3xl sm:text-4xl font-black text-[#002D62] tracking-tight mb-3">
-              One Partner, Two Ways to Win
-            </h2>
-            <p className="text-sm sm:text-base text-[#606367]">
-              Tailored commercial pathways designed specifically for international medical distributors and device manufacturers.
-            </p>
-          </div>
-
-          <Tabs
-            defaultTab="distributor"
-            tabs={[
-              {
-                id: 'distributor',
-                label: 'For Distributor',
-                content: (
-                  <div className="pt-6 animate-in fade-in duration-200">
-                    <div className="max-w-2xl mx-auto text-center mb-10">
-                      <h3 className="text-2xl font-bold text-[#002D62] tracking-tight mb-2">
-                        Distributor Partnership Network
-                      </h3>
-                      <p className="text-sm sm:text-base text-[#606367]">
-                        Scale your portfolio with certified, cutting-edge med-tech solutions tailored for your region.
-                      </p>
-                    </div>
-
-                    <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                      <Card className="hover:-translate-y-1 transition-transform">
-                        <div className="flex items-center justify-between mb-4">
-                          <span className="text-xs font-black text-[#20B2AA] uppercase tracking-wider bg-[#20B2AA]/10 px-2.5 py-1 rounded-lg">
-                            01
-                          </span>
-                          <Award className="w-5 h-5 text-[#20B2AA]" />
-                        </div>
-                        <h4 className="text-lg font-bold text-[#002D62] mb-2">
-                          Exclusive Territory
-                        </h4>
-                        <p className="text-sm text-[#606367] leading-relaxed">
-                          Secured market exclusivity to protect and drive your local distribution growth.
-                        </p>
-                      </Card>
-
-                      <Card className="hover:-translate-y-1 transition-transform">
-                        <div className="flex items-center justify-between mb-4">
-                          <span className="text-xs font-black text-[#20B2AA] uppercase tracking-wider bg-[#20B2AA]/10 px-2.5 py-1 rounded-lg">
-                            02
-                          </span>
-                          <ShieldCheck className="w-5 h-5 text-[#20B2AA]" />
-                        </div>
-                        <h4 className="text-lg font-bold text-[#002D62] mb-2">
-                          Regulatory Support
-                        </h4>
-                        <p className="text-sm text-[#606367] leading-relaxed">
-                          Comprehensive compliance and certification documentation ready for swift onboarding.
-                        </p>
-                      </Card>
-
-                      <Card className="hover:-translate-y-1 transition-transform">
-                        <div className="flex items-center justify-between mb-4">
-                          <span className="text-xs font-black text-[#20B2AA] uppercase tracking-wider bg-[#20B2AA]/10 px-2.5 py-1 rounded-lg">
-                            03
-                          </span>
-                          <BookOpen className="w-5 h-5 text-[#20B2AA]" />
-                        </div>
-                        <h4 className="text-lg font-bold text-[#002D62] mb-2">
-                          Sales & Training
-                        </h4>
-                        <p className="text-sm text-[#606367] leading-relaxed">
-                          Dedicated technical training and continuous marketing collateral for your team.
-                        </p>
-                      </Card>
-                    </div>
-
-                    <div className="text-center mt-10">
-                      <button
-                        type="button"
-                        onClick={() =>
-                          openModal(
-                            'Distributor Partnership Inquiry',
-                            'Partner with Xana Medtec to distribute certified innovative medical devices in your territory.'
-                          )
-                        }
-                        className="inline-flex items-center justify-center font-bold text-xs uppercase tracking-wider rounded-[24px] px-7 py-3.5 bg-[#002D62] text-white hover:bg-[#20B2AA] transition-colors shadow-md group cursor-pointer"
-                      >
-                        <span>Join Distribution Network</span>
-                        <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />
-                      </button>
-                    </div>
-                  </div>
-                ),
-              },
-              {
-                id: 'manufacturer',
-                label: 'For Manufacturer',
-                content: (
-                  <div className="pt-6 animate-in fade-in duration-200">
-                    <div className="max-w-2xl mx-auto text-center mb-10">
-                      <h3 className="text-2xl font-bold text-[#002D62] tracking-tight mb-2">
-                        Global Market Expansion
-                      </h3>
-                      <p className="text-sm sm:text-base text-[#606367]">
-                        Connect your healthcare innovations directly with vetted international distribution partners.
-                      </p>
-                    </div>
-
-                    <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                      <Card className="hover:-translate-y-1 transition-transform">
-                        <div className="flex items-center justify-between mb-4">
-                          <span className="text-xs font-black text-[#20B2AA] uppercase tracking-wider bg-[#20B2AA]/10 px-2.5 py-1 rounded-lg">
-                            01
-                          </span>
-                          <Target className="w-5 h-5 text-[#20B2AA]" />
-                        </div>
-                        <h4 className="text-lg font-bold text-[#002D62] mb-2">
-                          Targeted Placement
-                        </h4>
-                        <p className="text-sm text-[#606367] leading-relaxed">
-                          Match your technology with pre-vetted distributors seeking active clinical solutions.
-                        </p>
-                      </Card>
-
-                      <Card className="hover:-translate-y-1 transition-transform">
-                        <div className="flex items-center justify-between mb-4">
-                          <span className="text-xs font-black text-[#20B2AA] uppercase tracking-wider bg-[#20B2AA]/10 px-2.5 py-1 rounded-lg">
-                            02
-                          </span>
-                          <Truck className="w-5 h-5 text-[#20B2AA]" />
-                        </div>
-                        <h4 className="text-lg font-bold text-[#002D62] mb-2">
-                          Streamlined Logistics
-                        </h4>
-                        <p className="text-sm text-[#606367] leading-relaxed">
-                          End-to-end management from initial product trial to global supply chain rollout.
-                        </p>
-                      </Card>
-
-                      <Card className="hover:-translate-y-1 transition-transform">
-                        <div className="flex items-center justify-between mb-4">
-                          <span className="text-xs font-black text-[#20B2AA] uppercase tracking-wider bg-[#20B2AA]/10 px-2.5 py-1 rounded-lg">
-                            03
-                          </span>
-                          <TrendingUp className="w-5 h-5 text-[#20B2AA]" />
-                        </div>
-                        <h4 className="text-lg font-bold text-[#002D62] mb-2">
-                          Accelerated Growth
-                        </h4>
-                        <p className="text-sm text-[#606367] leading-relaxed">
-                          Minimize time-to-market across target international healthcare networks.
-                        </p>
-                      </Card>
-                    </div>
-
-                    <div className="text-center mt-10">
-                      <button
-                        type="button"
-                        onClick={() =>
-                          openModal(
-                            'Manufacturer Expansion Roadmap',
-                            'Discuss how Xana Medtec can take your medical technology from market entry to clinical adoption.'
-                          )
-                        }
-                        className="inline-flex items-center justify-center font-bold text-xs uppercase tracking-wider rounded-[24px] px-7 py-3.5 bg-[#002D62] text-white hover:bg-[#20B2AA] transition-colors shadow-md group cursor-pointer"
-                      >
-                        <span>Discuss Your Roadmap</span>
-                        <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />
-                      </button>
-                    </div>
-                  </div>
-                ),
-              },
-            ]}
-          />
+      {/* 4. One Partner, Two Ways to Win */}
+      <section className="bg-[#F4F8FB] border-t border-gray-200">
+      <div className="container-boxed py-14 sm:py-20">
+        <div className="text-center max-w-4xl mx-auto mb-10">
+          <span className="eyebrow text-teal-700 mb-5">Strategic Collaboration</span>
+          <h2 className="text-4xl sm:text-5xl text-[#002D62] mb-5">
+            One Partner, Two Ways to Win
+          </h2>
+          <p className="text-base sm:text-lg text-[#4B5563] leading-relaxed">
+            Tailored commercial pathways designed specifically for international medical distributors and device manufacturers.
+          </p>
         </div>
+
+        <Tabs
+          defaultTab="distributor"
+          tabs={[
+            {
+              id: 'distributor',
+              label: 'For Distributor',
+              content: (
+                <PartnerPanel
+                  title="Distributor Partnership Network"
+                  intro="Scale your portfolio with certified, cutting-edge med-tech solutions tailored for your region."
+                  benefits={distributorBenefits}
+                  cta="Join Distribution Network"
+                  onCta={() =>
+                    openModal(
+                      'Distributor Partnership Inquiry',
+                      'Partner with Xana Medtec to distribute certified innovative medical devices in your territory.'
+                    )
+                  }
+                />
+              ),
+            },
+            {
+              id: 'manufacturer',
+              label: 'For Manufacturer',
+              content: (
+                <PartnerPanel
+                  title="Global Market Expansion"
+                  intro="Connect your healthcare innovations directly with vetted international distribution partners."
+                  benefits={manufacturerBenefits}
+                  cta="Discuss Your Roadmap"
+                  onCta={() =>
+                    openModal(
+                      'Manufacturer Expansion Roadmap',
+                      'Discuss how Xana Medtec can take your medical technology from market entry to clinical adoption.'
+                    )
+                  }
+                />
+              ),
+            },
+          ]}
+        />
+      </div>
       </section>
     </div>
   );
