@@ -38,7 +38,6 @@ export const Header: React.FC = () => {
   const [mobileDevicesOpen, setMobileDevicesOpen] = useState(false);
   const [mobileClinicalOpen, setMobileClinicalOpen] = useState(false);
   const [mobileTestsOpen, setMobileTestsOpen] = useState(false);
-  const [mobileProfileOpen, setMobileProfileOpen] = useState(false);
 
   const timeoutRef = useRef<NodeJS.Timeout | null>(null);
 
@@ -328,49 +327,6 @@ export const Header: React.FC = () => {
                 </button>
               </div>
             </div>
-
-            {/* 4. My Profile (Dropdown) */}
-            <div
-              className="relative group"
-              onMouseEnter={() => handleMouseEnter('profile')}
-              onMouseLeave={handleMouseLeave}
-            >
-              <button
-                type="button"
-                onClick={() => setOpenDropdown(openDropdown === 'profile' ? null : 'profile')}
-                className="flex items-center gap-1 px-3 py-2 rounded-full text-[#323232] hover:text-[#002D62] hover:bg-[#F8F9FA] transition-colors cursor-pointer"
-                aria-expanded={openDropdown === 'profile'}
-              >
-                <span>My Profile</span>
-                <ChevronDown
-                  className={`w-3.5 h-3.5 transition-transform duration-200 ${
-                    openDropdown === 'profile' ? 'rotate-180 text-[#20B2AA]' : 'text-gray-400'
-                  }`}
-                />
-              </button>
-
-              {/* Profile Dropdown */}
-              <div
-                className={`absolute top-full right-0 mt-1.5 w-48 bg-white rounded-2xl shadow-[0_15px_35px_-5px_rgba(0,45,98,0.15)] border border-gray-100 p-2 z-50 transition-all duration-200 ${
-                  openDropdown === 'profile'
-                    ? 'opacity-100 visible translate-y-0 pointer-events-auto'
-                    : 'opacity-0 invisible -translate-y-1.5 pointer-events-none'
-                }`}
-              >
-                <Link
-                  href="/login"
-                  className="block px-3 py-2 rounded-xl text-sm font-semibold text-[#323232] hover:bg-[#F8F9FA] hover:text-[#002D62] transition-colors"
-                >
-                  Login
-                </Link>
-                <Link
-                  href="/register"
-                  className="block px-3 py-2 rounded-xl text-sm font-semibold text-[#323232] hover:bg-[#F8F9FA] hover:text-[#002D62] transition-colors"
-                >
-                  Register
-                </Link>
-              </div>
-            </div>
           </nav>
 
           {/* Desktop Right Actions: Direct Modal Trigger Button */}
@@ -555,40 +511,6 @@ export const Header: React.FC = () => {
                         className="block px-3 py-2 text-xs text-[#606367] hover:text-[#002D62]"
                       >
                         • Find Your Test
-                      </Link>
-                    </div>
-                  )}
-                </div>
-
-                {/* 4. My Profile Accordion */}
-                <div>
-                  <button
-                    type="button"
-                    onClick={() => setMobileProfileOpen(!mobileProfileOpen)}
-                    className="w-full flex items-center justify-between px-3 py-2.5 rounded-xl text-[#323232] hover:bg-gray-50 hover:text-[#002D62]"
-                  >
-                    <span>My Profile</span>
-                    <ChevronDown
-                      className={`w-4 h-4 transition-transform duration-200 ${
-                        mobileProfileOpen ? 'rotate-180 text-[#20B2AA]' : 'text-gray-400'
-                      }`}
-                    />
-                  </button>
-                  {mobileProfileOpen && (
-                    <div className="pl-4 pr-2 py-1 space-y-1 bg-gray-50/70 rounded-xl mt-1">
-                      <Link
-                        href="/login"
-                        onClick={() => setMobileMenuOpen(false)}
-                        className="block px-3 py-2 text-xs text-[#606367] hover:text-[#002D62]"
-                      >
-                        • Login
-                      </Link>
-                      <Link
-                        href="/register"
-                        onClick={() => setMobileMenuOpen(false)}
-                        className="block px-3 py-2 text-xs text-[#606367] hover:text-[#002D62]"
-                      >
-                        • Register
                       </Link>
                     </div>
                   )}
