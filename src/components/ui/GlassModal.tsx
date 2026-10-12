@@ -67,49 +67,49 @@ export const GlassModal: React.FC<GlassModalProps> = ({
     >
       {/* Restrained Backdrop Blur (backdrop blur over page) */}
       <div
-        className="fixed inset-0 bg-[#002D62]/45 backdrop-blur-md transition-opacity duration-300"
+        className="fixed inset-0 bg-ink/70 backdrop-blur-sm"
         onClick={onClose}
         aria-hidden="true"
       />
 
       {/* Translucent Panel with thin light border */}
-      <div className="relative w-full max-w-lg bg-white/95 backdrop-blur-2xl rounded-2xl border border-white/60 shadow-[0_25px_60px_-15px_rgba(0,45,98,0.35)] p-6 sm:p-8 z-10 animate-in fade-in zoom-in-95 duration-200">
+      <div className="on-paper relative w-full max-w-xl rounded-3xl p-7 sm:p-10 z-10 shadow-[0_40px_80px_-30px_rgba(0,0,0,0.6)] animate-[fade_0.2s_ease_both]">
         {/* Close Button */}
         <button
           onClick={onClose}
           type="button"
           aria-label="Close dialog"
-          className="absolute top-5 right-5 p-2 rounded-full bg-gray-100 text-[#4B5563] hover:bg-[#002D62] hover:text-white transition-colors cursor-pointer"
+          className="absolute top-5 right-5 p-2 rounded-full border border-line hover:bg-tint transition-colors cursor-pointer"
         >
           <X className="w-5 h-5" />
         </button>
 
         {/* Modal Header */}
-        <div className="mb-6 pr-8">
-          <span className="eyebrow text-[#20B2AA] mb-2">
+        <div className="mb-8 pr-10">
+          <span className="label mb-5">
             Direct Contact
           </span>
-          <h2 className="text-xl sm:text-2xl font-bold text-[#002D62] tracking-tight">
+          <h2 className="h-md">
             {title}
           </h2>
-          <p className="mt-1 text-sm text-[#4B5563] leading-relaxed">{subtitle}</p>
+          <p className="mt-3 text-[15px] text-soft leading-relaxed">{subtitle}</p>
         </div>
 
         {/* Contact Cards: Email & Location */}
-        <div className="space-y-4">
+        <div className="border-b border-line">
           {/* Email Box */}
-          <div className="p-4 rounded-xl bg-[#F8F9FA] border border-gray-100/90 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+          <div className="border-t border-line py-5 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
             <div className="flex items-center gap-3">
-              <div className="p-2.5 rounded-lg bg-[#20B2AA]/15 text-[#20B2AA] shrink-0">
+              <div className="text-accent shrink-0">
                 <Mail className="w-5 h-5" />
               </div>
               <div>
-                <span className="block text-xs font-medium text-[#4B5563] uppercase tracking-wider">
+                <span className="meta block">
                   Email Us
                 </span>
                 <a
                   href={`mailto:${emailAddress}`}
-                  className="text-base font-bold text-[#002D62] hover:text-[#20B2AA] transition-colors underline decoration-[#20B2AA]/40 underline-offset-4"
+                  className="font-display text-lg hover:text-accent transition-colors"
                 >
                   {emailAddress}
                 </a>
@@ -120,16 +120,16 @@ export const GlassModal: React.FC<GlassModalProps> = ({
             <button
               onClick={handleCopyEmail}
               type="button"
-              className="inline-flex items-center justify-center gap-1.5 px-3 py-1.5 rounded-lg bg-white border border-gray-200 text-xs font-semibold text-[#002D62] hover:border-[#20B2AA] hover:text-[#20B2AA] transition-all cursor-pointer shadow-2xs self-start sm:self-center"
+              className="btn btn-ghost btn-sm self-start sm:self-center"
             >
               {copied ? (
                 <>
-                  <Check className="w-3.5 h-3.5 text-emerald-600" />
-                  <span className="text-emerald-600">Copied!</span>
+                  <Check />
+                  <span>Copied!</span>
                 </>
               ) : (
                 <>
-                  <Copy className="w-3.5 h-3.5 text-[#4B5563]" />
+                  <Copy />
                   <span>Copy</span>
                 </>
               )}
@@ -137,15 +137,15 @@ export const GlassModal: React.FC<GlassModalProps> = ({
           </div>
 
           {/* Location Box */}
-          <div className="p-4 rounded-xl bg-[#F8F9FA] border border-gray-100/90 flex items-start gap-3">
-            <div className="p-2.5 rounded-lg bg-[#002D62]/10 text-[#002D62] shrink-0 mt-0.5">
-              <MapPin className="w-5 h-5 text-[#20B2AA]" />
+          <div className="border-t border-line py-5 flex items-start gap-3">
+            <div className="text-accent shrink-0 mt-0.5">
+              <MapPin className="w-5 h-5" />
             </div>
             <div>
-              <span className="block text-xs font-medium text-[#4B5563] uppercase tracking-wider">
+              <span className="meta block">
                 Headquarters
               </span>
-              <p className="text-sm font-semibold text-[#002D62] mt-0.5 leading-snug">
+              <p className="text-[15px] mt-1 leading-snug">
                 {companyAddress}
               </p>
             </div>
@@ -153,11 +153,11 @@ export const GlassModal: React.FC<GlassModalProps> = ({
         </div>
 
         {/* Extensibility Slot (for future form if ever needed) */}
-        {children && <div className="mt-6 pt-6 border-t border-gray-100">{children}</div>}
+        {children && <div className="mt-6">{children}</div>}
 
         {/* Modal Footer Note */}
-        <div className="mt-6 pt-4 border-t border-gray-100 text-center">
-          <p className="text-xs text-[#4B5563]">
+        <div className="mt-6">
+          <p className="meta">
             Clicking the email link will open your default email application.
           </p>
         </div>

@@ -1,8 +1,9 @@
 'use client';
 
 import React, { useState } from 'react';
-import { ChevronDown, ChevronUp, HelpCircle } from 'lucide-react';
+import { Plus } from 'lucide-react';
 import { ModalTriggerButton } from '@/components/ui/ModalTriggerButton';
+import { PageHero, CtaBand } from '@/components/ui/Blocks';
 
 const faqs = [
   {
@@ -39,65 +40,47 @@ export default function HelpFaqsPage() {
   };
 
   return (
-    <div className="page-surface min-h-screen text-[#1F2A3A] font-sans">
-      <section className="hero-light relative overflow-hidden pt-10 sm:pt-12 lg:pt-14 pb-10 sm:pb-12">
-        <div className="container-boxed relative z-10">
-          <div className="max-w-3xl">
-            <span className="eyebrow text-teal-700 mb-6">
-              SUPPORT & GUIDANCE
-            </span>
-            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-black text-[#002D62] tracking-tight mb-6">
-              Help & Frequently Asked Questions
-            </h1>
-            <p className="text-lg text-[#4B5563] max-w-2xl leading-relaxed">
-              Find answers regarding diagnostic pathology services, clinic appointments, and international medical device distribution partnerships.
-            </p>
-          </div>
-        </div>
-      </section>
+    <div className="min-h-screen">
+      <PageHero
+        title="Help & FAQs"
+        lead="Answers about blood tests, clinic appointments and medical device distribution."
+      />
 
-      <section className="container-boxed py-12 sm:py-16">
-        <div className="max-w-3xl mx-auto space-y-4">
+      <section className="section">
+        <div className="shell-narrow space-y-3">
           {faqs.map((faq, idx) => {
             const isOpen = openIndex === idx;
             return (
-              <div
-                key={idx}
-                className="bg-white rounded-2xl border border-gray-200 shadow-sm overflow-hidden transition-all duration-200"
-              >
+              <div key={idx} className="card !p-0">
                 <button
                   type="button"
                   onClick={() => toggle(idx)}
-                  className="w-full text-left p-6 sm:p-7 flex items-center justify-between gap-4 font-bold text-base sm:text-lg text-[#002D62] cursor-pointer hover:text-[#20B2AA] transition-colors"
+                  aria-expanded={isOpen}
+                  className="w-full text-left px-6 py-5 flex items-center justify-between gap-4 cursor-pointer"
                 >
-                  <span>{faq.q}</span>
-                  {isOpen ? (
-                    <ChevronUp className="w-5 h-5 text-[#20B2AA] shrink-0" />
-                  ) : (
-                    <ChevronDown className="w-5 h-5 text-slate-400 shrink-0" />
-                  )}
+                  <span className="font-medium">{faq.q}</span>
+                  <span
+                    className={`w-10 h-10 rounded-xl flex items-center justify-center shrink-0 ${
+                      isOpen ? 'bg-ink text-white' : 'bg-tint'
+                    }`}
+                  >
+                    <Plus className={`w-4 h-4 transition-transform ${isOpen ? 'rotate-45' : ''}`} />
+                  </span>
                 </button>
                 {isOpen && (
-                  <div className="px-6 pb-6 sm:px-7 sm:pb-7 text-sm sm:text-base text-[#4B5563] leading-relaxed border-t border-gray-100 pt-4">
-                    {faq.a}
-                  </div>
+                  <div className="px-6 pb-6 text-soft leading-relaxed animate-[fade_0.25s_ease_both]">{faq.a}</div>
                 )}
               </div>
             );
           })}
         </div>
-
-        {/* Still have questions CTA */}
-        <div className="mt-16 text-center max-w-xl mx-auto p-8 rounded-2xl bg-white border border-gray-200 shadow-sm">
-          <h3 className="text-xl font-bold text-[#002D62] mb-2">Have further questions?</h3>
-          <p className="text-sm text-[#4B5563] mb-6">
-            Our clinical and commercial teams in Manchester are ready to assist you.
-          </p>
-          <ModalTriggerButton variant="teal" size="md">
-            Contact Us Directly
-          </ModalTriggerButton>
-        </div>
       </section>
+
+      <CtaBand title="Have further questions?">
+        <ModalTriggerButton variant="teal" size="lg" withArrow>
+          Contact us
+        </ModalTriggerButton>
+      </CtaBand>
     </div>
   );
 }

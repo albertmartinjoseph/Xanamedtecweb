@@ -1,8 +1,8 @@
 import React from 'react';
 import type { Metadata } from 'next';
 import Image from 'next/image';
-import { CheckCircle2, ShieldCheck, Zap, Activity, Armchair, HelpCircle } from 'lucide-react';
 import { ModalTriggerButton } from '@/components/ui/ModalTriggerButton';
+import { PageHero, Section, CtaBand } from '@/components/ui/Blocks';
 
 export const metadata: Metadata = {
   title: 'Vein Finder System - Xana Medtec',
@@ -17,12 +17,11 @@ export const metadata: Metadata = {
 };
 
 const clinicalBenefits = [
-  'Supports DIVA patients, designed for paediatrics, neonatal, oncology, renal patients and people with obesity.',
-  'Improves first-stick success, real-time vein visualisation helps reduce repeat attempts, procedure time and discomfort.',
-  '91.7% reduction in cannulation attempts and risk of infection. Attempted cannulation increases the risk of infection to the patient.',
-  'Portable, handheld & easy to use on diverse population. Detects vessel depth and offers seven monochromatic modes to help visual veins in a variety of diverse skin tones.',
-  'Enhanced vascular clarity and depth of veins in real-time.',
-  'Three functional settings for adults, paediatrics, and neonates.',
+  '91.7% reduction in cannulation attempts.',
+  'Supports DIVA patients: paediatric, neonatal, oncology and renal patients, and people with obesity.',
+  'Fewer repeat attempts, shorter procedures, less discomfort.',
+  'Seven monochromatic modes show veins on a wide range of skin tones.',
+  'Three settings: adults, paediatrics and neonates.',
 ];
 
 const technicalSpecs = [
@@ -35,217 +34,104 @@ const technicalSpecs = [
   { parameter: 'Hygienic Standards', details: 'CE Marked / NHS IPC Non-contact compliant' },
 ];
 
+const mountingOptions = [
+  {
+    title: 'Mobile Trolley Mount',
+    description:
+      'Height-adjustable floor stand with lockable castor wheels, for A&E, ICU and ward use.',
+  },
+  {
+    title: 'Flexible Desktop Stand',
+    description:
+      'Compact articulated arm for phlebotomy stations and consultation desks.',
+  },
+];
+
 export default function VeinFinderPage() {
   return (
-    <div className="page-surface min-h-screen text-[#1F2A3A] font-sans">
-      {/* 1. Page Banner with Image 07 and Title "Vein Finder System" */}
-      <section className="hero-light relative overflow-hidden pt-10 sm:pt-12 lg:pt-14 pb-10 sm:pb-12">
-        <div className="hero-media">
-          <Image
-            src="/images/assets/07-vein-finder-banner.png"
-            alt="Vein Finder System Handheld Banner"
-            fill
-            sizes="(min-width: 1024px) 46vw, 1px"
-            className="object-cover object-center"
-            preload
-          />
-        </div>
+    <div className="min-h-screen">
+      <PageHero
+        title="Vein Finder System"
+        lead="Real-time vein mapping with near-infrared light. Built to avoid failed first attempts and to support Difficult Venous Access (DIVA) patients."
+        image={{ src: '/images/assets/07-vein-finder-banner.png', alt: 'Vein Finder System Handheld Banner' }}
+        crumbs={[{ name: 'International Distribution', href: '/international-distribution' }]}
+      >
+        <ModalTriggerButton variant="teal" size="lg" withArrow>
+          Book Demonstration or Inquire
+        </ModalTriggerButton>
+      </PageHero>
 
-        <div className="container-boxed relative z-10">
-          <div className="max-w-3xl">
-            <div className="eyebrow text-teal-700 mb-6">
-              <span>Medical Devices • Vascular Visualisation</span>
-            </div>
-
-            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-black text-[#002D62] tracking-tight leading-[1.1] mb-6">
-              Vein Finder System
-            </h1>
-
-            <p className="text-lg sm:text-xl text-[#4B5563] leading-relaxed max-w-2xl mb-8">
-              Real-time 1:1 vascular mapping using dual 850nm near-infrared light. Engineered to eliminate first-attempt venipuncture failures and support Difficult Venous Access (DIVA) patients.
-            </p>
-          </div>
-        </div>
-      </section>
-
-      {/* 2. Section: Clinical Benefits with Image 09 supporting visual */}
-      <section className="container-boxed py-12 sm:py-16">
-        <div className="bg-white rounded-2xl p-8 sm:p-12 lg:p-16 border border-gray-200 mb-20">
-          <div className="text-center max-w-3xl mx-auto mb-16">
-            <span className="eyebrow text-teal-700 mb-3">
-              CLINICAL EVIDENCE & BENEFITS
-            </span>
-            <h2 className="text-3xl sm:text-4xl font-bold text-[#002D62] tracking-tight">
-              Clinical Benefits
-            </h2>
+      {/* Clinical benefits */}
+      <section className="section">
+        <div className="shell grid grid-cols-1 lg:grid-cols-2 gap-x-20 gap-y-10 items-center">
+          <div className="frame aspect-[4/5]">
+            <Image
+              src="/images/assets/09-vein-finder-projection.png"
+              alt="Vein Finder Real-time Vascular Projection"
+              fill
+              sizes="(min-width: 1024px) 50vw, 100vw"
+              className="object-cover"
+              priority
+            />
           </div>
 
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
-            {/* Left: 6 Benefits */}
-            <div className="lg:col-span-7 space-y-5">
-              {clinicalBenefits.map((benefit, idx) => (
-                <div
-                  key={idx}
-                  className="flex items-start gap-4 p-4 rounded-2xl bg-slate-50/70 border border-slate-100 hover:border-[#20B2AA]/40 hover:bg-white hover:shadow-sm transition-all"
-                >
-                  <div className="w-8 h-8 rounded-xl bg-[#20B2AA]/15 text-[#20B2AA] flex items-center justify-center shrink-0 mt-0.5">
-                    <CheckCircle2 className="w-5 h-5 text-[#20B2AA]" />
-                  </div>
-                  <div>
-                    <span className="text-xs font-bold uppercase tracking-wider text-slate-500 block mb-1">
-                      Benefit 0{idx + 1}
-                    </span>
-                    <p className="text-sm sm:text-base text-[#1F2A3A] font-medium leading-relaxed">
-                      {benefit}
-                    </p>
-                  </div>
-                </div>
+          <div className="reveal">
+            <div className="eyebrow mb-5">Real-time 1:1 vein mapping</div>
+            <h2 className="h-xl !animate-none mb-8">Clinical Benefits</h2>
+
+            <ul className="space-y-4">
+              {clinicalBenefits.map((benefit) => (
+                <li key={benefit} className="flex items-start gap-4">
+                  <span className="w-2.5 h-2.5 rounded-[3px] bg-fg shrink-0 mt-2" />
+                  {benefit}
+                </li>
               ))}
-            </div>
-
-            {/* Right: Supporting Image 09 (vein projection in clinical setting) */}
-            <div className="lg:col-span-5 flex justify-center">
-              <div className="relative w-full max-w-sm aspect-[3/4] rounded-2xl overflow-hidden bg-slate-100 border border-slate-200 shadow-md group">
-                <Image
-                  src="/images/assets/09-vein-finder-projection.png"
-                  alt="Vein Finder Real-time Vascular Projection"
-                  fill
-                  className="object-cover group-hover:scale-105 transition-transform duration-500"
-                  priority
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-[#002D62]/80 via-transparent to-transparent flex items-end p-6">
-                  <span className="eyebrow text-white">
-                    Real-time 1:1 In-Vivo Mapping
-                  </span>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        {/* 3. Mounting Options (Merged into a unified card under the hardware image) */}
-        <div className="mb-20">
-          <div className="text-center max-w-2xl mx-auto mb-12">
-            <span className="eyebrow text-teal-700 mb-3">
-              FLEXIBLE WORKFLOW INTEGRATION
-            </span>
-            <h3 className="text-2xl sm:text-3xl font-bold text-[#002D62] tracking-tight">
-              Mounting & Deployment Options
-            </h3>
-          </div>
-
-          {/* Unified Card: Featured Image Above, Both Text Boxes Merged Underneath */}
-          <div className="bg-white rounded-2xl p-8 sm:p-12 border border-gray-200 max-w-4xl mx-auto">
-            {/* Featured Hardware Image for Both Options */}
-            <div className="relative w-full h-80 sm:h-96 rounded-2xl overflow-hidden bg-slate-50 border border-slate-100/80 mb-10 flex items-center justify-center p-6 group">
-              <Image
-                src="/images/assets/10-mobile-trolley-mount.png"
-                alt="Vein Finder Clinical Mounting and Deployment Hardware"
-                fill
-                className="object-contain p-4 group-hover:scale-105 transition-transform duration-500"
-                priority
-              />
-              <div className="absolute top-4 right-4">
-                <span className="eyebrow text-[#002D62] bg-white/90 rounded-full px-3 py-1.5">
-                  Clinical Hardware Configurations
-                </span>
-              </div>
-            </div>
-
-            {/* Merged Text Options Underneath the Image */}
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8 pt-2">
-              {/* Option 1: Mobile Trolley Mount */}
-              <div className="p-6 sm:p-7 rounded-2xl bg-[#F8F9FA] border border-gray-200 hover:border-[#20B2AA]/50 hover:bg-white hover:shadow-sm transition-all duration-300">
-                <div className="eyebrow text-blue-700 mb-3">
-                  A&E / ICU / Wards
-                </div>
-                <h4 className="text-xl font-bold text-[#002D62] tracking-tight mb-2">
-                  Mobile Trolley Mount
-                </h4>
-                <p className="text-sm text-[#4B5563] leading-relaxed">
-                  Height-adjustable floor stand with lockable castor wheels, optimized for A&E, ICU, and ward mobility.
-                </p>
-              </div>
-
-              {/* Option 2: Flexible Desktop Stand */}
-              <div className="p-6 sm:p-7 rounded-2xl bg-[#F8F9FA] border border-gray-200 hover:border-[#20B2AA]/50 hover:bg-white hover:shadow-sm transition-all duration-300">
-                <div className="eyebrow text-teal-700 mb-3">
-                  Phlebotomy & Outpatient Desks
-                </div>
-                <h4 className="text-xl font-bold text-[#002D62] tracking-tight mb-2">
-                  Flexible Desktop Stand
-                </h4>
-                <p className="text-sm text-[#4B5563] leading-relaxed">
-                  Compact articulated mounting arm designed for phlebotomy stations and fixed clinical consultation desks.
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        {/* 4. Table: Technical Specifications */}
-        <div className="mb-20">
-          <div className="text-center max-w-2xl mx-auto mb-10">
-            <span className="eyebrow text-teal-700 mb-3">
-              TECHNICAL DATA
-            </span>
-            <h3 className="text-2xl sm:text-3xl font-bold text-[#002D62] tracking-tight">
-              Technical Specifications
-            </h3>
-          </div>
-
-          <div className="bg-white rounded-2xl overflow-hidden border border-gray-200 shadow-sm max-w-3xl mx-auto">
-            <div className="overflow-x-auto">
-              <table className="w-full text-left border-collapse">
-                <thead>
-                  <tr className="bg-[#002D62] text-white">
-                    <th className="py-4 px-6 text-sm font-bold uppercase tracking-wider border-b border-[#002D62]">
-                      Specification Parameter
-                    </th>
-                    <th className="py-4 px-6 text-sm font-bold uppercase tracking-wider border-b border-[#002D62]">
-                      Clinical Details
-                    </th>
-                  </tr>
-                </thead>
-                <tbody className="divide-y divide-gray-100">
-                  {technicalSpecs.map((spec, index) => (
-                    <tr
-                      key={spec.parameter}
-                      className={index % 2 === 0 ? 'bg-white' : 'bg-[#F8F9FA]/70'}
-                    >
-                      <td className="py-4 px-6 text-sm font-bold text-[#002D62]">
-                        {spec.parameter}
-                      </td>
-                      <td className="py-4 px-6 text-sm text-[#4B5563] font-medium">
-                        {spec.details}
-                      </td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-            </div>
-          </div>
-        </div>
-
-        {/* 5. Consultation & Trial Request CTA */}
-        <div className="hero-surface bg-[#002D62] text-white rounded-2xl p-8 sm:p-12 lg:p-16 text-center max-w-4xl mx-auto shadow-xl relative overflow-hidden">
-          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,_var(--tw-gradient-stops))] from-[#20B2AA]/20 via-transparent to-transparent pointer-events-none" />
-          <div className="relative z-10">
-            <span className="eyebrow text-teal-300 mb-4">
-              HOSPITAL EVALUATION & SUPPLY
-            </span>
-            <h2 className="text-3xl sm:text-4xl font-bold text-white tracking-tight mb-4">
-              Request a Clinical Trial or Demonstration
-            </h2>
-            <p className="text-base text-slate-200 max-w-2xl mx-auto mb-8 leading-relaxed">
-              Experience the Vein Finder System in your clinical ward, phlebotomy department, or pediatric unit. Contact us to schedule an on-site trial or request commercial distributor terms.
-            </p>
-            <ModalTriggerButton variant="teal" size="lg" className="px-9 py-3.5 shadow-lg">
-              Book Demonstration or Inquire
-            </ModalTriggerButton>
+            </ul>
           </div>
         </div>
       </section>
+
+      {/* Mounting options */}
+      <Section band title="Mounting & Deployment Options">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-5 max-w-4xl mx-auto items-stretch">
+          <div className="frame min-h-80 !bg-white">
+            <Image
+              src="/images/assets/10-mobile-trolley-mount.png"
+              alt="Vein Finder Clinical Mounting and Deployment Hardware"
+              fill
+              sizes="(min-width: 768px) 50vw, 100vw"
+              className="object-contain p-6"
+            />
+          </div>
+
+          <div className="flex flex-col gap-5">
+            {mountingOptions.map((option) => (
+              <div key={option.title} className="card flex-1 flex flex-col justify-center">
+                <h3 className="label">{option.title}</h3>
+                <p className="text-soft mt-2">{option.description}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </Section>
+
+      {/* Technical specifications */}
+      <Section title="Technical Specifications">
+        <dl className="reveal max-w-3xl mx-auto border-b border-line">
+          {technicalSpecs.map((spec) => (
+            <div key={spec.parameter} className="border-t border-line py-4 flex flex-col sm:flex-row sm:justify-between gap-x-8 gap-y-1">
+              <dt className="font-medium">{spec.parameter}</dt>
+              <dd className="text-soft sm:text-right">{spec.details}</dd>
+            </div>
+          ))}
+        </dl>
+      </Section>
+
+      <CtaBand title="Request a Clinical Trial or Demonstration">
+        <ModalTriggerButton variant="teal" size="lg" withArrow>
+          Book Demonstration or Inquire
+        </ModalTriggerButton>
+      </CtaBand>
     </div>
   );
 }

@@ -50,11 +50,11 @@ export const Tabs: React.FC<TabsProps> = ({
   return (
     <div className={`w-full ${className}`}>
       {/* Tab toggle buttons */}
-      <div className="flex justify-center mb-12">
+      <div className="mb-8">
         <div
           role="tablist"
           aria-label="Partner options"
-          className="inline-flex max-w-full p-1.5 bg-white rounded-full border border-gray-200"
+          className="inline-flex max-w-full p-1 rounded-full bg-tint border border-line"
         >
           {tabs.map((tab, idx) => {
             const isActive = activeTab === tab.id;
@@ -72,10 +72,8 @@ export const Tabs: React.FC<TabsProps> = ({
                 tabIndex={isActive ? 0 : -1}
                 onClick={() => setActiveTab(tab.id)}
                 onKeyDown={(e) => handleKeyDown(e, idx)}
-                className={`px-5 sm:px-9 py-3 rounded-full text-sm sm:text-base font-semibold transition-all duration-300 cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-[#20B2AA] ${
-                  isActive
-                    ? 'bg-[#002D62] text-white'
-                    : 'text-[#4B5563] hover:text-[#002D62]'
+                className={`px-5 sm:px-7 py-2.5 rounded-full text-sm sm:text-[15px] font-semibold whitespace-nowrap transition-colors cursor-pointer ${
+                  isActive ? 'bg-ink text-white' : 'text-soft hover:text-fg'
                 }`}
               >
                 {tab.label}
@@ -95,11 +93,7 @@ export const Tabs: React.FC<TabsProps> = ({
               id={`panel-${tab.id}`}
               role="tabpanel"
               aria-labelledby={`tab-${tab.id}`}
-              className={`transition-all duration-300 ${
-                isActive
-                  ? 'block opacity-100 animate-in fade-in duration-200'
-                  : 'hidden opacity-0'
-              }`}
+              className={isActive ? 'animate-[fade_0.25s_ease_both]' : 'hidden'}
             >
               {tab.content}
             </div>

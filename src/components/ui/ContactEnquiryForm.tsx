@@ -81,7 +81,7 @@ export const ContactEnquiryForm: React.FC<ContactEnquiryFormProps> = ({
   if (submitted) {
     return (
       <div className="text-center py-8 px-4">
-        <CheckCircle2 className="w-16 h-16 text-[#20B2AA] mx-auto mb-4 animate-bounce" />
+        <CheckCircle2 className="w-16 h-16 text-[#20B2AA] mx-auto mb-4" />
         <h3 className="text-2xl font-bold text-[#002D62] mb-2">Enquiry Received</h3>
         <p className="text-[#4B5563] max-w-md mx-auto">
           Thank you for getting in touch. Your message has been routed to our team at{' '}
@@ -109,10 +109,10 @@ export const ContactEnquiryForm: React.FC<ContactEnquiryFormProps> = ({
               type="button"
               onClick={() => setCategory(item.id as 'clinical' | 'distribution' | 'devices')}
               className={`px-3 py-2 text-xs font-semibold rounded-lg border text-left transition-all ${
-                category === item.id
-                  ? 'border-[#20B2AA] bg-[#20B2AA]/10 text-[#002D62] font-bold shadow-sm'
-                  : 'border-gray-200 text-[#4B5563] hover:border-gray-300'
-              }`}
+ category === item.id
+ ?'border-[#20B2AA] bg-[#20B2AA]/10 text-[#002D62] font-bold shadow-sm'
+ :'border-gray-200 text-[#4B5563] hover:border-gray-300'
+ }`}
             >
               {item.label}
             </button>

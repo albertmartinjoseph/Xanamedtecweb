@@ -32,19 +32,19 @@ export const CookieBanner: React.FC = () => {
   return (
     <aside
       aria-label="Cookie consent banner"
-      className="fixed bottom-4 sm:bottom-6 left-4 right-4 sm:left-auto sm:right-6 sm:max-w-md z-50 animate-in fade-in slide-in-from-bottom-5 duration-300"
+      className="fixed bottom-4 sm:bottom-6 left-4 right-4 sm:left-auto sm:right-6 sm:max-w-md z-50 animate-[fade_0.25s_ease_both]"
     >
-      <div className="bg-white/95 backdrop-blur-xl border border-gray-200 shadow-[0_20px_45px_-10px_rgba(0,45,98,0.22)] rounded-2xl p-5 sm:p-6 text-[#1F2A3A]">
+      <div className="on-ink rounded-2xl p-6 shadow-[0_30px_60px_-25px_rgba(0,0,0,0.6)]">
         <div className="flex items-start gap-3 mb-3">
-          <div className="p-2 rounded-xl bg-[#20B2AA]/15 text-[#20B2AA] shrink-0 mt-0.5">
+          <div className="text-accent shrink-0 mt-0.5">
             <ShieldCheck className="w-5 h-5" />
           </div>
           <div>
-            <h4 className="text-sm font-bold text-[#002D62]">Privacy & Cookie Preferences</h4>
-            <p className="text-xs text-[#4B5563] mt-1 leading-relaxed">
+            <h4 className="font-display text-xl leading-tight">Privacy & Cookie Preferences</h4>
+            <p className="text-[13px] text-soft mt-2 leading-relaxed">
               We use cookies to ensure optimal navigation and analyze site performance in accordance with UK GDPR.
               Read our{' '}
-              <Link href="/privacy-policy" className="underline hover:text-[#20B2AA] text-[#002D62] font-medium">
+              <Link href="/privacy-policy" className="underline underline-offset-2 text-fg hover:text-accent">
                 Privacy Policy
               </Link>
               .
@@ -56,14 +56,14 @@ export const CookieBanner: React.FC = () => {
           <button
             type="button"
             onClick={handleAcceptAll}
-            className="flex-1 py-2 px-3 rounded-full bg-[#002D62] hover:bg-[#147F79] text-white text-xs font-bold transition-colors cursor-pointer text-center"
+            className="btn btn-sm flex-1"
           >
             Accept All
           </button>
           <button
             type="button"
             onClick={handleEssentialOnly}
-            className="py-2 px-3 rounded-full border border-gray-200 hover:bg-gray-100 text-[#4B5563] text-xs font-medium transition-colors cursor-pointer text-center"
+            className="btn btn-ghost btn-sm"
           >
             Essential Only
           </button>

@@ -1,9 +1,9 @@
 import React from 'react';
 import type { Metadata } from 'next';
 import Image from 'next/image';
-import Link from 'next/link';
-import { ExternalLink, Activity, Cpu, FileText, MapPin, ArrowRight } from 'lucide-react';
+import { ExternalLink, Activity, Cpu, FileText, MapPin } from 'lucide-react';
 import { ModalTriggerButton } from '@/components/ui/ModalTriggerButton';
+import { PageHero, Section, CtaBand } from '@/components/ui/Blocks';
 
 export const metadata: Metadata = {
   title: 'Anisys Go - Xana Medtec',
@@ -19,194 +19,99 @@ export const metadata: Metadata = {
 
 const highlights = [
   {
-    figure: '13',
-    suffix: 'Sensors',
-    label: 'High-Resolution Array',
-    description: 'Simultaneous circumferential sensor recording of sphincter pressure and rectal sensitivity.',
+    label: '13-Sensor Array',
+    description: 'Records sphincter pressure and rectal sensitivity all the way round, at the same time.',
     icon: Cpu,
   },
   {
-    figure: 'Interactive',
-    suffix: '',
     label: 'Biofeedback Therapy',
-    description: 'Visual exercise cues empowering pelvic floor re-education directly in the clinic or community.',
+    description: 'Visual exercise cues for pelvic floor re-education, in the clinic or the community.',
     icon: Activity,
   },
   {
-    figure: 'Colour-Mapped',
-    suffix: '',
     label: 'Detailed Reports',
-    description: 'Instant PDF summaries and secure digital data integration for electronic patient health records.',
+    description: 'Instant PDF summaries and secure transfer to electronic patient records.',
     icon: FileText,
   },
   {
-    figure: 'UK Innovated',
-    suffix: '',
     label: 'Made in Manchester',
-    description: 'Designed and validated by leading colorectal physiologists and healthcare specialists.',
+    description: 'Designed and validated by colorectal physiologists and healthcare specialists.',
     icon: MapPin,
   },
 ];
 
 export default function AnisysGoPage() {
   return (
-    <div className="page-surface min-h-screen text-[#1F2A3A] font-sans">
-      {/* 1. Page Banner with Image 06 and Title "Anisys Go" */}
-      <section className="hero-light relative overflow-hidden pt-10 sm:pt-12 lg:pt-14 pb-10 sm:pb-12">
-        <div className="hero-media">
-          <Image
-            src="/images/assets/06-anisys-go-banner.png"
-            alt="Anisys Go Banner Kit"
-            fill
-            sizes="(min-width: 1024px) 46vw, 1px"
-            className="object-cover object-center"
-            preload
-          />
-        </div>
+    <div className="min-h-screen">
+      <PageHero
+        title="Anisys Go"
+        lead="A portable system that brings high-resolution anorectal manometry and guided biofeedback therapy closer to the patient."
+        image={{ src: '/images/assets/06-anisys-go-banner.png', alt: 'Anisys Go Banner Kit' }}
+        crumbs={[{ name: 'International Distribution', href: '/international-distribution' }]}
+      >
+        <ModalTriggerButton variant="teal" size="lg" modalTitle="Book Demonstration or Inquire" withArrow>
+          Book Demonstration or Inquire
+        </ModalTriggerButton>
+      </PageHero>
 
-        <div className="container-boxed relative z-10">
-          <div className="max-w-3xl">
-            <div className="eyebrow text-teal-700 mb-6">
-              <span>Medical Devices • Diagnostic Physiology</span>
-            </div>
+      {/* What it is */}
+      <section className="section">
+        <div className="shell grid grid-cols-1 lg:grid-cols-2 gap-x-20 gap-y-10 items-center">
+          <div className="frame aspect-square !bg-white border border-line">
+            <Image
+              src="/images/assets/08-anisys-go-product.png"
+              alt="Anisys Go Product Console and Sensor Handpiece"
+              fill
+              sizes="(min-width: 1024px) 50vw, 100vw"
+              className="object-contain p-6"
+              priority
+            />
+          </div>
 
-            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-black text-[#002D62] tracking-tight leading-[1.1] mb-6">
-              Anisys Go
-            </h1>
+          <div className="reveal">
+            <div className="eyebrow mb-5">Developed in Manchester by clinicians</div>
+            <h2 className="h-lg !animate-none">High-resolution anorectal physiology and biofeedback therapy.</h2>
 
-            <p className="text-lg sm:text-xl text-[#4B5563] leading-relaxed max-w-2xl mb-8">
-              A breakthrough portable system bringing high-resolution anorectal manometry and guided biofeedback therapy closer to the patient.
+            <p className="lead mt-6 mb-8">
+              A smaller, more cost-effective and easier-to-use device that brings care closer to the patient&apos;s home.
             </p>
+
+            {/* Mandatory external link line from spec */}
+            <a href="https://www.anisys.co.uk/" target="_blank" rel="noopener noreferrer" className="more">
+              <span>
+                <ExternalLink />
+              </span>
+              <span>
+                <span className="block text-sm font-normal text-soft">For more details visit:</span>
+                https://www.anisys.co.uk/
+              </span>
+            </a>
           </div>
         </div>
       </section>
 
-      {/* 2. Main Feature & Product Visual Section */}
-      <section className="container-boxed py-12 sm:py-16">
-        <div className="bg-white rounded-2xl p-8 sm:p-12 lg:p-16 border border-gray-200 mb-16 sm:mb-20">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
-            {/* Left Column: Heading and Authentic Copy */}
-            <div className="lg:col-span-7">
-              <div className="eyebrow text-teal-700 mb-4">
-                CLINICAL PORTABILITY
-              </div>
-
-              <h2 className="text-3xl sm:text-4xl font-bold text-[#002D62] tracking-tight leading-tight mb-6">
-                High-resolution anorectal physiology and biofeedback therapy.
-              </h2>
-
-              <p className="text-base sm:text-lg text-[#4B5563] leading-relaxed mb-8">
-                A smaller, more cost-effective and easier-to-use device that brings care closer to the patient&apos;s home. Developed in Manchester by clinicians, it uses 13 sensors to record sphincter function and rectal sensitivity in real time, with detailed colour-mapped reports and secure transfer to electronic patient records.
-              </p>
-
-              {/* Mandatory External Link Line from Spec */}
-              <div className="pt-4 border-t border-gray-100 flex flex-col sm:flex-row sm:items-center gap-4">
-                <span className="text-sm font-semibold text-[#1F2A3A]">
-                  For more details visit:
-                </span>
-                <a
-                  href="https://www.anisys.co.uk/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center text-sm font-bold text-teal-700 hover:text-[#002D62] transition-colors underline underline-offset-4"
-                >
-                  <span>https://www.anisys.co.uk/</span>
-                  <ExternalLink className="w-4 h-4 ml-1.5" />
-                </a>
+      {/* Four highlights */}
+      <Section band title="Engineered for Clinical Precision">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-3 max-w-4xl mx-auto">
+          {highlights.map(({ label, description, icon: Icon }) => (
+            <div key={label} className="card !p-1.5 flex items-center gap-5">
+              <span className="wash w-20 h-20 rounded-[1.125rem] flex items-center justify-center shrink-0">
+                <Icon className="w-6 h-6" strokeWidth={1.5} />
+              </span>
+              <div className="py-2 pr-4">
+                <h3 className="label !text-sm">{label}</h3>
+                <p className="text-[15px] text-soft mt-1">{description}</p>
               </div>
             </div>
-
-            {/* Right Column: Product Image 08 */}
-            <div className="lg:col-span-5 flex justify-center">
-              <div className="relative w-full max-w-md aspect-square rounded-2xl bg-gradient-to-br from-slate-50 to-teal-50/30 p-6 border border-gray-100 shadow-sm flex items-center justify-center group">
-                <Image
-                  src="/images/assets/08-anisys-go-product.png"
-                  alt="Anisys Go Product Console and Sensor Handpiece"
-                  fill
-                  className="object-contain p-4 group-hover:scale-105 transition-transform duration-500"
-                  priority
-                />
-              </div>
-            </div>
-          </div>
+          ))}
         </div>
+      </Section>
 
-        {/* 3. Four Highlight Tiles (Large Figure / Icon + Label) */}
-        <div className="mb-20">
-          <div className="text-center max-w-2xl mx-auto mb-12">
-            <span className="eyebrow text-teal-700 mb-3">
-              TECHNOLOGY ADVANTAGES
-            </span>
-            <h3 className="text-2xl sm:text-3xl font-bold text-[#002D62] tracking-tight">
-              Engineered for Clinical Precision
-            </h3>
-          </div>
-
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            {highlights.map((tile, i) => {
-              const Icon = tile.icon;
-              return (
-                <div
-                  key={i}
-                  className="bg-white rounded-2xl p-7 border border-gray-200 hover:border-[#20B2AA]/50 hover:shadow-md hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between"
-                >
-                  <div>
-                    <div className="flex items-center justify-between mb-5">
-                      <div className="w-12 h-12 rounded-xl icon-tile flex items-center justify-center">
-                        <Icon className="w-6 h-6" />
-                      </div>
-                      <span className="text-xs font-bold text-slate-400">0{i + 1}</span>
-                    </div>
-
-                    <div className="flex items-baseline gap-1.5 mb-1">
-                      <span className="text-2xl sm:text-3xl font-black text-[#002D62] tracking-tight">
-                        {tile.figure}
-                      </span>
-                      {tile.suffix && (
-                        <span className="text-sm font-bold text-teal-700 uppercase">
-                          {tile.suffix}
-                        </span>
-                      )}
-                    </div>
-
-                    <div className="text-sm font-bold text-[#1F2A3A] mb-3">
-                      {tile.label}
-                    </div>
-
-                    <p className="text-xs text-[#4B5563] leading-relaxed">
-                      {tile.description}
-                    </p>
-                  </div>
-                </div>
-              );
-            })}
-          </div>
-        </div>
-
-        {/* 4. Consultation CTA */}
-        <div className="hero-surface bg-[#002D62] text-white rounded-2xl p-8 sm:p-12 lg:p-16 text-center max-w-4xl mx-auto shadow-xl relative overflow-hidden">
-          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,_var(--tw-gradient-stops))] from-[#20B2AA]/20 via-transparent to-transparent pointer-events-none" />
-          <div className="relative z-10">
-            <span className="eyebrow text-teal-300 mb-4">
-              DISTRIBUTION & CLINICAL EVALUATION
-            </span>
-            <h2 className="text-3xl sm:text-4xl font-bold text-white tracking-tight mb-4">
-              Explore Anisys Go for Your Health System
-            </h2>
-            <p className="text-base text-slate-200 max-w-2xl mx-auto mb-8 leading-relaxed">
-              Contact our clinical specialists to request technical dossiers, organize an in-hospital clinical demonstration, or discuss international territorial distribution.
-            </p>
-            <ModalTriggerButton
-              variant="teal"
-              size="lg"
-              className="px-9 py-3.5 shadow-lg"
-              modalTitle="Book Demonstration or Inquire"
-            >
-              Book Demonstration or Inquire
-            </ModalTriggerButton>
-          </div>
-        </div>
-      </section>
+      <CtaBand title="Explore Anisys Go for Your Health System">
+        <ModalTriggerButton variant="teal" size="lg" modalTitle="Book Demonstration or Inquire" withArrow>
+          Book Demonstration or Inquire
+        </ModalTriggerButton>
+      </CtaBand>
     </div>
   );
 }

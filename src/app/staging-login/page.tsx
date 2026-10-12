@@ -3,7 +3,7 @@
 import React, { useState, Suspense } from 'react';
 import Image from 'next/image';
 import { useRouter, useSearchParams } from 'next/navigation';
-import { Lock, ArrowRight, ShieldCheck, AlertCircle, Sparkles } from 'lucide-react';
+import { Lock, ArrowRight, AlertCircle, Sparkles } from 'lucide-react';
 
 function StagingLoginContent() {
   const router = useRouter();
@@ -47,40 +47,34 @@ function StagingLoginContent() {
   };
 
   return (
-    <div className="min-h-screen bg-[#001D47] text-white flex flex-col justify-center items-center px-4 py-12 relative overflow-hidden">
-      {/* Ambient background gradients */}
-      <div className="absolute inset-0 bg-gradient-to-br from-[#002D62] via-[#001D47] to-[#07172E] pointer-events-none" />
-      <div className="absolute top-1/4 -right-40 w-96 h-96 bg-[#20B2AA]/15 rounded-full blur-3xl pointer-events-none" />
-      <div className="absolute bottom-1/4 -left-40 w-96 h-96 bg-[#002678]/40 rounded-full blur-3xl pointer-events-none" />
-
+    <div className="on-ink min-h-screen flex flex-col justify-center items-center px-4 py-12 relative overflow-hidden">
+      
       <div className="relative z-10 w-full max-w-md">
         {/* Brand Logo */}
-        <div className="flex justify-center mb-8">
+        <div className="mb-8">
           <div className="relative w-48 h-12">
             <Image
               src="/images/logo-dark-bg.png"
               alt="Xana Medtec Logo"
               fill
-              className="object-contain"
+              className="object-contain object-left"
               priority
             />
           </div>
         </div>
 
         {/* Login Card */}
-        <div className="bg-white/10 backdrop-blur-2xl rounded-2xl border border-white/20 p-8 sm:p-10 ">
-          <div className="text-center mb-8">
-            <div className="inline-flex items-center justify-center w-14 h-14 rounded-2xl bg-[#20B2AA]/20 text-[#20B2AA] border border-[#20B2AA]/30 mb-4 shadow-sm">
-              <Lock className="w-6 h-6" />
-            </div>
-            <div className="eyebrow text-teal-300 mb-3">
-              <Sparkles className="w-3 h-3 text-teal-300" />
+        <div className="rounded-3xl border border-line bg-surface-2 p-8 sm:p-10">
+          <div className="mb-8">
+            <Lock className="w-6 h-6 text-accent mb-6" strokeWidth={1.25} />
+            <div className="label mb-4 flex">
+              <Sparkles className="w-3 h-3" />
               <span>Private Client Review</span>
             </div>
-            <h1 className="text-2xl font-bold text-white tracking-tight mb-2">
+            <h1 className="h-lg mb-3">
               Protected Preview Access
             </h1>
-            <p className="text-xs sm:text-sm text-slate-300 leading-relaxed">
+            <p className="text-sm text-soft leading-relaxed">
               This preview environment is reserved for client review. Enter your access password to unlock.
             </p>
           </div>
@@ -89,7 +83,7 @@ function StagingLoginContent() {
             <div>
               <label
                 htmlFor="password"
-                className="block text-xs font-bold uppercase tracking-wider text-slate-300 mb-2"
+                className="meta block mb-2"
               >
                 Review Password
               </label>
@@ -100,14 +94,14 @@ function StagingLoginContent() {
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
                   placeholder="Enter password..."
-                  className="w-full px-4 py-3.5 rounded-2xl bg-white/15 border border-white/20 text-white placeholder-slate-400 text-sm focus:outline-none focus:ring-2 focus:ring-[#20B2AA] focus:border-transparent transition-all"
+                  className="field"
                   autoFocus
                 />
               </div>
             </div>
 
             {error && (
-              <div className="flex items-center gap-2 p-3 rounded-xl bg-rose-500/20 border border-rose-500/30 text-rose-200 text-xs animate-in fade-in duration-200">
+              <div className="flex items-center gap-2 p-3 border border-rose-400/50 text-rose-200 text-sm">
                 <AlertCircle className="w-4 h-4 shrink-0" />
                 <span>{error}</span>
               </div>
@@ -116,22 +110,22 @@ function StagingLoginContent() {
             <button
               type="submit"
               disabled={loading}
-              className="w-full py-3.5 px-6 rounded-full font-bold text-sm bg-[#20B2AA] text-white hover:bg-[#1a938c] transition-all shadow-lg hover:shadow-xl hover:scale-[1.02] active:scale-[0.99] flex items-center justify-center gap-2 cursor-pointer disabled:opacity-50"
+              className="btn btn-lg w-full"
             >
               <span>{loading ? 'Verifying...' : 'Unlock Preview'}</span>
-              <ArrowRight className="w-4 h-4" />
+              <ArrowRight />
             </button>
           </form>
 
-          <div className="mt-8 pt-6 border-t border-white/10 text-center">
-            <p className="text-xs text-slate-400">
+          <div className="mt-8 pt-6 border-t border-line">
+            <p className="text-[13px] text-soft">
               Controlled via staging environment variables. Access is retained for 30 days once entered.
             </p>
           </div>
         </div>
 
         {/* Bottom copyright */}
-        <div className="text-center mt-6 text-xs text-slate-400">
+        <div className="meta mt-6">
           © {new Date().getFullYear()} Xana Medtec Ltd. Confidential review.
         </div>
       </div>
@@ -141,7 +135,7 @@ function StagingLoginContent() {
 
 export default function StagingLoginPage() {
   return (
-    <Suspense fallback={<div className="min-h-screen bg-[#001D47]" />}>
+    <Suspense fallback={<div className="on-ink min-h-screen" />}>
       <StagingLoginContent />
     </Suspense>
   );

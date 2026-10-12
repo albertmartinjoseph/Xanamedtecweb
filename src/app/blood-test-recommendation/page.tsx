@@ -2,9 +2,10 @@
 
 import React, { useState } from 'react';
 import Link from 'next/link';
-import { Sparkles, ArrowRight, CheckCircle2, Stethoscope, Heart, Zap, Shield, Flame } from 'lucide-react';
+import { Stethoscope, Heart, Zap, Shield, Flame } from 'lucide-react';
 import { testsData } from '@/data/testsData';
 import { ModalTriggerButton } from '@/components/ui/ModalTriggerButton';
+import { PageHero } from '@/components/ui/Blocks';
 
 const goals = [
   {
@@ -51,126 +52,75 @@ export default function BloodTestRecommendationPage() {
   const recommendedTest = testsData[currentGoal.recommendedSlug];
 
   return (
-    <div className="page-surface min-h-screen text-[#1F2A3A] font-sans">
-      {/* 1. Header Banner */}
-      <section className="hero-light relative overflow-hidden pt-10 sm:pt-12 lg:pt-14 pb-10 sm:pb-12">
+    <div className="min-h-screen">
+      <PageHero
+        title="Find Your Health Test"
+        lead="Not sure which blood test you need? Choose your main health concern and we will show the most relevant test."
+        crumbs={[{ name: 'Clinical Services', href: '/clinical-services' }]}
+      />
 
-        <div className="container-boxed relative z-10">
-          <div className="max-w-3xl">
-            <div className="eyebrow text-teal-700 mb-6">
-              <span>Interactive Clinical Guidance</span>
-            </div>
+      <section className="section">
+        <div className="shell grid grid-cols-1 lg:grid-cols-2 gap-x-12 gap-y-12 items-start">
+          <div>
+            <div className="eyebrow mb-6">1. Choose your main health concern</div>
 
-            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-black text-[#002D62] tracking-tight leading-[1.1] mb-6">
-              Find Your Health Test
-            </h1>
-
-            <p className="text-lg sm:text-xl text-[#4B5563] leading-relaxed max-w-2xl">
-              Not sure which blood test you need? Select your primary health interest below to discover the most relevant diagnostic profile for you.
-            </p>
-          </div>
-        </div>
-      </section>
-
-      {/* 2. Interactive Matcher */}
-      <section className="container-boxed py-12 sm:py-16">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-start">
-          {/* Left: Health Focus Selector */}
-          <div className="lg:col-span-6 space-y-4">
-            <h2 className="text-xl font-bold text-[#002D62] mb-6">
-              Step 1: Select Your Primary Health Concern
-            </h2>
-
-            {goals.map((goal) => {
-              const Icon = goal.icon;
-              const isSelected = selectedGoal === goal.id;
-              return (
-                <button
-                  key={goal.id}
-                  onClick={() => setSelectedGoal(goal.id)}
-                  className={`w-full text-left p-6 rounded-2xl border transition-all duration-300 flex items-start gap-5 cursor-pointer ${
-                    isSelected
-                      ? 'bg-white border-[#20B2AA] translate-x-2'
-                      : 'bg-white/70 border-gray-200 hover:border-gray-300 hover:bg-white'
-                  }`}
-                >
-                  <div
-                    className={`w-12 h-12 rounded-xl flex items-center justify-center shrink-0 ${
-                      isSelected ? 'bg-[#002D62] text-white' : 'bg-slate-100 text-[#002D62]'
+            <div className="space-y-3">
+              {goals.map((goal) => {
+                const Icon = goal.icon;
+                const isSelected = selectedGoal === goal.id;
+                return (
+                  <button
+                    key={goal.id}
+                    onClick={() => setSelectedGoal(goal.id)}
+                    aria-pressed={isSelected}
+                    className={`card !animate-none !p-1.5 w-full text-left flex items-center gap-5 cursor-pointer ${
+                      isSelected ? '!border-fg' : ''
                     }`}
                   >
-                    <Icon className="w-6 h-6" />
-                  </div>
-                  <div>
-                    <h3 className="font-bold text-[#002D62] text-base mb-1">
-                      {goal.title}
-                    </h3>
-                    <p className="text-xs text-[#4B5563] leading-relaxed">
-                      {goal.description}
-                    </p>
-                  </div>
-                </button>
-              );
-            })}
+                    <span className="wash w-20 h-20 rounded-[1.125rem] flex items-center justify-center shrink-0">
+                      <Icon className="w-6 h-6" strokeWidth={1.5} />
+                    </span>
+                    <span className="flex-1">
+                      <span className="label !text-sm">{goal.title}</span>
+                      <span className="block text-[15px] text-soft mt-1">{goal.description}</span>
+                    </span>
+                    <span
+                      className={`w-5 h-5 mr-4 rounded-md border-2 shrink-0 ${
+                        isSelected ? 'border-fg bg-fg shadow-[inset_0_0_0_3px_white]' : 'border-line'
+                      }`}
+                    />
+                  </button>
+                );
+              })}
+            </div>
           </div>
 
-          {/* Right: Recommended Test Card */}
-          <div className="lg:col-span-6 sticky top-24">
-            <h2 className="text-xl font-bold text-[#002D62] mb-6">
-              Step 2: Recommended Clinical Profile
-            </h2>
+          <div className="lg:sticky lg:top-28">
+            <div className="eyebrow mb-6">2. Your recommended test</div>
 
             {recommendedTest && (
-              <div className="bg-white rounded-2xl p-8 sm:p-10 border-2 border-[#20B2AA]/50 relative overflow-hidden">
-                <div className="absolute top-0 right-0 bg-[#002D62] text-white text-xs font-extrabold uppercase px-4 py-1.5 rounded-bl-2xl">
-                  Best Match
+              <div key={recommendedTest.slug} className="wash rounded-[2rem] p-8 sm:p-10 animate-[fade_0.25s_ease_both]">
+                <div className="flex items-center justify-between gap-4 mb-6">
+                  <span className="eyebrow !text-sm">Best match</span>
+                  <span className="meta">{recommendedTest.turnaround}</span>
                 </div>
 
-                <span className="eyebrow text-teal-700 mb-4">
-                  {recommendedTest.turnaround}
-                </span>
+                <h3 className="font-display h-lg mb-3">{recommendedTest.name}</h3>
 
-                <h3 className="text-2xl sm:text-3xl font-black text-[#002D62] tracking-tight mb-2">
-                  {recommendedTest.name}
-                </h3>
+                <p className="text-soft mb-8">{recommendedTest.subtitle}</p>
 
-                <p className="text-sm font-semibold text-slate-500 mb-6">
-                  {recommendedTest.subtitle}
-                </p>
-
-                <p className="text-sm text-[#4B5563] leading-relaxed mb-6">
-                  {recommendedTest.overview}
-                </p>
-
-                <div className="space-y-3 mb-8 pb-6 border-b border-gray-100">
-                  <div className="text-xs font-bold uppercase tracking-wider text-[#002D62]">
-                    Key Biomarkers Tested:
-                  </div>
-                  {recommendedTest.whatItMeasures.slice(0, 3).map((item, idx) => (
-                    <div key={idx} className="flex items-start gap-2.5 text-xs text-[#1F2A3A]">
-                      <CheckCircle2 className="w-4 h-4 text-[#20B2AA] shrink-0 mt-0.5" />
-                      <span>{item}</span>
-                    </div>
-                  ))}
-                </div>
-
-                <div className="flex items-center justify-between pt-2">
+                <div className="flex flex-wrap items-end justify-between gap-6 border-t border-line pt-7">
                   <div>
-                    <div className="text-xs text-slate-400">Total Price</div>
-                    <div className="text-3xl font-black text-[#002D62]">
-                      {recommendedTest.price}
-                    </div>
+                    <div className="meta">Total price</div>
+                    <div className="text-4xl font-medium mt-1">{recommendedTest.price}</div>
                   </div>
 
                   <div className="flex items-center gap-3">
-                    <Link
-                      href={`/${recommendedTest.slug}`}
-                      className="px-5 py-3 rounded-full text-xs font-bold text-[#002D62] hover:bg-slate-100 transition-colors"
-                    >
-                      View Details
+                    <Link href={`/${recommendedTest.slug}`} className="btn btn-ghost">
+                      Details
                     </Link>
-                    <ModalTriggerButton variant="teal" size="md">
-                      Book Test
+                    <ModalTriggerButton variant="teal" size="md" withArrow>
+                      Book
                     </ModalTriggerButton>
                   </div>
                 </div>
