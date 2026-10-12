@@ -43,6 +43,7 @@ export default function AboutUsPage() {
       <PageHero
         title="About Xana Medtec"
         lead="A market development partner bridging the gap between breakthrough medical innovations and everyday clinical practice."
+        image={{ src: '/images/stock/clinical-team.jpg', alt: 'Clinicians talking through notes on a clipboard' }}
       />
 
       {/* Core mission */}

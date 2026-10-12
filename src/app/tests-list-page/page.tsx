@@ -26,6 +26,7 @@ export default function TestsListPage() {
         title="All Health & Blood Tests"
         lead="Doctor-reviewed blood tests and screening packages with fast, accredited results."
         crumbs={[{ name: 'Clinical Services', href: '/clinical-services' }]}
+        image={{ src: '/images/stock/care-team.jpg', alt: 'A clinical team reviewing notes together' }}
       >
         <label className="relative block w-full max-w-xl">
           <Search className="absolute left-5 top-1/2 -translate-y-1/2 h-5 w-5 text-soft" />

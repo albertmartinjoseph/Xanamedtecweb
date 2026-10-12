@@ -57,6 +57,7 @@ export default function BloodTestRecommendationPage() {
         title="Find Your Health Test"
         lead="Not sure which blood test you need? Choose your main health concern and we will show the most relevant test."
         crumbs={[{ name: 'Clinical Services', href: '/clinical-services' }]}
+        image={{ src: '/images/stock/consultation.jpg', alt: 'A doctor talking with a patient' }}
       />
 
       <section className="section">

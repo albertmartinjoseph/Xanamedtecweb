@@ -54,7 +54,7 @@ export const Tabs: React.FC<TabsProps> = ({
         <div
           role="tablist"
           aria-label="Partner options"
-          className="inline-flex max-w-full p-1 rounded-full bg-tint border border-line"
+          className="inline-flex max-w-full p-1 rounded-full glass"
         >
           {tabs.map((tab, idx) => {
             const isActive = activeTab === tab.id;
@@ -73,7 +73,7 @@ export const Tabs: React.FC<TabsProps> = ({
                 onClick={() => setActiveTab(tab.id)}
                 onKeyDown={(e) => handleKeyDown(e, idx)}
                 className={`px-5 sm:px-7 py-2.5 rounded-full text-sm sm:text-[15px] font-semibold whitespace-nowrap transition-colors cursor-pointer ${
-                  isActive ? 'bg-ink text-white' : 'text-soft hover:text-fg'
+                  isActive ? 'glass-ink' : 'border border-transparent text-soft hover:text-fg'
                 }`}
               >
                 {tab.label}

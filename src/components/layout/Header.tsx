@@ -144,7 +144,7 @@ export const Header: React.FC = () => {
       >
         <Link
           href="/"
-          className="relative block w-36 h-14 shrink-0 rounded-[1.125rem] bg-white shadow-[0_0.5rem_1.5rem_-0.75rem_rgba(17,26,34,0.35)]"
+          className="relative block w-36 h-14 shrink-0 rounded-[1.125rem] glass"
         >
           <Image
             src="/images/logo-light-bg.png"
@@ -158,10 +158,10 @@ export const Header: React.FC = () => {
 
         {/* Desktop navigation */}
         <nav
-          className="hidden lg:flex items-center h-14 px-2 rounded-[1.125rem] bg-white/80 backdrop-blur-md text-base shadow-[0_0.5rem_1.5rem_-0.75rem_rgba(17,26,34,0.35)]"
+          className="hidden lg:flex items-center h-14 px-2 rounded-[1.125rem] glass text-base"
           onClick={closeOnLink}
         >
-          <Link href="/about-us" className="rounded-xl px-4 py-2 transition-colors hover:bg-tint">
+          <Link href="/about-us" className="rounded-xl px-4 py-2 transition-colors hover:bg-ink/5">
             About us
           </Link>
 
@@ -171,8 +171,8 @@ export const Header: React.FC = () => {
                 type="button"
                 onClick={() => setOpen(open === menu.id ? null : menu.id)}
                 aria-expanded={open === menu.id}
-                className={`flex items-center gap-1.5 rounded-xl px-4 py-2 cursor-pointer transition-colors hover:bg-tint ${
-                  open === menu.id ? 'bg-tint' : ''
+                className={`flex items-center gap-1.5 rounded-xl px-4 py-2 cursor-pointer transition-colors hover:bg-ink/5 ${
+                  open === menu.id ? 'bg-ink/5' : ''
                 }`}
               >
                 <span>{menu.label}</span>
@@ -189,7 +189,7 @@ export const Header: React.FC = () => {
             </div>
           ))}
 
-          <Link href="/help-faqs" className="rounded-xl px-4 py-2 transition-colors hover:bg-tint">
+          <Link href="/help-faqs" className="rounded-xl px-4 py-2 transition-colors hover:bg-ink/5">
             Help
           </Link>
         </nav>
@@ -204,7 +204,7 @@ export const Header: React.FC = () => {
             type="button"
             onClick={() => setMobileOpen(true)}
             aria-label="Open navigation menu"
-            className="lg:hidden w-14 h-14 rounded-[1.125rem] bg-ink text-white flex items-center justify-center cursor-pointer"
+            className="lg:hidden w-14 h-14 rounded-[1.125rem] glass-ink flex items-center justify-center cursor-pointer"
           >
             <Menu className="w-6 h-6" />
           </button>
@@ -235,7 +235,7 @@ export const Header: React.FC = () => {
               type="button"
               onClick={() => setMobileOpen(false)}
               aria-label="Close navigation menu"
-              className="w-14 h-14 rounded-[1.125rem] bg-ink text-white flex items-center justify-center cursor-pointer"
+              className="w-14 h-14 rounded-[1.125rem] glass-ink flex items-center justify-center cursor-pointer"
             >
               <CloseIcon className="w-6 h-6" />
             </button>

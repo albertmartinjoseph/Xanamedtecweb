@@ -44,6 +44,7 @@ export default function HelpFaqsPage() {
       <PageHero
         title="Help & FAQs"
         lead="Answers about blood tests, clinic appointments and medical device distribution."
+        image={{ src: '/images/stock/clinical-team.jpg', alt: 'Clinicians talking through notes on a clipboard' }}
       />
 
       <section className="section">
@@ -61,7 +62,7 @@ export default function HelpFaqsPage() {
                   <span className="font-medium">{faq.q}</span>
                   <span
                     className={`w-10 h-10 rounded-xl flex items-center justify-center shrink-0 ${
-                      isOpen ? 'bg-ink text-white' : 'bg-tint'
+                      isOpen ? 'glass-ink' : 'bg-tint'
                     }`}
                   >
                     <Plus className={`w-4 h-4 transition-transform ${isOpen ? 'rotate-45' : ''}`} />

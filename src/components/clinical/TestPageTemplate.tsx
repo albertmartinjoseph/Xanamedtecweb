@@ -19,6 +19,7 @@ export const TestPageTemplate: React.FC<TestPageTemplateProps> = ({ test }) => {
       <PageHero
         title={test.name}
         lead={test.subtitle}
+        image={{ src: '/images/stock/consultation.jpg', alt: 'A doctor talking with a patient' }}
         crumbs={[
           { name: 'Clinical Services', href: '/clinical-services' },
           { name: 'All Health Tests', href: '/tests-list-page' },

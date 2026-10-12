@@ -36,6 +36,10 @@
   --rule: rgba(17, 26, 34, 0.1);
   --accent: #0B74D1;
   --brand: linear-gradient(95deg, #1E90FF 0%, #17C9B0 100%);
+  --glass: rgba(255, 255, 255, 0.58);
+  --glass-edge: rgba(255, 255, 255, 0.85);
+  --glass-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.9), 0 0 0 1px rgba(17, 26, 34, 0.05),
+    0 1rem 2.25rem -1.25rem rgba(17, 26, 34, 0.35);
 }
 
 .on-ink {
@@ -45,6 +49,9 @@
   --fg-soft: #A9B5BF;
   --rule: rgba(255, 255, 255, 0.14);
   --accent: #5FDDCB;
+  --glass: rgba(255, 255, 255, 0.08);
+  --glass-edge: rgba(255, 255, 255, 0.16);
+  --glass-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.14), 0 1rem 2.25rem -1.25rem rgba(0, 0, 0, 0.6);
 }
 
 .on-ink,
@@ -58,12 +65,25 @@ html {
 }
 
 body {
-  background-color: var(--bg);
+  background-color: #F4FAFC;
   color: var(--fg);
   font-family: var(--font-sans);
   font-size: 1.0625rem;
   line-height: 1.55;
   -webkit-font-smoothing: antialiased;
+}
+
+/* The logo's sweep as one soft wash behind every page. Fixed to the viewport,
+   so it never stops at a section edge and the glass always has colour to frost. */
+body::before {
+  content: "";
+  position: fixed;
+  inset: -12%;
+  z-index: -1;
+  background:
+    radial-gradient(70rem 46rem at 8% -10%, #BFDFFF 0, transparent 64%),
+    radial-gradient(60rem 44rem at 100% 38%, #B4F0E2 0, transparent 62%),
+    radial-gradient(64rem 46rem at 12% 108%, #C6DCFF 0, transparent 64%);
 }
 
 /* Statements are set in the serif, light and tight. Unlayered on purpose so
@@ -124,7 +144,7 @@ li {
   }
 
   .section {
-    padding-block: clamp(4.5rem, 10vw, 9rem);
+    padding-block: clamp(3.25rem, 6vw, 5.5rem);
   }
 
   /* Type scale */
@@ -183,7 +203,52 @@ li {
     color: transparent;
   }
 
-  /* Button: a soft ink squircle */
+  /* Frosted glass. Every pane blurs what is behind it and carries a band of
+     light that is parked off its left edge and crosses it on hover. */
+  .glass,
+  .glass-ink,
+  .btn,
+  .card,
+  .more > span:first-child {
+    background-image: linear-gradient(115deg, transparent 40%, var(--sheen) 50%, transparent 60%);
+    background-repeat: no-repeat;
+    background-size: 250% 100%;
+    background-position: 110% 0;
+    background-origin: border-box;
+    background-clip: border-box;
+    -webkit-backdrop-filter: blur(18px) saturate(180%);
+    backdrop-filter: blur(18px) saturate(180%);
+    transition: background-color 0.25s ease, color 0.25s ease, border-color 0.25s ease,
+      box-shadow 0.35s ease, translate 0.35s ease, background-position 0s;
+  }
+
+  /* Clear: takes the colour of what is behind it */
+  .glass,
+  .card {
+    --sheen: rgba(255, 255, 255, 0.75);
+    background-color: var(--glass);
+    border: 1px solid var(--glass-edge);
+    box-shadow: var(--glass-shadow);
+  }
+
+  /* Tinted: the same pane, smoked with the surface's ink */
+  .glass-ink,
+  .btn,
+  .more > span:first-child {
+    --sheen: rgba(255, 255, 255, 0.22);
+    background-color: color-mix(in srgb, var(--fg) 82%, transparent);
+    color: var(--bg);
+    border: 1px solid color-mix(in srgb, var(--bg) 24%, transparent);
+    box-shadow: inset 0 1px 0 color-mix(in srgb, var(--bg) 30%, transparent),
+      0 0.9rem 1.75rem -1rem color-mix(in srgb, var(--fg) 70%, transparent);
+  }
+
+  .on-ink .card,
+  .on-ink .glass {
+    --sheen: rgba(255, 255, 255, 0.1);
+  }
+
+  /* Button: a frosted squircle */
   .btn {
     display: inline-flex;
     align-items: center;
@@ -196,16 +261,16 @@ li {
     font-weight: 500;
     line-height: 1.2;
     white-space: nowrap;
-    background: var(--fg) border-box;
-    color: var(--bg);
-    border: 1px solid transparent;
     cursor: pointer;
-    transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease;
   }
 
   .btn:hover {
-    background: var(--accent) border-box;
+    background-color: color-mix(in srgb, var(--accent) 88%, transparent);
     color: #ffffff;
+  }
+
+  .btn:active {
+    scale: 0.98;
   }
 
   .btn:disabled {
@@ -223,27 +288,31 @@ li {
     transform: translateX(3px);
   }
 
-  /* The one coloured button: the logo blue, flat, no gradient */
+  /* The one coloured button: the logo blue as tinted glass, no gradient */
   .btn-brand {
-    background: var(--accent) border-box;
+    background-color: color-mix(in srgb, var(--accent) 86%, transparent);
     color: #ffffff;
+    border-color: rgba(255, 255, 255, 0.32);
   }
 
   .btn-brand:hover {
-    background: #111A22;
-    color: #ffffff;
+    background-color: color-mix(in srgb, var(--fg) 84%, transparent);
+    color: var(--bg);
   }
 
-  /* Secondary button */
+  /* Secondary button: clear glass */
   .btn-ghost,
   .btn-ghost:hover {
-    background: var(--bg);
+    --sheen: rgba(255, 255, 255, 0.75);
+    background-color: var(--glass);
     color: var(--fg);
-    border-color: var(--rule);
+    border-color: var(--glass-edge);
+    box-shadow: var(--glass-shadow);
   }
 
   .btn-ghost:hover {
-    border-color: var(--fg);
+    background-color: color-mix(in srgb, var(--fg) 7%, var(--glass));
+    border-color: color-mix(in srgb, var(--fg) 30%, transparent);
   }
 
   .btn-sm {
@@ -278,9 +347,6 @@ li {
     width: 3.5rem;
     height: 3.5rem;
     border-radius: 1.125rem;
-    background: var(--fg);
-    color: var(--bg);
-    transition: background 0.2s ease, color 0.2s ease;
   }
 
   .more svg {
@@ -290,7 +356,7 @@ li {
 
   .more:hover > span:first-child,
   .group:hover .more > span:first-child {
-    background: var(--accent);
+    background-color: color-mix(in srgb, var(--accent) 88%, transparent);
     color: #ffffff;
   }
 
@@ -316,23 +382,22 @@ li {
     height: 1rem;
   }
 
-  /* Card: a plain white panel. Hairline on white, nothing on a colour band. */
+  /* Card: a pane of clear glass (see above) */
   .card {
     display: block;
-    background: var(--bg);
-    border: 1px solid var(--rule);
     border-radius: var(--radius-card);
     padding: clamp(1.5rem, 2.6vw, 2.25rem);
-    transition: box-shadow 0.25s ease;
   }
 
-  .band .card {
-    border-color: transparent;
+  .card:hover {
+    background-color: color-mix(in srgb, var(--fg) 3%, rgba(255, 255, 255, 0.78));
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.9), 0 0 0 1px rgba(17, 26, 34, 0.06),
+      0 1.75rem 3rem -1.5rem rgba(17, 26, 34, 0.38);
   }
 
-  a.card:hover,
-  button.card:hover {
-    box-shadow: 0 1.5rem 3rem -1.5rem rgba(17, 26, 34, 0.28);
+  .on-ink .card:hover {
+    background-color: rgba(255, 255, 255, 0.13);
+    box-shadow: var(--glass-shadow);
   }
 
   /* Rounded frame for a photograph or film */
@@ -343,14 +408,10 @@ li {
     background: var(--bg-2);
   }
 
-  /* Pale colour band between white panels: the logo's sweep, fading in from white */
+  /* Bands and page headers sit straight on the page wash now; a band only
+     lifts it a touch, fading out at both ends so no edge shows. */
   .band {
-    background: linear-gradient(to bottom, #ffffff 0, #DFF1FD 22rem, #D4F5EE 100%);
-  }
-
-  /* The same fade, short, behind page headers */
-  .aura {
-    background: linear-gradient(to bottom, #DFF1FD 0, #E6F8F4 45%, #ffffff 100%);
+    background: linear-gradient(to bottom, transparent, rgba(255, 255, 255, 0.45) 30%, rgba(255, 255, 255, 0.45) 70%, transparent);
   }
 
   /* A pale tile for rows that have no photograph */
@@ -431,6 +492,18 @@ li {
   }
 }
 
+@keyframes drift {
+  to {
+    transform: translate3d(4%, -5%, 0) scale(1.08);
+  }
+}
+
+@keyframes ease-out-zoom {
+  from {
+    transform: scale(1.1);
+  }
+}
+
 @keyframes settle {
   to {
     clip-path: inset(0 clamp(0.75rem, 1.6vw, 1.5rem) 1.5rem round 2.5rem);
@@ -438,6 +511,39 @@ li {
 }
 
 @media (prefers-reduced-motion: no-preference) {
+  /* The light crosses the glass, and a card lifts a little */
+  .glass-ink:hover,
+  .btn:hover,
+  .card:hover,
+  .more:hover > span:first-child,
+  .group:hover .more > span:first-child {
+    background-position: -10% 0;
+    transition-duration: 0.25s, 0.25s, 0.25s, 0.35s, 0.35s, 0.9s;
+  }
+
+  .card:hover {
+    translate: 0 -4px;
+  }
+
+  /* The page wash breathes, very slowly */
+  body::before {
+    animation: drift 26s ease-in-out infinite alternate;
+  }
+
+  /* A header photograph eases back into place as the page opens */
+  .hero-img {
+    animation: ease-out-zoom 1.8s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+  }
+
+  /* Pictures inside a link lean in a little on hover */
+  .frame img {
+    transition: scale 0.9s cubic-bezier(0.2, 0.7, 0.2, 1);
+  }
+
+  .group:hover .frame img {
+    scale: 1.04;
+  }
+
   .words > span > span {
     display: inline-block;
     animation: word 0.9s cubic-bezier(0.2, 0.7, 0.2, 1) both;

@@ -124,6 +124,7 @@ export default function ClinicalServicesPage() {
       <PageHero
         title="Clinical & Diagnostic Services"
         lead="Fast, accurate, doctor-reviewed blood tests, with results from UKAS-accredited laboratories."
+        image={{ src: '/images/stock/consultation.jpg', alt: 'A doctor talking with a patient' }}
       >
         <ModalTriggerButton variant="teal" size="lg" withArrow>
           Book an Appointment

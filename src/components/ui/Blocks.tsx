@@ -32,9 +32,9 @@ interface PageHeroProps {
   children?: React.ReactNode;
 }
 
-export const PageHero: React.FC<PageHeroProps> = ({ title, lead, image, crumbs = [], children }) => (
-  <section className="aura">
-    <div className="shell pt-32 lg:pt-40 pb-14 lg:pb-20 flex flex-col items-center text-center">
+export const PageHero: React.FC<PageHeroProps> = ({ title, lead, image, crumbs = [], children }) => {
+  const text = (
+    <>
       <nav aria-label="Breadcrumb" className="meta flex flex-wrap items-center justify-center gap-1.5">
         {[{ name: 'Home', href: '/' }, ...crumbs].map((crumb) => (
           <React.Fragment key={crumb.href}>
@@ -47,24 +47,38 @@ export const PageHero: React.FC<PageHeroProps> = ({ title, lead, image, crumbs =
         <span className="text-fg">{title}</span>
       </nav>
 
-      <h1 className="h-xl mt-8 max-w-4xl">
+      <h1 className="h-xl mt-6 max-w-4xl">
         <Words>{title}</Words>
       </h1>
-      {lead && <p className="lead mt-6 max-w-xl fade-in">{lead}</p>}
+      {lead && <p className="lead mt-5 max-w-xl fade-in">{lead}</p>}
       {children && (
-        <div className="mt-9 w-full flex flex-wrap items-center justify-center gap-3 fade-in">{children}</div>
+        <div className="mt-7 w-full flex flex-wrap items-center justify-center gap-3 fade-in">{children}</div>
       )}
-    </div>
+    </>
+  );
 
-    {image && (
-      <div className="shell-wide">
-        <div className="frame fade-in aspect-[4/3] sm:aspect-[16/7] !rounded-[2.5rem]">
-          <Image src={image.src} alt={image.alt} fill sizes="100vw" className="object-cover" preload />
+  // No photograph: the words sit straight on the page wash
+  if (!image) {
+    return (
+      <section>
+        <div className="shell pt-28 lg:pt-32 pb-10 lg:pb-12 flex flex-col items-center text-center">{text}</div>
+      </section>
+    );
+  }
+
+  // With one: the words are set on it, under a veil of white so ink type reads
+  return (
+    <section className="shell-wide pt-3">
+      <div className="frame !rounded-[2.5rem] min-h-[34rem] lg:min-h-[40rem] flex">
+        <Image src={image.src} alt={image.alt} fill sizes="100vw" className="hero-img object-cover object-[50%_28%]" preload />
+        <div className="absolute inset-0 bg-white/60" />
+        <div className="shell relative m-auto pt-28 pb-14 flex flex-col items-center text-center [&_.meta]:text-fg/70">
+          {text}
         </div>
       </div>
-    )}
-  </section>
-);
+    </section>
+  );
+};
 
 interface SectionProps {
   /** Spaced capitals above the title */
@@ -83,10 +97,10 @@ export const Section: React.FC<SectionProps> = ({ eyebrow, title, intro, band, d
   const body = (
     <div className="shell">
       {(title || intro) && (
-        <div className="mb-12 lg:mb-16 flex flex-col items-center text-center">
-          {eyebrow && <div className="eyebrow reveal mb-5">{eyebrow}</div>}
+        <div className="mb-8 lg:mb-11 flex flex-col items-center text-center">
+          {eyebrow && <div className="eyebrow reveal mb-4">{eyebrow}</div>}
           {title && <h2 className="h-xl max-w-3xl">{title}</h2>}
-          {intro && <div className="lead reveal mt-6 max-w-xl">{intro}</div>}
+          {intro && <div className="lead reveal mt-4 max-w-xl">{intro}</div>}
         </div>
       )}
       {children}
@@ -112,7 +126,7 @@ interface CtaBandProps {
 
 export const CtaBand: React.FC<CtaBandProps> = ({ title, children }) => (
   <section className="section band">
-    <div className="shell-narrow text-center flex flex-col items-center gap-7 [&>p]:text-soft">
+    <div className="shell-narrow text-center flex flex-col items-center gap-5 [&>p]:text-soft">
       <h2 className="h-xl">{title}</h2>
       {children}
     </div>

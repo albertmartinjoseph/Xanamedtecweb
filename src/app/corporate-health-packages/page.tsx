@@ -38,6 +38,7 @@ export default function CorporateHealthPackagesPage() {
         title="Corporate Health Packages"
         lead="Confidential on-site health screenings and executive health checks for your workforce."
         crumbs={[{ name: 'Clinical Services', href: '/clinical-services' }]}
+        image={{ src: '/images/stock/care-team.jpg', alt: 'A clinical team reviewing notes together' }}
       />
 
       <Section band>

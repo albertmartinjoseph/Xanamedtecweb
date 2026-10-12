@@ -6,15 +6,14 @@ import Image from 'next/image';
 import { useModal } from '@/context/ModalContext';
 import { TimelineStepper } from '@/components/landing/TimelineStepper';
 import { Section, Words } from '@/components/ui/Blocks';
-import { ArrowRight, Droplet, Search, type LucideIcon } from 'lucide-react';
+import { ArrowRight } from 'lucide-react';
 
 // The four things a visitor can come here for, in plain words
 const pathways: {
   href: string;
   title: string;
   description: string;
-  image?: string;
-  icon?: LucideIcon;
+  image: string;
 }[] = [
   {
     href: '/international-distribution',
@@ -32,13 +31,13 @@ const pathways: {
     href: '/clinical-services',
     title: 'Health Tests',
     description: 'Doctor-reviewed blood tests for patients',
-    icon: Droplet,
+    image: '/images/stock/care-team.jpg',
   },
   {
     href: '/blood-test-recommendation',
     title: 'Find Your Test',
     description: 'Not sure? Get a recommendation',
-    icon: Search,
+    image: '/images/stock/consultation.jpg',
   },
 ];
 
@@ -123,33 +122,37 @@ export default function HomePage() {
         title="What are you looking for?"
         intro="Your medical device deserves more than a distributor. It needs the right strategy, partners and clinical support."
       >
-        <div className="max-w-xl mx-auto space-y-3">
-          {pathways.map(({ href, title, description, image, icon: Icon }) => (
-            <Link key={title} href={href} className="card group !p-1.5 flex items-center gap-6">
-              <span className={`relative overflow-hidden rounded-[1.125rem] w-24 h-24 shrink-0 ${image ? '' : 'wash'}`}>
-                {image ? (
-                  <Image src={image} alt="" fill sizes="96px" className="object-cover" />
-                ) : (
-                  Icon && <Icon className="absolute inset-0 m-auto w-7 h-7" strokeWidth={1.5} />
-                )}
+        <div className="max-w-4xl mx-auto grid grid-cols-1 sm:grid-cols-2 gap-4">
+          {pathways.map(({ href, title, description, image }) => (
+            <Link key={title} href={href} className="card group !p-2 flex flex-col">
+              <span className="relative block overflow-hidden rounded-[1.125rem] aspect-[16/10]">
+                <Image
+                  src={image}
+                  alt=""
+                  fill
+                  sizes="(min-width: 640px) 440px, 100vw"
+                  className="object-cover transition-transform duration-700 group-hover:scale-105"
+                />
               </span>
-              <span className="flex-1 min-w-0">
-                <span className="label">{title}</span>
-                <span className="block text-soft mt-1">{description}</span>
+              <span className="flex items-center gap-4 px-4 py-5">
+                <span className="flex-1 min-w-0">
+                  <span className="label">{title}</span>
+                  <span className="block text-soft mt-1">{description}</span>
+                </span>
+                <ArrowRight className="w-5 h-5 shrink-0 text-soft transition-transform group-hover:translate-x-1" />
               </span>
-              <ArrowRight className="w-5 h-5 mr-5 shrink-0 text-soft transition-transform group-hover:translate-x-1" />
             </Link>
           ))}
         </div>
       </Section>
 
       {/* 3. The two devices: large picture, short statement */}
-      <section className="section space-y-20 lg:space-y-32 overflow-hidden">
+      <section className="section space-y-14 lg:space-y-20 overflow-hidden">
         {devices.map((device, i) => (
           <Link
             key={device.href}
             href={device.href}
-            className="group shell grid grid-cols-1 lg:grid-cols-2 gap-x-20 gap-y-8 items-center"
+            className="group shell grid grid-cols-1 lg:grid-cols-2 gap-x-16 gap-y-6 items-center"
           >
             <div className={`frame aspect-[4/3] ${i % 2 ? 'lg:order-2' : ''}`}>
               <Image
@@ -162,9 +165,9 @@ export default function HomePage() {
             </div>
 
             <div className="reveal">
-              <div className="eyebrow mb-5">{device.eyebrow}</div>
+              <div className="eyebrow mb-4">{device.eyebrow}</div>
               <h2 className="h-xl !animate-none">{device.title}</h2>
-              <p className="lead mt-6 mb-8 max-w-md">{device.description}</p>
+              <p className="lead mt-4 mb-7 max-w-md">{device.description}</p>
               <span className="more">
                 <span>
                   <ArrowRight />
@@ -189,11 +192,11 @@ export default function HomePage() {
       <Section title="One Partner, Two Ways to Win">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
           {partners.map(({ label, title, points, cta, modal }) => (
-            <div key={label} className="card !p-8 sm:!p-12 flex flex-col items-start">
+            <div key={label} className="card !p-7 sm:!p-10 flex flex-col items-start">
               <div className="eyebrow">{label}</div>
               <h3 className="font-display h-md mt-4">{title}</h3>
 
-              <ul className="mt-7 mb-10 space-y-3.5">
+              <ul className="mt-6 mb-8 space-y-3">
                 {points.map((point) => (
                   <li key={point} className="flex items-center gap-4">
                     <span className="w-2.5 h-2.5 rounded-[3px] bg-fg shrink-0" />

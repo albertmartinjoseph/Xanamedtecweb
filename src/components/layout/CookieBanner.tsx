@@ -34,7 +34,7 @@ export const CookieBanner: React.FC = () => {
       aria-label="Cookie consent banner"
       className="fixed bottom-4 sm:bottom-6 left-4 right-4 sm:left-auto sm:right-6 sm:max-w-md z-50 animate-[fade_0.25s_ease_both]"
     >
-      <div className="on-ink rounded-2xl p-6 shadow-[0_30px_60px_-25px_rgba(0,0,0,0.6)]">
+      <div className="on-ink !bg-ink/75 backdrop-blur-xl backdrop-saturate-150 border border-white/15 rounded-3xl p-6 shadow-[0_30px_60px_-25px_rgba(0,0,0,0.6)]">
         <div className="flex items-start gap-3 mb-3">
           <div className="text-accent shrink-0 mt-0.5">
             <ShieldCheck className="w-5 h-5" />
