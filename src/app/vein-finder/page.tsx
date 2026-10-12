@@ -37,34 +37,31 @@ const technicalSpecs = [
 
 export default function VeinFinderPage() {
   return (
-    <div className="min-h-screen bg-[#F8F9FA] text-[#323232] font-sans">
+    <div className="page-surface min-h-screen text-[#1F2A3A] font-sans">
       {/* 1. Page Banner with Image 07 and Title "Vein Finder System" */}
-      <section className="relative bg-[#002D62] text-white pt-36 sm:pt-40 lg:pt-44 pb-28 sm:pb-32 overflow-hidden">
-        <div className="absolute inset-0 z-0 pointer-events-none">
+      <section className="hero-light relative overflow-hidden pt-10 sm:pt-12 lg:pt-14 pb-10 sm:pb-12">
+        <div className="hero-media">
           <Image
             src="/images/assets/07-vein-finder-banner.png"
             alt="Vein Finder System Handheld Banner"
             fill
-            className="object-cover object-center opacity-65 scale-105"
-            priority
+            sizes="(min-width: 1024px) 46vw, 1px"
+            className="object-cover object-center"
+            preload
           />
-          {/* Subtle dark gradient overlay to ensure WCAG AA text contrast */}
-          <div className="absolute inset-0 bg-gradient-to-r from-[#002D62]/95 via-[#002D62]/80 to-[#002678]/70" />
-          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,_var(--tw-gradient-stops))] from-[#20B2AA]/20 via-transparent to-transparent" />
         </div>
 
         <div className="container-boxed relative z-10">
           <div className="max-w-3xl">
-            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider bg-[#20B2AA]/20 text-teal-300 border border-[#20B2AA]/30 mb-6">
-              <span className="w-2 h-2 rounded-full bg-[#20B2AA] animate-pulse" />
+            <div className="eyebrow text-teal-700 mb-6">
               <span>Medical Devices • Vascular Visualisation</span>
             </div>
 
-            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-black text-white tracking-tight leading-[1.1] mb-6">
+            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-black text-[#002D62] tracking-tight leading-[1.1] mb-6">
               Vein Finder System
             </h1>
 
-            <p className="text-lg sm:text-xl text-slate-200 font-light leading-relaxed max-w-2xl mb-8">
+            <p className="text-lg sm:text-xl text-[#4B5563] leading-relaxed max-w-2xl mb-8">
               Real-time 1:1 vascular mapping using dual 850nm near-infrared light. Engineered to eliminate first-attempt venipuncture failures and support Difficult Venous Access (DIVA) patients.
             </p>
           </div>
@@ -72,10 +69,10 @@ export default function VeinFinderPage() {
       </section>
 
       {/* 2. Section: Clinical Benefits with Image 09 supporting visual */}
-      <section className="container-boxed py-16 sm:py-24">
-        <div className="bg-white rounded-[28px] p-8 sm:p-12 lg:p-16 border border-gray-200/90 shadow-[0_15px_45px_-10px_rgba(0,45,98,0.08)] mb-20">
+      <section className="container-boxed py-12 sm:py-16">
+        <div className="bg-white rounded-2xl p-8 sm:p-12 lg:p-16 border border-gray-200 mb-20">
           <div className="text-center max-w-3xl mx-auto mb-16">
-            <span className="inline-block px-3.5 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider bg-teal-50 text-teal-700 border border-teal-200 mb-3">
+            <span className="eyebrow text-teal-700 mb-3">
               CLINICAL EVIDENCE & BENEFITS
             </span>
             <h2 className="text-3xl sm:text-4xl font-bold text-[#002D62] tracking-tight">
@@ -95,10 +92,10 @@ export default function VeinFinderPage() {
                     <CheckCircle2 className="w-5 h-5 text-[#20B2AA]" />
                   </div>
                   <div>
-                    <span className="text-xs font-bold uppercase tracking-wider text-slate-400 block mb-1">
+                    <span className="text-xs font-bold uppercase tracking-wider text-slate-500 block mb-1">
                       Benefit 0{idx + 1}
                     </span>
-                    <p className="text-sm sm:text-base text-[#323232] font-medium leading-relaxed">
+                    <p className="text-sm sm:text-base text-[#1F2A3A] font-medium leading-relaxed">
                       {benefit}
                     </p>
                   </div>
@@ -117,7 +114,7 @@ export default function VeinFinderPage() {
                   priority
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-[#002D62]/80 via-transparent to-transparent flex items-end p-6">
-                  <span className="text-xs font-bold text-white uppercase tracking-wider bg-[#20B2AA]/80 backdrop-blur-md px-3 py-1 rounded-full">
+                  <span className="eyebrow text-white">
                     Real-time 1:1 In-Vivo Mapping
                   </span>
                 </div>
@@ -129,7 +126,7 @@ export default function VeinFinderPage() {
         {/* 3. Mounting Options (Merged into a unified card under the hardware image) */}
         <div className="mb-20">
           <div className="text-center max-w-2xl mx-auto mb-12">
-            <span className="inline-block px-3.5 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider bg-teal-50 text-teal-700 border border-teal-200 mb-3">
+            <span className="eyebrow text-teal-700 mb-3">
               FLEXIBLE WORKFLOW INTEGRATION
             </span>
             <h3 className="text-2xl sm:text-3xl font-bold text-[#002D62] tracking-tight">
@@ -138,7 +135,7 @@ export default function VeinFinderPage() {
           </div>
 
           {/* Unified Card: Featured Image Above, Both Text Boxes Merged Underneath */}
-          <div className="bg-white rounded-[28px] p-8 sm:p-12 border border-gray-200/90 shadow-[0_12px_45px_-10px_rgba(0,45,98,0.08)] max-w-4xl mx-auto">
+          <div className="bg-white rounded-2xl p-8 sm:p-12 border border-gray-200 max-w-4xl mx-auto">
             {/* Featured Hardware Image for Both Options */}
             <div className="relative w-full h-80 sm:h-96 rounded-2xl overflow-hidden bg-slate-50 border border-slate-100/80 mb-10 flex items-center justify-center p-6 group">
               <Image
@@ -149,7 +146,7 @@ export default function VeinFinderPage() {
                 priority
               />
               <div className="absolute top-4 right-4">
-                <span className="text-xs font-bold uppercase tracking-wider text-[#002D62] bg-white/90 backdrop-blur-md px-3.5 py-1.5 rounded-full shadow-sm border border-slate-200/60">
+                <span className="eyebrow text-[#002D62] bg-white/90 rounded-full px-3 py-1.5">
                   Clinical Hardware Configurations
                 </span>
               </div>
@@ -158,27 +155,27 @@ export default function VeinFinderPage() {
             {/* Merged Text Options Underneath the Image */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8 pt-2">
               {/* Option 1: Mobile Trolley Mount */}
-              <div className="p-6 sm:p-7 rounded-2xl bg-[#F8F9FA] border border-gray-200/80 hover:border-[#20B2AA]/50 hover:bg-white hover:shadow-sm transition-all duration-300">
-                <div className="inline-block px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider text-blue-700 bg-blue-50 mb-3">
+              <div className="p-6 sm:p-7 rounded-2xl bg-[#F8F9FA] border border-gray-200 hover:border-[#20B2AA]/50 hover:bg-white hover:shadow-sm transition-all duration-300">
+                <div className="eyebrow text-blue-700 mb-3">
                   A&E / ICU / Wards
                 </div>
                 <h4 className="text-xl font-bold text-[#002D62] tracking-tight mb-2">
                   Mobile Trolley Mount
                 </h4>
-                <p className="text-sm text-[#606367] leading-relaxed">
+                <p className="text-sm text-[#4B5563] leading-relaxed">
                   Height-adjustable floor stand with lockable castor wheels, optimized for A&E, ICU, and ward mobility.
                 </p>
               </div>
 
               {/* Option 2: Flexible Desktop Stand */}
-              <div className="p-6 sm:p-7 rounded-2xl bg-[#F8F9FA] border border-gray-200/80 hover:border-[#20B2AA]/50 hover:bg-white hover:shadow-sm transition-all duration-300">
-                <div className="inline-block px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider text-teal-700 bg-teal-50 mb-3">
+              <div className="p-6 sm:p-7 rounded-2xl bg-[#F8F9FA] border border-gray-200 hover:border-[#20B2AA]/50 hover:bg-white hover:shadow-sm transition-all duration-300">
+                <div className="eyebrow text-teal-700 mb-3">
                   Phlebotomy & Outpatient Desks
                 </div>
                 <h4 className="text-xl font-bold text-[#002D62] tracking-tight mb-2">
                   Flexible Desktop Stand
                 </h4>
-                <p className="text-sm text-[#606367] leading-relaxed">
+                <p className="text-sm text-[#4B5563] leading-relaxed">
                   Compact articulated mounting arm designed for phlebotomy stations and fixed clinical consultation desks.
                 </p>
               </div>
@@ -189,7 +186,7 @@ export default function VeinFinderPage() {
         {/* 4. Table: Technical Specifications */}
         <div className="mb-20">
           <div className="text-center max-w-2xl mx-auto mb-10">
-            <span className="inline-block px-3.5 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider bg-teal-50 text-teal-700 border border-teal-200 mb-3">
+            <span className="eyebrow text-teal-700 mb-3">
               TECHNICAL DATA
             </span>
             <h3 className="text-2xl sm:text-3xl font-bold text-[#002D62] tracking-tight">
@@ -197,7 +194,7 @@ export default function VeinFinderPage() {
             </h3>
           </div>
 
-          <div className="bg-white rounded-[24px] overflow-hidden border border-gray-200/90 shadow-sm max-w-3xl mx-auto">
+          <div className="bg-white rounded-2xl overflow-hidden border border-gray-200 shadow-sm max-w-3xl mx-auto">
             <div className="overflow-x-auto">
               <table className="w-full text-left border-collapse">
                 <thead>
@@ -219,7 +216,7 @@ export default function VeinFinderPage() {
                       <td className="py-4 px-6 text-sm font-bold text-[#002D62]">
                         {spec.parameter}
                       </td>
-                      <td className="py-4 px-6 text-sm text-[#606367] font-medium">
+                      <td className="py-4 px-6 text-sm text-[#4B5563] font-medium">
                         {spec.details}
                       </td>
                     </tr>
@@ -231,10 +228,10 @@ export default function VeinFinderPage() {
         </div>
 
         {/* 5. Consultation & Trial Request CTA */}
-        <div className="bg-[#002D62] text-white rounded-[28px] p-8 sm:p-12 lg:p-16 text-center max-w-4xl mx-auto shadow-xl relative overflow-hidden">
+        <div className="hero-surface bg-[#002D62] text-white rounded-2xl p-8 sm:p-12 lg:p-16 text-center max-w-4xl mx-auto shadow-xl relative overflow-hidden">
           <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,_var(--tw-gradient-stops))] from-[#20B2AA]/20 via-transparent to-transparent pointer-events-none" />
           <div className="relative z-10">
-            <span className="inline-block px-3.5 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider bg-[#20B2AA]/20 text-teal-300 border border-[#20B2AA]/30 mb-4">
+            <span className="eyebrow text-teal-300 mb-4">
               HOSPITAL EVALUATION & SUPPLY
             </span>
             <h2 className="text-3xl sm:text-4xl font-bold text-white tracking-tight mb-4">

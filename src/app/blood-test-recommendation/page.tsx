@@ -51,24 +51,21 @@ export default function BloodTestRecommendationPage() {
   const recommendedTest = testsData[currentGoal.recommendedSlug];
 
   return (
-    <div className="min-h-screen bg-[#F8F9FA] text-[#323232] font-sans">
+    <div className="page-surface min-h-screen text-[#1F2A3A] font-sans">
       {/* 1. Header Banner */}
-      <section className="relative bg-[#002D62] text-white pt-36 sm:pt-40 lg:pt-44 pb-28 sm:pb-32 overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-r from-[#002D62]/95 via-[#002D62]/85 to-[#002678]/80 pointer-events-none" />
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,_var(--tw-gradient-stops))] from-[#20B2AA]/20 via-transparent to-transparent pointer-events-none" />
+      <section className="hero-light relative overflow-hidden pt-10 sm:pt-12 lg:pt-14 pb-10 sm:pb-12">
 
         <div className="container-boxed relative z-10">
           <div className="max-w-3xl">
-            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider bg-[#20B2AA]/20 text-teal-300 border border-[#20B2AA]/30 mb-6">
-              <span className="w-2 h-2 rounded-full bg-[#20B2AA] animate-pulse" />
+            <div className="eyebrow text-teal-700 mb-6">
               <span>Interactive Clinical Guidance</span>
             </div>
 
-            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-black text-white tracking-tight leading-[1.1] mb-6">
+            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-black text-[#002D62] tracking-tight leading-[1.1] mb-6">
               Find Your Health Test
             </h1>
 
-            <p className="text-lg sm:text-xl text-slate-200 font-light leading-relaxed max-w-2xl">
+            <p className="text-lg sm:text-xl text-[#4B5563] leading-relaxed max-w-2xl">
               Not sure which blood test you need? Select your primary health interest below to discover the most relevant diagnostic profile for you.
             </p>
           </div>
@@ -76,7 +73,7 @@ export default function BloodTestRecommendationPage() {
       </section>
 
       {/* 2. Interactive Matcher */}
-      <section className="container-boxed py-16 sm:py-24">
+      <section className="container-boxed py-12 sm:py-16">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-start">
           {/* Left: Health Focus Selector */}
           <div className="lg:col-span-6 space-y-4">
@@ -91,15 +88,15 @@ export default function BloodTestRecommendationPage() {
                 <button
                   key={goal.id}
                   onClick={() => setSelectedGoal(goal.id)}
-                  className={`w-full text-left p-6 rounded-[22px] border transition-all duration-300 flex items-start gap-5 cursor-pointer ${
+                  className={`w-full text-left p-6 rounded-2xl border transition-all duration-300 flex items-start gap-5 cursor-pointer ${
                     isSelected
-                      ? 'bg-white border-[#20B2AA] shadow-[0_10px_30px_-5px_rgba(32,178,170,0.25)] translate-x-2'
+                      ? 'bg-white border-[#20B2AA] translate-x-2'
                       : 'bg-white/70 border-gray-200 hover:border-gray-300 hover:bg-white'
                   }`}
                 >
                   <div
                     className={`w-12 h-12 rounded-xl flex items-center justify-center shrink-0 ${
-                      isSelected ? 'bg-[#20B2AA] text-white' : 'bg-slate-100 text-[#002D62]'
+                      isSelected ? 'bg-[#002D62] text-white' : 'bg-slate-100 text-[#002D62]'
                     }`}
                   >
                     <Icon className="w-6 h-6" />
@@ -108,7 +105,7 @@ export default function BloodTestRecommendationPage() {
                     <h3 className="font-bold text-[#002D62] text-base mb-1">
                       {goal.title}
                     </h3>
-                    <p className="text-xs text-[#606367] leading-relaxed">
+                    <p className="text-xs text-[#4B5563] leading-relaxed">
                       {goal.description}
                     </p>
                   </div>
@@ -118,18 +115,18 @@ export default function BloodTestRecommendationPage() {
           </div>
 
           {/* Right: Recommended Test Card */}
-          <div className="lg:col-span-6 sticky top-36">
+          <div className="lg:col-span-6 sticky top-24">
             <h2 className="text-xl font-bold text-[#002D62] mb-6">
               Step 2: Recommended Clinical Profile
             </h2>
 
             {recommendedTest && (
-              <div className="bg-white rounded-[28px] p-8 sm:p-10 border-2 border-[#20B2AA]/50 shadow-[0_15px_45px_-10px_rgba(0,45,98,0.12)] relative overflow-hidden">
-                <div className="absolute top-0 right-0 bg-[#20B2AA] text-white text-[11px] font-extrabold uppercase px-4 py-1.5 rounded-bl-2xl">
+              <div className="bg-white rounded-2xl p-8 sm:p-10 border-2 border-[#20B2AA]/50 relative overflow-hidden">
+                <div className="absolute top-0 right-0 bg-[#002D62] text-white text-xs font-extrabold uppercase px-4 py-1.5 rounded-bl-2xl">
                   Best Match
                 </div>
 
-                <span className="text-xs font-bold text-teal-700 bg-teal-50 px-3 py-1 rounded-full uppercase tracking-wider inline-block mb-4">
+                <span className="eyebrow text-teal-700 mb-4">
                   {recommendedTest.turnaround}
                 </span>
 
@@ -137,11 +134,11 @@ export default function BloodTestRecommendationPage() {
                   {recommendedTest.name}
                 </h3>
 
-                <p className="text-sm font-semibold text-slate-400 mb-6">
+                <p className="text-sm font-semibold text-slate-500 mb-6">
                   {recommendedTest.subtitle}
                 </p>
 
-                <p className="text-sm text-[#606367] leading-relaxed mb-6">
+                <p className="text-sm text-[#4B5563] leading-relaxed mb-6">
                   {recommendedTest.overview}
                 </p>
 
@@ -150,7 +147,7 @@ export default function BloodTestRecommendationPage() {
                     Key Biomarkers Tested:
                   </div>
                   {recommendedTest.whatItMeasures.slice(0, 3).map((item, idx) => (
-                    <div key={idx} className="flex items-start gap-2.5 text-xs text-[#323232]">
+                    <div key={idx} className="flex items-start gap-2.5 text-xs text-[#1F2A3A]">
                       <CheckCircle2 className="w-4 h-4 text-[#20B2AA] shrink-0 mt-0.5" />
                       <span>{item}</span>
                     </div>

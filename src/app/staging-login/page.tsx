@@ -68,12 +68,12 @@ function StagingLoginContent() {
         </div>
 
         {/* Login Card */}
-        <div className="bg-white/10 backdrop-blur-2xl rounded-[28px] border border-white/20 p-8 sm:p-10 shadow-[0_25px_60px_-15px_rgba(0,0,0,0.5)]">
+        <div className="bg-white/10 backdrop-blur-2xl rounded-2xl border border-white/20 p-8 sm:p-10 ">
           <div className="text-center mb-8">
             <div className="inline-flex items-center justify-center w-14 h-14 rounded-2xl bg-[#20B2AA]/20 text-[#20B2AA] border border-[#20B2AA]/30 mb-4 shadow-sm">
               <Lock className="w-6 h-6" />
             </div>
-            <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[11px] font-bold uppercase tracking-wider bg-white/10 text-teal-300 border border-white/10 mb-3">
+            <div className="eyebrow text-teal-300 mb-3">
               <Sparkles className="w-3 h-3 text-teal-300" />
               <span>Private Client Review</span>
             </div>
@@ -124,7 +124,7 @@ function StagingLoginContent() {
           </form>
 
           <div className="mt-8 pt-6 border-t border-white/10 text-center">
-            <p className="text-[11px] text-slate-400">
+            <p className="text-xs text-slate-400">
               Controlled via staging environment variables. Access is retained for 30 days once entered.
             </p>
           </div>

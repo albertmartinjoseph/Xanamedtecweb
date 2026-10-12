@@ -1,7 +1,4 @@
-'use client';
-
-import React, { useEffect, useRef, useState } from 'react';
-import { CheckCircle2 } from 'lucide-react';
+import React from 'react';
 
 interface Step {
   number: string;
@@ -53,114 +50,34 @@ const steps: Step[] = [
 ];
 
 export const TimelineStepper: React.FC = () => {
-  const containerRef = useRef<HTMLDivElement>(null);
-  const [activeStep, setActiveStep] = useState<number>(0);
-  const [lineProgress, setLineProgress] = useState<number>(0);
-
-  useEffect(() => {
-    const handleScroll = () => {
-      if (!containerRef.current) return;
-
-      const rect = containerRef.current.getBoundingClientRect();
-      const windowHeight = window.innerHeight;
-
-      // Start when container enters middle of screen, end when bottom reaches middle
-      const totalDist = rect.height;
-      const currentDist = windowHeight * 0.6 - rect.top;
-      const progress = Math.min(100, Math.max(0, (currentDist / totalDist) * 100));
-
-      setLineProgress(progress);
-
-      // Calculate which step is active (0 to 7)
-      const stepIndex = Math.min(
-        steps.length - 1,
-        Math.max(0, Math.floor((progress / 100) * steps.length))
-      );
-      setActiveStep(stepIndex);
-    };
-
-    window.addEventListener('scroll', handleScroll, { passive: true });
-    handleScroll();
-
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
-
   return (
-    <div ref={containerRef} className="relative max-w-4xl mx-auto py-8">
-      {/* Central Connecting Line (Desktop) / Left Line (Mobile) */}
-      <div className="absolute left-6 md:left-1/2 top-4 bottom-4 w-1 -translate-x-1/2 bg-white/15 rounded-full overflow-hidden">
-        {/* Animated fill stroke in brand teal with glow */}
-        <div
-          className="w-full bg-[#20B2AA] shadow-[0_0_14px_rgba(32,178,170,0.9)] transition-all duration-300 ease-out origin-top"
-          style={{ height: `${lineProgress}%` }}
-        />
-      </div>
+    <div className="relative">
+      <span className="draw-x absolute top-0 left-0 z-10 h-0.5 w-full bg-gradient-to-r from-[#20B2AA] via-teal-300 to-[#20B2AA]" aria-hidden="true" />
+    <ol className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 border-t border-l border-white/15">
+      {steps.map((step) => (
+        <li
+          key={step.number}
+          className="reveal group relative border-r border-b border-white/15 p-6 sm:p-7 transition-colors duration-500 hover:bg-white/[0.06]"
+        >
+          {/* Teal rule draws across the top of the cell on hover */}
+          <span className="absolute left-0 top-0 h-0.5 w-0 bg-[#20B2AA] transition-all duration-500 group-hover:w-full" />
 
-      {/* Stepper items */}
-      <div className="space-y-8 md:space-y-12">
-        {steps.map((step, index) => {
-          const isPassed = index <= activeStep;
-          const isEven = index % 2 === 0;
+          <span className="block font-serif text-5xl sm:text-6xl leading-none text-teal-300 mb-6" aria-hidden="true">
+            {step.number}
+          </span>
 
-          return (
-            <div
-              key={step.number}
-              className={`relative flex items-start md:items-center ${
-                isEven ? 'md:flex-row-reverse' : 'md:flex-row'
-              } gap-6 md:gap-12 transition-all duration-300`}
-            >
-              {/* Step Content Card */}
-              <div
-                className={`ml-14 md:ml-0 md:w-1/2 ${
-                  isEven ? 'md:text-left' : 'md:text-right'
-                }`}
-              >
-                <div
-                  className={`rounded-[22px] p-6 sm:p-7 border transition-all duration-300 cursor-pointer ${
-                    isPassed
-                      ? 'bg-[#002D62]/90 backdrop-blur-xl border-[#20B2AA]/60 shadow-[0_12px_40px_-8px_rgba(32,178,170,0.3)] translate-y-[-2px]'
-                      : 'bg-[#001D47]/70 backdrop-blur-md border-white/10 opacity-75 hover:opacity-100 hover:border-[#20B2AA]/40 hover:bg-[#002678]/80'
-                  } hover:-translate-y-1 hover:shadow-[0_16px_40px_-6px_rgba(32,178,170,0.35)]`}
-                  onClick={() => setActiveStep(index)}
-                >
-                  <div
-                    className={`inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider mb-2.5 ${
-                      isPassed
-                        ? 'bg-[#20B2AA]/20 text-teal-300 border border-[#20B2AA]/30'
-                        : 'bg-white/10 text-slate-400'
-                    }`}
-                  >
-                    <span>Stage {step.number}</span>
-                    {isPassed && <CheckCircle2 className="w-3.5 h-3.5 text-teal-300" />}
-                  </div>
+          <div className="eyebrow text-slate-400 mb-3">Stage {step.number}</div>
 
-                  <h3 className="text-lg sm:text-xl font-bold text-white tracking-tight mb-2">
-                    {step.title}
-                  </h3>
+          <h3 className="text-xl font-semibold text-white leading-snug mb-2">
+            {step.title}
+          </h3>
 
-                  <p className="text-sm text-slate-300 leading-relaxed">
-                    {step.description}
-                  </p>
-                </div>
-              </div>
-
-              {/* Center Circular Node */}
-              <div
-                className={`absolute left-6 md:left-1/2 -translate-x-1/2 w-10 h-10 rounded-full flex items-center justify-center font-bold text-xs transition-all duration-300 z-10 ${
-                  isPassed
-                    ? 'bg-[#20B2AA] text-white shadow-[0_0_20px_rgba(32,178,170,0.85)] scale-110 border-2 border-white'
-                    : 'bg-[#001D47] text-slate-400 border-2 border-white/20'
-                }`}
-              >
-                {step.number}
-              </div>
-
-              {/* Spacer on desktop to maintain alignment */}
-              <div className="hidden md:block md:w-1/2" />
-            </div>
-          );
-        })}
-      </div>
+          <p className="text-[15px] text-slate-300 leading-relaxed">
+            {step.description}
+          </p>
+        </li>
+      ))}
+    </ol>
     </div>
   );
 };

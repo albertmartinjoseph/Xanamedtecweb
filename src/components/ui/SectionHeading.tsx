@@ -39,7 +39,7 @@ export const SectionHeading: React.FC<SectionHeadingProps> = ({
       {subtitle && (
         <p
           className={`mt-3 sm:mt-4 text-base sm:text-lg leading-relaxed ${
-            light ? 'text-slate-300' : 'text-[#606367]'
+            light ? 'text-slate-300' : 'text-[#4B5563]'
           }`}
         >
           {subtitle}

@@ -86,58 +86,23 @@ export const Header: React.FC = () => {
 
   return (
     <header className="sticky top-0 z-40 w-full bg-white transition-all duration-300">
-      {/* 1. Header Top Bar (Purged phone, clinic address, hours, Help & FAQs; kept LinkedIn & X only) */}
-      <div className="bg-[#002D62] text-white py-2 px-4 border-b border-white/10 text-xs">
-        <div className="container-boxed flex items-center justify-between">
-          <div className="flex items-center gap-2 text-slate-300 text-[11px] sm:text-xs">
-            <span className="inline-block w-2 h-2 rounded-full bg-[#20B2AA] animate-pulse" />
-            <span className="font-semibold text-white">Xana Medtec</span>
-            <span className="hidden sm:inline">•</span>
-            <span className="hidden sm:inline">International Medical Distribution & Diagnostics</span>
-          </div>
-
-          <div className="flex items-center gap-4">
-            <span className="text-[11px] text-slate-400 hidden md:inline">Connect with us:</span>
-            <div className="flex items-center gap-3">
-              <a
-                href="https://www.linkedin.com/company/xana-medtec/home/"
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label="Follow Xana Medtec on LinkedIn"
-                className="text-slate-300 hover:text-[#20B2AA] transition-colors p-1"
-              >
-                <LinkedInIcon className="w-3.5 h-3.5" />
-              </a>
-              <a
-                href="https://x.com/XanaMedtec"
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label="Follow Xana Medtec on X"
-                className="text-slate-300 hover:text-[#20B2AA] transition-colors p-1"
-              >
-                <XIcon className="w-3.5 h-3.5" />
-              </a>
-            </div>
-          </div>
-        </div>
-      </div>
-
       {/* 2. Main Navigation Bar (Shrinks slightly on scroll + hairline shadow) */}
       <div
         className={`transition-all duration-300 ${
           isScrolled
-            ? 'py-2.5 shadow-[0_4px_20px_-4px_rgba(0,45,98,0.08)] border-b border-gray-150'
-            : 'py-4 border-b border-gray-100'
+            ? 'py-1.5 border-b border-gray-200'
+            : 'py-2 border-b border-transparent'
         }`}
       >
         <div className="container-boxed flex items-center justify-between">
           {/* Logo */}
           <Link href="/" className="relative flex items-center shrink-0">
-            <div className="relative w-48 sm:w-56 h-12 sm:h-14">
+            <div className="relative w-36 sm:w-40 h-9 sm:h-10">
               <Image
                 src="/images/logo-light-bg.png"
                 alt="Xana Medtec Logo"
                 fill
+                sizes="160px"
                 priority
                 className="object-contain object-left"
               />
@@ -145,11 +110,11 @@ export const Header: React.FC = () => {
           </Link>
 
           {/* Desktop Navigation Links (Section 1 of Spec) */}
-          <nav className="hidden lg:flex items-center gap-1 xl:gap-2 text-[14px] font-semibold text-[#323232]">
+          <nav className="hidden lg:flex items-center gap-2 xl:gap-4 text-[15px] font-medium text-[#1F2A3A]">
             {/* 1. About Us */}
             <Link
               href="/about-us"
-              className="px-3 py-2 rounded-full text-[#323232] hover:text-[#002D62] hover:bg-[#F8F9FA] transition-colors"
+              className="nav-link px-3 py-2 text-[#1F2A3A] hover:text-[#002D62] transition-colors"
             >
               About Us
             </Link>
@@ -163,7 +128,7 @@ export const Header: React.FC = () => {
               <button
                 type="button"
                 onClick={() => setOpenDropdown(openDropdown === 'devices' ? null : 'devices')}
-                className="flex items-center gap-1 px-3 py-2 rounded-full text-[#323232] hover:text-[#002D62] hover:bg-[#F8F9FA] transition-colors cursor-pointer"
+                className="nav-link flex items-center gap-1 px-3 py-2 text-[#1F2A3A] hover:text-[#002D62] transition-colors cursor-pointer"
                 aria-expanded={openDropdown === 'devices'}
               >
                 <span>Medical Devices</span>
@@ -186,10 +151,10 @@ export const Header: React.FC = () => {
                   href="/international-distribution"
                   className="flex flex-col p-2.5 rounded-xl hover:bg-[#F8F9FA] hover:text-[#002D62] transition-colors group/item"
                 >
-                  <span className="font-bold text-[#002D62] group-hover/item:text-[#20B2AA] text-sm">
+                  <span className="font-bold text-[#002D62] group-hover/item:text-teal-700 text-sm">
                     International Distribution
                   </span>
-                  <span className="text-xs text-[#606367] mt-0.5">
+                  <span className="text-xs text-[#4B5563] mt-0.5">
                     Global market entry & partner network
                   </span>
                 </Link>
@@ -198,10 +163,10 @@ export const Header: React.FC = () => {
                   href="/anisys-go"
                   className="flex flex-col p-2.5 rounded-xl hover:bg-[#F8F9FA] hover:text-[#002D62] transition-colors group/item"
                 >
-                  <span className="font-bold text-[#002D62] group-hover/item:text-[#20B2AA] text-sm">
+                  <span className="font-bold text-[#002D62] group-hover/item:text-teal-700 text-sm">
                     Anisys Go
                   </span>
-                  <span className="text-xs text-[#606367] mt-0.5">
+                  <span className="text-xs text-[#4B5563] mt-0.5">
                     High-resolution anorectal physiology
                   </span>
                 </Link>
@@ -210,10 +175,10 @@ export const Header: React.FC = () => {
                   href="/vein-finder"
                   className="flex flex-col p-2.5 rounded-xl hover:bg-[#F8F9FA] hover:text-[#002D62] transition-colors group/item"
                 >
-                  <span className="font-bold text-[#002D62] group-hover/item:text-[#20B2AA] text-sm">
+                  <span className="font-bold text-[#002D62] group-hover/item:text-teal-700 text-sm">
                     Vein Finder
                   </span>
-                  <span className="text-xs text-[#606367] mt-0.5">
+                  <span className="text-xs text-[#4B5563] mt-0.5">
                     Zero-latency real-time 1:1 vascular mapping
                   </span>
                 </Link>
@@ -229,7 +194,7 @@ export const Header: React.FC = () => {
               <button
                 type="button"
                 onClick={() => setOpenDropdown(openDropdown === 'clinical' ? null : 'clinical')}
-                className="flex items-center gap-1 px-3 py-2 rounded-full text-[#323232] hover:text-[#002D62] hover:bg-[#F8F9FA] transition-colors cursor-pointer"
+                className="nav-link flex items-center gap-1 px-3 py-2 text-[#1F2A3A] hover:text-[#002D62] transition-colors cursor-pointer"
                 aria-expanded={openDropdown === 'clinical'}
               >
                 <span>Clinical Services</span>
@@ -267,14 +232,14 @@ export const Header: React.FC = () => {
                         : 'opacity-0 invisible -translate-x-1 pointer-events-none'
                     }`}
                   >
-                    <div className="px-2 py-1 text-[11px] font-bold text-[#606367] uppercase tracking-wider border-b border-gray-100 mb-1">
+                    <div className="px-2 py-1 text-xs font-bold text-[#4B5563] uppercase tracking-wider border-b border-gray-100 mb-1">
                       The 7 Featured Profiles
                     </div>
                     {popularTests.map((test) => (
                       <Link
                         key={test.href}
                         href={test.href}
-                        className="block px-2.5 py-1.5 rounded-lg text-xs font-semibold text-[#323232] hover:text-[#002D62] hover:bg-[#F8F9FA] transition-colors"
+                        className="block px-2.5 py-1.5 rounded-lg text-xs font-semibold text-[#1F2A3A] hover:text-[#002D62] hover:bg-[#F8F9FA] transition-colors"
                       >
                         {test.name}
                       </Link>
@@ -288,10 +253,10 @@ export const Header: React.FC = () => {
                   href="/tests-list-page"
                   className="flex flex-col p-2.5 rounded-xl hover:bg-[#F8F9FA] hover:text-[#002D62] transition-colors group/item"
                 >
-                  <span className="font-bold text-[#002D62] group-hover/item:text-[#20B2AA] text-sm">
+                  <span className="font-bold text-[#002D62] group-hover/item:text-teal-700 text-sm">
                     View All Health Tests
                   </span>
-                  <span className="text-xs text-[#606367]">
+                  <span className="text-xs text-[#4B5563]">
                     Browse our comprehensive diagnostic directory
                   </span>
                 </Link>
@@ -300,10 +265,10 @@ export const Header: React.FC = () => {
                   href="/blood-test-recommendation"
                   className="flex flex-col p-2.5 rounded-xl hover:bg-[#F8F9FA] hover:text-[#002D62] transition-colors group/item"
                 >
-                  <span className="font-bold text-[#002D62] group-hover/item:text-[#20B2AA] text-sm">
+                  <span className="font-bold text-[#002D62] group-hover/item:text-teal-700 text-sm">
                     Find Your Test
                   </span>
-                  <span className="text-xs text-[#606367]">
+                  <span className="text-xs text-[#4B5563]">
                     Interactive recommendation guidance
                   </span>
                 </Link>
@@ -322,7 +287,7 @@ export const Header: React.FC = () => {
                     Book Appointment
                     <Sparkles className="w-3.5 h-3.5" />
                   </span>
-                  <span className="text-xs text-[#606367]">
+                  <span className="text-xs text-[#4B5563]">
                     Direct clinical booking & consultation
                   </span>
                 </button>
@@ -338,7 +303,7 @@ export const Header: React.FC = () => {
               <button
                 type="button"
                 onClick={() => setOpenDropdown(openDropdown === 'profile' ? null : 'profile')}
-                className="flex items-center gap-1 px-3 py-2 rounded-full text-[#323232] hover:text-[#002D62] hover:bg-[#F8F9FA] transition-colors cursor-pointer"
+                className="nav-link flex items-center gap-1 px-3 py-2 text-[#1F2A3A] hover:text-[#002D62] transition-colors cursor-pointer"
                 aria-expanded={openDropdown === 'profile'}
               >
                 <span>My Profile</span>
@@ -359,13 +324,13 @@ export const Header: React.FC = () => {
               >
                 <Link
                   href="/login"
-                  className="block px-3 py-2 rounded-xl text-sm font-semibold text-[#323232] hover:bg-[#F8F9FA] hover:text-[#002D62] transition-colors"
+                  className="block px-3 py-2 rounded-xl text-sm font-semibold text-[#1F2A3A] hover:bg-[#F8F9FA] hover:text-[#002D62] transition-colors"
                 >
                   Login
                 </Link>
                 <Link
                   href="/register"
-                  className="block px-3 py-2 rounded-xl text-sm font-semibold text-[#323232] hover:bg-[#F8F9FA] hover:text-[#002D62] transition-colors"
+                  className="block px-3 py-2 rounded-xl text-sm font-semibold text-[#1F2A3A] hover:bg-[#F8F9FA] hover:text-[#002D62] transition-colors"
                 >
                   Register
                 </Link>
@@ -383,7 +348,7 @@ export const Header: React.FC = () => {
                   'Connect directly with our clinical phlebotomy team.'
                 )
               }
-              className="inline-flex items-center justify-center font-bold transition-all duration-200 cursor-pointer text-xs uppercase tracking-wider rounded-[24px] px-5 py-2.5 bg-[#20B2AA] text-white hover:bg-[#1a938c] shadow-[0_4px_14px_rgba(32,178,170,0.35)] hover:shadow-[0_6px_20px_rgba(32,178,170,0.45)] group"
+              className="inline-flex items-center justify-center font-semibold transition-colors duration-300 cursor-pointer text-sm rounded-full px-5 py-2 bg-[#002D62] text-white hover:bg-[#147F79] group"
             >
               <span>Book Appointment</span>
               <ArrowRight className="w-3.5 h-3.5 ml-1.5 transition-transform duration-200 group-hover:translate-x-1" />
@@ -431,6 +396,7 @@ export const Header: React.FC = () => {
                     src="/images/logo-light-bg.png"
                     alt="Xana Medtec"
                     fill
+                    sizes="160px"
                     className="object-contain object-left"
                   />
                 </div>
@@ -450,7 +416,7 @@ export const Header: React.FC = () => {
                 <Link
                   href="/about-us"
                   onClick={() => setMobileMenuOpen(false)}
-                  className="block px-3 py-2.5 rounded-xl text-[#323232] hover:bg-gray-50 hover:text-[#002D62]"
+                  className="block px-3 py-2.5 rounded-xl text-[#1F2A3A] hover:bg-gray-50 hover:text-[#002D62]"
                 >
                   About Us
                 </Link>
@@ -460,7 +426,7 @@ export const Header: React.FC = () => {
                   <button
                     type="button"
                     onClick={() => setMobileDevicesOpen(!mobileDevicesOpen)}
-                    className="w-full flex items-center justify-between px-3 py-2.5 rounded-xl text-[#323232] hover:bg-gray-50 hover:text-[#002D62]"
+                    className="w-full flex items-center justify-between px-3 py-2.5 rounded-xl text-[#1F2A3A] hover:bg-gray-50 hover:text-[#002D62]"
                   >
                     <span>Medical Devices</span>
                     <ChevronDown
@@ -474,21 +440,21 @@ export const Header: React.FC = () => {
                       <Link
                         href="/international-distribution"
                         onClick={() => setMobileMenuOpen(false)}
-                        className="block px-3 py-2 text-xs text-[#606367] hover:text-[#002D62]"
+                        className="block px-3 py-2 text-xs text-[#4B5563] hover:text-[#002D62]"
                       >
                         • International Distribution
                       </Link>
                       <Link
                         href="/anisys-go"
                         onClick={() => setMobileMenuOpen(false)}
-                        className="block px-3 py-2 text-xs text-[#606367] hover:text-[#002D62]"
+                        className="block px-3 py-2 text-xs text-[#4B5563] hover:text-[#002D62]"
                       >
                         • Anisys Go
                       </Link>
                       <Link
                         href="/vein-finder"
                         onClick={() => setMobileMenuOpen(false)}
-                        className="block px-3 py-2 text-xs text-[#606367] hover:text-[#002D62]"
+                        className="block px-3 py-2 text-xs text-[#4B5563] hover:text-[#002D62]"
                       >
                         • Vein Finder
                       </Link>
@@ -501,7 +467,7 @@ export const Header: React.FC = () => {
                   <button
                     type="button"
                     onClick={() => setMobileClinicalOpen(!mobileClinicalOpen)}
-                    className="w-full flex items-center justify-between px-3 py-2.5 rounded-xl text-[#323232] hover:bg-gray-50 hover:text-[#002D62]"
+                    className="w-full flex items-center justify-between px-3 py-2.5 rounded-xl text-[#1F2A3A] hover:bg-gray-50 hover:text-[#002D62]"
                   >
                     <span>Clinical Services</span>
                     <ChevronDown
@@ -533,7 +499,7 @@ export const Header: React.FC = () => {
                                 key={test.href}
                                 href={test.href}
                                 onClick={() => setMobileMenuOpen(false)}
-                                className="block px-2 py-1 text-[11px] text-[#606367] hover:text-[#002D62]"
+                                className="block px-2 py-1 text-xs text-[#4B5563] hover:text-[#002D62]"
                               >
                                 {test.name}
                               </Link>
@@ -545,14 +511,14 @@ export const Header: React.FC = () => {
                       <Link
                         href="/tests-list-page"
                         onClick={() => setMobileMenuOpen(false)}
-                        className="block px-3 py-2 text-xs text-[#606367] hover:text-[#002D62]"
+                        className="block px-3 py-2 text-xs text-[#4B5563] hover:text-[#002D62]"
                       >
                         • View All Health Tests
                       </Link>
                       <Link
                         href="/blood-test-recommendation"
                         onClick={() => setMobileMenuOpen(false)}
-                        className="block px-3 py-2 text-xs text-[#606367] hover:text-[#002D62]"
+                        className="block px-3 py-2 text-xs text-[#4B5563] hover:text-[#002D62]"
                       >
                         • Find Your Test
                       </Link>
@@ -565,7 +531,7 @@ export const Header: React.FC = () => {
                   <button
                     type="button"
                     onClick={() => setMobileProfileOpen(!mobileProfileOpen)}
-                    className="w-full flex items-center justify-between px-3 py-2.5 rounded-xl text-[#323232] hover:bg-gray-50 hover:text-[#002D62]"
+                    className="w-full flex items-center justify-between px-3 py-2.5 rounded-xl text-[#1F2A3A] hover:bg-gray-50 hover:text-[#002D62]"
                   >
                     <span>My Profile</span>
                     <ChevronDown
@@ -579,14 +545,14 @@ export const Header: React.FC = () => {
                       <Link
                         href="/login"
                         onClick={() => setMobileMenuOpen(false)}
-                        className="block px-3 py-2 text-xs text-[#606367] hover:text-[#002D62]"
+                        className="block px-3 py-2 text-xs text-[#4B5563] hover:text-[#002D62]"
                       >
                         • Login
                       </Link>
                       <Link
                         href="/register"
                         onClick={() => setMobileMenuOpen(false)}
-                        className="block px-3 py-2 text-xs text-[#606367] hover:text-[#002D62]"
+                        className="block px-3 py-2 text-xs text-[#4B5563] hover:text-[#002D62]"
                       >
                         • Register
                       </Link>
@@ -604,7 +570,7 @@ export const Header: React.FC = () => {
                   setMobileMenuOpen(false);
                   openModal('Book Appointment', 'Connect directly with our clinical phlebotomy team.');
                 }}
-                className="w-full py-3 rounded-full bg-[#20B2AA] text-white text-xs font-bold uppercase tracking-wider shadow-md hover:bg-[#1a938c] transition-colors flex items-center justify-center gap-2"
+                className="w-full py-3 rounded-full bg-[#002D62] text-white text-sm font-semibold hover:bg-[#147F79] transition-colors flex items-center justify-center gap-2"
               >
                 <span>Book Appointment</span>
                 <ArrowRight className="w-4 h-4" />

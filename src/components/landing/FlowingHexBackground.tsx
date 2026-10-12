@@ -122,7 +122,7 @@ export const FlowingHexBackground: React.FC<FlowingHexBackgroundProps> = ({
       {/* Cluster 1: Top-Right (matching user reference, floating gently) */}
       <ConcentricHexContour
         idPrefix="top-right"
-        className="absolute -top-10 right-2 md:right-12 w-80 sm:w-96 md:w-[420px] h-80 sm:h-96 md:h-[420px] rotate-[26deg] animate-float-slow opacity-80"
+        className="absolute -top-10 right-2 md:right-12 w-80 sm:w-96 md:w-[420px] h-80 sm:h-96 md:h-[420px] rotate-[26deg] animate-float-slow opacity-25"
         accentColor="#20B2AA"
         secondaryColor="#3B82F6"
       />
@@ -130,7 +130,7 @@ export const FlowingHexBackground: React.FC<FlowingHexBackgroundProps> = ({
       {/* Cluster 2: Upper-Left (matching large tilted contour in user reference) */}
       <ConcentricHexContour
         idPrefix="mid-left"
-        className="absolute top-72 -left-20 md:-left-10 w-96 sm:w-[460px] md:w-[520px] h-96 sm:h-[460px] md:h-[520px] -rotate-[34deg] animate-float-reverse opacity-75"
+        className="absolute top-72 -left-20 md:-left-10 w-96 sm:w-[460px] md:w-[520px] h-96 sm:h-[460px] md:h-[520px] -rotate-[34deg] animate-float-reverse opacity-25"
         accentColor="#23CCAD"
         secondaryColor="#20B2AA"
       />
@@ -138,7 +138,7 @@ export const FlowingHexBackground: React.FC<FlowingHexBackgroundProps> = ({
       {/* Cluster 3: Lower-Right (keeping flowing rhythm active along steps 05-07) */}
       <ConcentricHexContour
         idPrefix="mid-right"
-        className="absolute top-[820px] -right-24 md:-right-8 w-80 sm:w-96 md:w-[440px] h-80 sm:h-96 md:h-[440px] rotate-[18deg] animate-float-drift opacity-70"
+        className="absolute top-[820px] -right-24 md:-right-8 w-80 sm:w-96 md:w-[440px] h-80 sm:h-96 md:h-[440px] rotate-[18deg] animate-float-drift opacity-25"
         accentColor="#20B2AA"
         secondaryColor="#002D62"
       />
@@ -146,7 +146,7 @@ export const FlowingHexBackground: React.FC<FlowingHexBackgroundProps> = ({
       {/* Cluster 4: Bottom-Left (grounding the section near step 08) */}
       <ConcentricHexContour
         idPrefix="bot-left"
-        className="absolute -bottom-16 -left-16 md:left-4 w-96 sm:w-[440px] md:w-[480px] h-96 sm:h-[440px] md:h-[480px] -rotate-[22deg] animate-float-slow opacity-80"
+        className="absolute -bottom-16 -left-16 md:left-4 w-96 sm:w-[440px] md:w-[480px] h-96 sm:h-[440px] md:h-[480px] -rotate-[22deg] animate-float-slow opacity-25"
         accentColor="#23CCAD"
         secondaryColor="#38BDF8"
       />

@@ -9,27 +9,27 @@ export const metadata: Metadata = {
 
 export default function PrivacyPolicyPage() {
   return (
-    <div className="min-h-screen bg-[#F8F9FA] text-[#323232] font-sans">
-      <section className="bg-[#002D62] text-white pt-36 sm:pt-40 lg:pt-44 pb-20">
-        <div className="container-boxed">
-          <h1 className="text-4xl sm:text-5xl font-black text-white tracking-tight mb-4">
+    <div className="page-surface min-h-screen text-[#1F2A3A] font-sans">
+      <section className="hero-light relative overflow-hidden pt-10 sm:pt-12 lg:pt-14 pb-10 sm:pb-12">
+        <div className="container-boxed relative z-10">
+          <h1 className="text-4xl sm:text-5xl font-black text-[#002D62] tracking-tight mb-4">
             Privacy Policy
           </h1>
-          <p className="text-slate-200 text-sm sm:text-base">
+          <p className="text-[#4B5563] text-sm sm:text-base">
             Last Updated: October 2026 • Compliant with UK Data Protection Act 2018 & UK GDPR
           </p>
         </div>
       </section>
 
       <section className="container-boxed py-16">
-        <div className="bg-white rounded-[26px] p-8 sm:p-14 border border-gray-200/90 shadow-sm max-w-4xl mx-auto space-y-8 text-[#606367] text-sm sm:text-base leading-relaxed">
+        <div className="bg-white rounded-2xl p-8 sm:p-14 border border-gray-200 shadow-sm max-w-4xl mx-auto space-y-8 text-[#4B5563] text-sm sm:text-base leading-relaxed">
           <div>
             <h2 className="text-xl font-bold text-[#002D62] mb-3">1. Overview & Data Controller</h2>
             <p>
               Xana Medtec Ltd (&ldquo;we&rdquo;, &ldquo;our&rdquo;, or &ldquo;us&rdquo;) is committed to protecting and respecting your personal privacy. This Privacy Notice describes how we collect, store, handle, and process personal data when you visit our website, submit inquiries, or utilize our clinical diagnostic referral services.
             </p>
             <p className="mt-3">
-              The Data Controller is <strong>Xana Medtec Ltd</strong>, registered in England and Wales, with principal offices located at <strong>Bartle House, Oxford Court, Manchester, M2 3WQ</strong>. You may contact our Data Protection Officer at <a href="mailto:info@xanamedtec.com" className="text-[#20B2AA] underline">info@xanamedtec.com</a>.
+              The Data Controller is <strong>Xana Medtec Ltd</strong>, registered in England and Wales, with principal offices located at <strong>Bartle House, Oxford Court, Manchester, M2 3WQ</strong>. You may contact our Data Protection Officer at <a href="mailto:info@xanamedtec.com" className="text-teal-700 underline">info@xanamedtec.com</a>.
             </p>
           </div>
 
@@ -69,7 +69,7 @@ export default function PrivacyPolicyPage() {
 
           <div className="pt-6 border-t border-gray-100">
             <p className="text-xs text-slate-400">
-              For any privacy queries, please write to: Data Privacy Officer, Xana Medtec Ltd, Bartle House, Oxford Court, Manchester, M2 3WQ, or email <a href="mailto:info@xanamedtec.com" className="text-[#20B2AA] underline">info@xanamedtec.com</a>.
+              For any privacy queries, please write to: Data Privacy Officer, Xana Medtec Ltd, Bartle House, Oxford Court, Manchester, M2 3WQ, or email <a href="mailto:info@xanamedtec.com" className="text-teal-700 underline">info@xanamedtec.com</a>.
             </p>
           </div>
         </div>

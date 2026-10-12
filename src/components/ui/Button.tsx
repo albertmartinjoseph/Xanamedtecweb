@@ -17,24 +17,24 @@ export const Button: React.FC<ButtonProps> = ({
   ...props
 }) => {
   const baseStyles =
-    'inline-flex items-center justify-center font-sans font-medium transition-all duration-300 cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed group';
+    'inline-flex items-center justify-center font-sans font-semibold transition-all duration-300 cursor-pointer hover:-translate-y-0.5 active:translate-y-0 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:translate-y-0 group';
 
   const variants = {
     // Primary Navy Pill CTA: #002D62 -> hover #20B2AA
     primary:
-      'bg-[#002D62] text-white border border-[#002D62] hover:bg-[#20B2AA] hover:border-[#20B2AA] rounded-[24px] shadow-sm',
+      'bg-[#002D62] text-white border border-[#002D62] hover:bg-[#147F79] hover:border-[#147F79] rounded-full',
     // Accent Teal Pill CTA: #20B2AA -> hover #002D62
     accent:
-      'bg-[#20B2AA] text-white font-bold border-none hover:bg-[#002D62] rounded-[40px] shadow-sm',
+      'bg-[#002D62] text-white font-semibold border-none hover:bg-[#147F79] rounded-full',
     // Form Submit Button: #20B2AA -> hover #002D62, radius 20px
     submit:
-      'bg-[#20B2AA] text-white font-semibold hover:bg-[#002D62] rounded-[20px] shadow-sm',
+      'bg-[#002D62] text-white font-semibold hover:bg-[#147F79] rounded-full',
     // Outline Button
     outline:
-      'bg-transparent text-[#002D62] border border-[#002D62] hover:bg-[#002D62] hover:text-white rounded-[24px]',
+      'bg-transparent text-[#002D62] border border-[#002D62] hover:bg-[#002D62] hover:text-white rounded-full',
     // White Button for dark hero
     white:
-      'bg-white text-[#002D62] font-semibold hover:bg-[#20B2AA] hover:text-white rounded-[24px] shadow-sm',
+      'bg-white text-[#002D62] font-semibold hover:bg-[#20B2AA] hover:text-white rounded-full',
   };
 
   const sizes = {

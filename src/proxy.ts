@@ -1,7 +1,7 @@
 import { NextResponse } from 'next/server';
 import type { NextRequest } from 'next/server';
 
-export function middleware(request: NextRequest) {
+export function proxy(request: NextRequest) {
   // Only gate when STAGING is explicitly enabled
   const isStaging = process.env.STAGING === 'true';
 
@@ -35,10 +35,15 @@ export function middleware(request: NextRequest) {
   if (authHeader?.startsWith('Basic ')) {
     const expectedPassword = process.env.STAGING_PASSWORD || 'xana2026';
     const base64Credentials = authHeader.split(' ')[1];
-    const credentials = atob(base64Credentials);
-    const [, password] = credentials.split(':');
-    if (password === expectedPassword) {
-      return NextResponse.next();
+    try {
+      // Password is everything after the first colon (RFC 7617); atob throws on malformed input
+      const credentials = atob(base64Credentials);
+      const password = credentials.slice(credentials.indexOf(':') + 1);
+      if (password === expectedPassword) {
+        return NextResponse.next();
+      }
+    } catch {
+      // Malformed header: fall through to the login redirect
     }
   }
 
