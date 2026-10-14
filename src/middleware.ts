@@ -17,9 +17,10 @@ export function middleware(request: NextRequest) {
     pathname.startsWith('/favicon.ico') ||
     pathname.startsWith('/images') ||
     pathname.startsWith('/videos') ||
+    pathname === '/robots.txt' ||
+    pathname === '/sitemap.xml' ||
     pathname.startsWith('/staging-login') ||
-    pathname.startsWith('/api/staging-auth') ||
-    pathname.startsWith('/api/keystatic')
+    pathname.startsWith('/api/staging-auth')
   ) {
     return NextResponse.next();
   }

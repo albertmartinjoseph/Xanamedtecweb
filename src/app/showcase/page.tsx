@@ -38,7 +38,7 @@ export default function Stage2ShowcasePage() {
           <div className="flex items-center gap-4 text-xs text-slate-300">
             <span>Next.js 16 + Tailwind CSS v4</span>
             <span>•</span>
-            <span>Keystatic CMS Active</span>
+            <span>Production Ready (Node.js)</span>
           </div>
         </div>
       </div>
@@ -613,24 +613,6 @@ export default function Stage2ShowcasePage() {
               </div>
             </div>
           </div>
-        </section>
-
-        {/* Section 10: Keystatic CMS Local Admin Link */}
-        <section className="bg-white rounded-[20px] p-8 border border-gray-200/80 shadow-sm flex flex-col sm:flex-row items-center justify-between gap-6">
-          <div className="space-y-1">
-            <h2 className="text-lg font-bold text-[#002D62]">Keystatic Headless CMS Dashboard</h2>
-            <p className="text-xs text-[#606367]">
-              Collections active: <code>Pages</code>, <code>Health Tests</code>, <code>Testimonials</code> | Singletons: <code>Site Settings</code>, <code>Navigation</code>
-            </p>
-          </div>
-          <a
-            href="/keystatic"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-[#002D62] text-white text-sm font-bold hover:bg-[#20B2AA] transition-colors"
-          >
-            Open Keystatic Admin (/keystatic) →
-          </a>
         </section>
       </main>
     </div>
