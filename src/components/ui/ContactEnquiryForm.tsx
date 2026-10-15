@@ -36,7 +36,6 @@ export const ContactEnquiryForm: React.FC<ContactEnquiryFormProps> = ({
 
     // Spam honeypot trap
     if (formData._honey_url) {
-      console.warn('Spam submission trapped by honeypot.');
       setSubmitted(true);
       return;
     }
@@ -61,7 +60,8 @@ export const ContactEnquiryForm: React.FC<ContactEnquiryFormProps> = ({
       });
 
       if (!res.ok) {
-        throw new Error('Unable to send message. Please email info@xanamedtec.com directly.');
+        const errData = await res.json().catch(() => null);
+        throw new Error(errData?.error || 'Unable to send message. Please email info@xanamedtec.com directly.');
       }
 
       setSubmitted(true);
@@ -69,10 +69,8 @@ export const ContactEnquiryForm: React.FC<ContactEnquiryFormProps> = ({
         setTimeout(onSuccess, 2000);
       }
     } catch (err: unknown) {
-      const message = err instanceof Error ? err.message : 'Submission failed';
-      // For static demonstration or offline mode, simulate success if API route is not running SMTP
-      console.log('Submission fallback:', message);
-      setSubmitted(true);
+      const message = err instanceof Error ? err.message : 'Submission failed. Please try again.';
+      setError(message);
     } finally {
       setSubmitting(false);
     }
@@ -124,6 +122,7 @@ export const ContactEnquiryForm: React.FC<ContactEnquiryFormProps> = ({
       <input
         type="text"
         name="_honey_url"
+        maxLength={100}
         value={formData._honey_url}
         onChange={(e) => setFormData({ ...formData, _honey_url: e.target.value })}
         className="hidden opacity-0 pointer-events-none absolute"
@@ -138,6 +137,7 @@ export const ContactEnquiryForm: React.FC<ContactEnquiryFormProps> = ({
           <input
             type="text"
             required
+            maxLength={100}
             value={formData.name}
             onChange={(e) => setFormData({ ...formData, name: e.target.value })}
             placeholder="e.g. Dr. Jane Smith"
@@ -149,6 +149,7 @@ export const ContactEnquiryForm: React.FC<ContactEnquiryFormProps> = ({
           <input
             type="email"
             required
+            maxLength={150}
             value={formData.email}
             onChange={(e) => setFormData({ ...formData, email: e.target.value })}
             placeholder="jane@example.com"
@@ -163,6 +164,7 @@ export const ContactEnquiryForm: React.FC<ContactEnquiryFormProps> = ({
           <label className="block text-xs font-medium text-[#606367] mb-1">Phone Number (Optional)</label>
           <input
             type="tel"
+            maxLength={50}
             value={formData.phone}
             onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
             placeholder="+44 7123 456789"
@@ -173,6 +175,7 @@ export const ContactEnquiryForm: React.FC<ContactEnquiryFormProps> = ({
           <label className="block text-xs font-medium text-[#606367] mb-1">Organization / Clinic</label>
           <input
             type="text"
+            maxLength={100}
             value={formData.company}
             onChange={(e) => setFormData({ ...formData, company: e.target.value })}
             placeholder="e.g. Manchester Health Trust"
@@ -187,6 +190,7 @@ export const ContactEnquiryForm: React.FC<ContactEnquiryFormProps> = ({
         <textarea
           required
           rows={3}
+          maxLength={5000}
           value={formData.message}
           onChange={(e) => setFormData({ ...formData, message: e.target.value })}
           placeholder="Please describe your enquiry, requested testing services, or distribution region..."

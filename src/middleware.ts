@@ -35,12 +35,18 @@ export function middleware(request: NextRequest) {
   // 2. Check HTTP Basic Auth Header (Optional reviewer convenience)
   const authHeader = request.headers.get('authorization');
   if (authHeader?.startsWith('Basic ')) {
-    const expectedPassword = process.env.STAGING_PASSWORD || 'xana2026';
-    const base64Credentials = authHeader.split(' ')[1];
-    const credentials = atob(base64Credentials);
-    const [, password] = credentials.split(':');
-    if (password === expectedPassword) {
-      return NextResponse.next();
+    const expectedPassword = process.env.STAGING_PASSWORD;
+    if (expectedPassword) {
+      try {
+        const base64Credentials = authHeader.split(' ')[1];
+        const credentials = atob(base64Credentials);
+        const [, password] = credentials.split(':');
+        if (password === expectedPassword) {
+          return NextResponse.next();
+        }
+      } catch {
+        // Malformed auth header - fall through to redirect
+      }
     }
   }
 

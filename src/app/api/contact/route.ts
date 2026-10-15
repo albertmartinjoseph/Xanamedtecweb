@@ -1,40 +1,75 @@
 import { NextResponse } from 'next/server';
 
+// Strict email regex matching standard RFC format
+const EMAIL_REGEX = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)+$/;
+
 export async function POST(request: Request) {
   try {
     const data = await request.json();
     const { name, email, phone, company, message, consent, _honey_url, enquiryType } = data;
 
-    // 1. Honeypot check for spam bots
+    // 1. Honeypot check for automated bots (silent success)
     if (_honey_url) {
       return NextResponse.json({ success: true, message: 'Enquiry received' }, { status: 200 });
     }
 
-    // 2. Validate required fields
-    if (!name || typeof name !== 'string' || !name.trim()) {
+    // 2. Validate required full name (1 to 100 characters)
+    if (!name || typeof name !== 'string') {
       return NextResponse.json({ error: 'Full name is required.' }, { status: 400 });
     }
+    const cleanName = name.replace(/\0/g, '').trim();
+    if (cleanName.length < 2 || cleanName.length > 100) {
+      return NextResponse.json(
+        { error: 'Name must be between 2 and 100 characters.' },
+        { status: 400 }
+      );
+    }
 
-    if (!email || typeof email !== 'string' || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+    // 3. Validate email address (max 150 characters, valid RFC format)
+    if (!email || typeof email !== 'string') {
       return NextResponse.json({ error: 'A valid email address is required.' }, { status: 400 });
     }
+    const cleanEmail = email.replace(/\0/g, '').trim().toLowerCase();
+    if (cleanEmail.length > 150 || !EMAIL_REGEX.test(cleanEmail)) {
+      return NextResponse.json(
+        { error: 'Please provide a valid email address.' },
+        { status: 400 }
+      );
+    }
 
-    if (!message || typeof message !== 'string' || !message.trim()) {
+    // 4. Validate message content (1 to 5,000 characters)
+    if (!message || typeof message !== 'string') {
       return NextResponse.json({ error: 'Message content is required.' }, { status: 400 });
     }
-
-    if (!consent) {
-      return NextResponse.json({ error: 'Privacy consent agreement is required.' }, { status: 400 });
+    const cleanMessage = message.replace(/\0/g, '').trim();
+    if (cleanMessage.length < 5 || cleanMessage.length > 5000) {
+      return NextResponse.json(
+        { error: 'Message must be between 5 and 5,000 characters.' },
+        { status: 400 }
+      );
     }
 
-    // 3. Log enquiry (for production server logs / cPanel stderr/stdout)
+    // 5. Validate consent checkbox
+    if (consent !== true) {
+      return NextResponse.json(
+        { error: 'Privacy consent agreement is required to process your enquiry.' },
+        { status: 400 }
+      );
+    }
+
+    // 6. Validate optional fields
+    const cleanPhone = typeof phone === 'string' ? phone.replace(/\0/g, '').trim().slice(0, 50) : '';
+    const cleanCompany = typeof company === 'string' ? company.replace(/\0/g, '').trim().slice(0, 100) : '';
+    const cleanCategory = typeof enquiryType === 'string' ? enquiryType.replace(/\0/g, '').trim().slice(0, 50) : 'General';
+
+    // 7. Secure privacy-compliant server logging (avoids dumping raw PII in console stdout)
     const timestamp = new Date().toISOString();
     console.log(
-      `[Enquiry Received - ${timestamp}] Type: ${enquiryType || 'General'} | From: ${name} <${email}> | Phone: ${phone || 'N/A'} | Company: ${company || 'N/A'}`
+      `[Enquiry Received - ${timestamp}] Category: ${cleanCategory} | NameLength: ${cleanName.length} | HasPhone: ${Boolean(cleanPhone)} | HasCompany: ${Boolean(cleanCompany)}`
     );
 
-    // 4. In a Node.js / cPanel production deployment, SMTP or mailer integration can be hooked here via env variables.
-    // E.g. process.env.SMTP_HOST
+    // 8. SMTP / Mailer integration hook for cPanel Node.js or production mail delivery
+    // e.g., if process.env.SMTP_HOST is configured, dispatch notification email.
 
     return NextResponse.json(
       {
@@ -52,3 +87,4 @@ export async function POST(request: Request) {
     );
   }
 }
+

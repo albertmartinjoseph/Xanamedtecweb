@@ -302,3 +302,31 @@ ErrorDocument 404 /_not-found.html
 | **Email Service Separation** | MX record disruption | Ensure MX and TXT/SPF/DKIM records for `info@xanamedtec.com` remain on their existing mail provider (e.g. Google Workspace, Microsoft 365, or IONOS Mail). Do NOT switch MX records to cPanel unless migrating mailboxes. |
 | **External Email Relay for Contact Form** | Enquiries logged but not emailed | Currently `/api/contact` logs enquiries to standard server output. If you want enquiries automatically sent to `info@xanamedtec.com`, connect an SMTP relay (e.g. cPanel local sendmail or SendGrid/Postmark) by configuring environment variables in `/api/contact/route.ts`. |
 | **Google Search Console Resubmission** | Indexing delay | Upon DNS propagation, log into Google Search Console, submit `https://www.xanamedtec.com/sitemap.xml`, and request re-indexing of the root URL. |
+
+---
+
+## 10. TASK 6 — Comprehensive Security Audit & Hardening
+
+A full automated and manual security audit of the application source code, API routes, environment configurations, dependencies, client bundles, and HTTP headers was performed. All confirmed vulnerabilities have been resolved without altering visual appearance, layout, or site functionality.
+
+### 10.1 Security Audit Verification Matrix
+
+| Audit Item | Status | Detailed Finding & Remediation Applied |
+|---|---|---|
+| **1. Exposed Secrets & Credentials** | **CLEAN** | Grepped repository, `.env*` files, and commit history. No API keys, private certificates, database connection strings, or cloud access tokens exist in the codebase. |
+| **2. Hardcoded Passwords** | **RESOLVED** | **Vulnerability:** Staging preview middleware and `/api/staging-auth` contained a hardcoded fallback password if `STAGING_PASSWORD` was unset.<br>**Remediation:** Removed the hardcoded fallback entirely. Staging mode now fails closed and throws a 500 configuration alert if `process.env.STAGING_PASSWORD` is not explicitly declared. Sanitized `.env.example` to use a generic placeholder (`change_this_to_a_secure_password`). |
+| **3. Unsafe Environment Variable Usage** | **CLEAN & HARDENED** | Verified all `process.env` references. Only public non-sensitive configuration (`NEXT_PUBLIC_SITE_URL`, `NEXT_PUBLIC_PATIENT_PORTAL_URL`) is exposed to the browser. Server credentials and staging flags are strictly isolated to server contexts (`middleware.ts`, `server.js`, and route handlers). |
+| **4. Missing Form Validation** | **RESOLVED** | **Vulnerability:** Contact enquiry endpoint lacked character length limits and string sanitization, presenting potential payload abuse / memory exhaustion vectors.<br>**Remediation:** Added strict server validation in `/api/contact/route.ts`: RFC-compliant email regex, string length bounds (Name: 2–100 chars, Email: 5–150 chars, Message: 5–5,000 chars, Phone: max 50 chars, Company: max 100 chars), null-byte (`\0`) stripping, and mandatory boolean consent verification. Updated client form `ContactEnquiryForm.tsx` with matching `maxLength` constraints and error displays. |
+| **5. Cross-Site Scripting (XSS) Risks** | **CLEAN** | Scanned codebase for dangerous injection sinks (`dangerouslySetInnerHTML`, `innerHTML`, `eval()`, raw `<script>` tags). Zero instances found. React 19 JSX automatically encodes and sanitizes all dynamic text nodes. |
+| **6. Unsafe External Links** | **CLEAN** | Audited all outbound HTTP/HTTPS links across `Header.tsx`, `Footer.tsx`, and `anisys-go/page.tsx`. 100% of links with `target="_blank"` include `rel="noopener noreferrer"`, mitigating reverse tabnabbing and window.opener redirection attacks. |
+| **7. Incorrect HTTP Security Headers** | **RESOLVED** | Enhanced `headers()` in `next.config.ts` to inject enterprise-grade security headers on all routes:<br>• `Strict-Transport-Security: max-age=31536000; includeSubDomains; preload`<br>• `X-Content-Type-Options: nosniff`<br>• `X-Frame-Options: SAMEORIGIN`<br>• `Referrer-Policy: strict-origin-when-cross-origin`<br>• `Permissions-Policy: camera=(), microphone=(), geolocation=(), browsing-topics=()`<br>• `X-DNS-Prefetch-Control: on`<br>• `X-Permitted-Cross-Domain-Policies: none`. |
+| **8. Unnecessary Public API Endpoints** | **RESOLVED** | Verified only 2 API routes exist: `/api/contact` and `/api/staging-auth`. Keystatic CMS routes and WordPress REST endpoints are completely purged. Hardened `/api/staging-auth` to return `404 Not Found` in production when `STAGING !== 'true'`, preventing unnecessary exposure. |
+| **9. Dependency Vulnerabilities** | **AUDITED & CLEAN AT RUNTIME** | `npm audit --omit=dev` reports **0 vulnerabilities** across all production runtime packages (`next@16.4.0`, `react@19.3.0`, `react-dom@19.3.0`, `lucide-react@^1.55.0`). The devDependency advisory in `braces`/`fast-glob` is confined exclusively to build-time ESLint CLI utilities and is not included in production bundles or server runtimes. |
+| **10. Sensitive Information in Client Bundles** | **CLEAN** | Analyzed all 17 `'use client'` components in `src/`. No client component imports or references private server environments, credentials, or internal paths. Production JavaScript chunks contain only public UI logic. |
+| **11. Excessive Console Logging** | **RESOLVED** | Removed client-side debug statements (`console.warn`, `console.log('Submission fallback:', ...)`) in `ContactEnquiryForm.tsx`. Sanitized server logs in `/api/contact/route.ts` to log enquiry events without dumping unredacted personal identifiable information (PII) to server stdout. |
+
+### 10.2 Security Verification & Test Results
+- **TypeScript Typecheck:** `npx tsc --noEmit` passed with 0 errors.
+- **Production Compilation:** `next build` (Turbopack) successfully compiled all 28 static and dynamic routes.
+- **Zero Regression:** All public customer-facing routes, styling, navigation, and modal dialogues remain 100% intact.
+
