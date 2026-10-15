@@ -5,13 +5,17 @@ import { CheckCircle2, ShieldCheck, Zap, Activity, Armchair, HelpCircle } from '
 import { ModalTriggerButton } from '@/components/ui/ModalTriggerButton';
 
 export const metadata: Metadata = {
-  title: 'Vein Finder System - Xana Medtec',
+  title: 'Vein Finder System',
   description:
     'Real-time 1:1 vascular mapping using dual 850nm near-infrared light. Engineered to eliminate first-attempt venipuncture failures and support DIVA patients.',
+  alternates: {
+    canonical: '/vein-finder',
+  },
   openGraph: {
     title: 'Vein Finder System - Xana Medtec',
     description:
       'Real-time 1:1 vascular mapping using dual 850nm near-infrared light. Supports DIVA patients and compliant with NHS IPC non-contact standards.',
+    url: 'https://www.xanamedtec.com/vein-finder',
     images: ['/images/assets/07-vein-finder-banner.png'],
   },
 };

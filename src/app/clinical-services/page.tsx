@@ -17,13 +17,17 @@ import { ModalTriggerButton } from '@/components/ui/ModalTriggerButton';
 import { ClinicContactBanner } from '@/components/ui/ClinicContactBanner';
 
 export const metadata: Metadata = {
-  title: 'Clinical Services - Xana Medtec',
+  title: 'Clinical Services',
   description:
     'Comprehensive diagnostic pathology and healthcare screening services. Fast, accredited clinical blood tests and health evaluations.',
+  alternates: {
+    canonical: '/clinical-services',
+  },
   openGraph: {
     title: 'Clinical Services - Xana Medtec',
     description:
       'Comprehensive diagnostic pathology and healthcare screening services across Manchester and the UK.',
+    url: 'https://www.xanamedtec.com/clinical-services',
   },
 };
 

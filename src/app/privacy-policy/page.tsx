@@ -3,8 +3,16 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 
 export const metadata: Metadata = {
-  title: 'Privacy Policy - Xana Medtec',
+  title: 'Privacy Policy',
   description: 'Privacy Policy and UK GDPR data compliance for Xana Medtec Ltd.',
+  alternates: {
+    canonical: '/privacy-policy',
+  },
+  openGraph: {
+    title: 'Privacy Policy - Xana Medtec',
+    description: 'Privacy Policy and UK GDPR data compliance for Xana Medtec Ltd.',
+    url: 'https://www.xanamedtec.com/privacy-policy',
+  },
 };
 
 export default function PrivacyPolicyPage() {

@@ -6,13 +6,17 @@ import { ExternalLink, Activity, Cpu, FileText, MapPin, ArrowRight } from 'lucid
 import { ModalTriggerButton } from '@/components/ui/ModalTriggerButton';
 
 export const metadata: Metadata = {
-  title: 'Anisys Go - Xana Medtec',
+  title: 'Anisys Go',
   description:
     'High-resolution anorectal physiology and biofeedback therapy. A portable system developed in Manchester using 13 sensors for real-time assessment.',
+  alternates: {
+    canonical: '/anisys-go',
+  },
   openGraph: {
     title: 'Anisys Go - Xana Medtec',
     description:
       'High-resolution anorectal physiology and biofeedback therapy developed in Manchester by clinicians.',
+    url: 'https://www.xanamedtec.com/anisys-go',
     images: ['/images/assets/06-anisys-go-banner.png'],
   },
 };

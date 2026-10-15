@@ -20,7 +20,8 @@ export function middleware(request: NextRequest) {
     pathname === '/robots.txt' ||
     pathname === '/sitemap.xml' ||
     pathname.startsWith('/staging-login') ||
-    pathname.startsWith('/api/staging-auth')
+    pathname.startsWith('/api/staging-auth') ||
+    pathname.startsWith('/api/contact')
   ) {
     return NextResponse.next();
   }

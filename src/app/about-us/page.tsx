@@ -5,13 +5,17 @@ import { Target, Compass, Award, ShieldCheck, MapPin, Mail, ArrowRight, HeartPul
 import { ModalTriggerButton } from '@/components/ui/ModalTriggerButton';
 
 export const metadata: Metadata = {
-  title: 'About Us - Xana Medtec',
+  title: 'About Us',
   description:
     'Xana Medtec is a market development partner for innovative medical device manufacturers scaling internationally.',
+  alternates: {
+    canonical: '/about-us',
+  },
   openGraph: {
     title: 'About Us - Xana Medtec',
     description:
       'Bridging the gap between medical device market entry and sustainable clinical adoption.',
+    url: 'https://www.xanamedtec.com/about-us',
   },
 };
 

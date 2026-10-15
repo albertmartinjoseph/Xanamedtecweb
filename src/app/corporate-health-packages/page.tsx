@@ -4,9 +4,18 @@ import { Building2, ShieldCheck, Users, HeartPulse, Award, ArrowRight } from 'lu
 import { ModalTriggerButton } from '@/components/ui/ModalTriggerButton';
 
 export const metadata: Metadata = {
-  title: 'Corporate Health Packages - Xana Medtec',
+  title: 'Corporate Health Packages',
   description:
     'Workplace health assessments, employee diagnostic screenings, and corporate executive health MOT packages tailored for UK businesses.',
+  alternates: {
+    canonical: '/corporate-health-packages',
+  },
+  openGraph: {
+    title: 'Corporate Health Packages - Xana Medtec',
+    description:
+      'Workplace health assessments, employee diagnostic screenings, and corporate executive health MOT packages.',
+    url: 'https://www.xanamedtec.com/corporate-health-packages',
+  },
 };
 
 export default function CorporateHealthPackagesPage() {

@@ -21,6 +21,8 @@ const lexend = Lexend({
 });
 
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://www.xanamedtec.com';
+const isPreviewOrStaging =
+  process.env.VERCEL_ENV === 'preview' || process.env.STAGING === 'true';
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
@@ -44,17 +46,26 @@ export const metadata: Metadata = {
   alternates: {
     canonical: '/',
   },
-  robots: {
-    index: true,
-    follow: true,
-    googleBot: {
-      index: true,
-      follow: true,
-      'max-video-preview': -1,
-      'max-image-preview': 'large',
-      'max-snippet': -1,
-    },
-  },
+  robots: isPreviewOrStaging
+    ? {
+        index: false,
+        follow: false,
+        googleBot: {
+          index: false,
+          follow: false,
+        },
+      }
+    : {
+        index: true,
+        follow: true,
+        googleBot: {
+          index: true,
+          follow: true,
+          'max-video-preview': -1,
+          'max-image-preview': 'large',
+          'max-snippet': -1,
+        },
+      },
   openGraph: {
     title: 'Xana Medtec – International Medical Distribution & Clinical Adoption',
     description:

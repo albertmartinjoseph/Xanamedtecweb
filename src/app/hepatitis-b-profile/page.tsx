@@ -4,12 +4,16 @@ import { TestPageTemplate } from '@/components/clinical/TestPageTemplate';
 import { testsData } from '@/data/testsData';
 
 export const metadata: Metadata = {
-  title: 'Hepatitis B Profile - Xana Medtec',
+  title: 'Hepatitis B Profile',
   description:
     'Immunity Status & Viral Infection Screening. Fast 24-48 hour accredited laboratory blood test in Manchester.',
+  alternates: {
+    canonical: '/hepatitis-b-profile',
+  },
   openGraph: {
     title: 'Hepatitis B Profile - Xana Medtec',
     description: 'Immunity Status & Viral Infection Screening.',
+    url: 'https://www.xanamedtec.com/hepatitis-b-profile',
   },
 };
 

@@ -3,8 +3,16 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 
 export const metadata: Metadata = {
-  title: 'Terms of Use - Xana Medtec',
+  title: 'Terms of Use',
   description: 'Website Terms of Use and Legal Conditions for Xana Medtec Ltd.',
+  alternates: {
+    canonical: '/terms-use',
+  },
+  openGraph: {
+    title: 'Terms of Use - Xana Medtec',
+    description: 'Website Terms of Use and Legal Conditions for Xana Medtec Ltd.',
+    url: 'https://www.xanamedtec.com/terms-use',
+  },
 };
 
 export default function TermsOfUsePage() {

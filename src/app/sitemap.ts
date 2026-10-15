@@ -2,7 +2,6 @@ import type { MetadataRoute } from 'next';
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://www.xanamedtec.com';
-  const currentDate = new Date().toISOString();
 
   const routes: { path: string; priority: number; changeFrequency: 'weekly' | 'monthly' | 'yearly' }[] = [
     // Core Navigation & Discovery
@@ -35,7 +34,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
   return routes.map((route) => ({
     url: `${siteUrl}${route.path}`,
-    lastModified: currentDate,
     changeFrequency: route.changeFrequency,
     priority: route.priority,
   }));

@@ -6,13 +6,17 @@ import { ArrowRight, ChevronRight, CheckCircle2, ShieldCheck, Sparkles, Stethosc
 import { ModalTriggerButton } from '@/components/ui/ModalTriggerButton';
 
 export const metadata: Metadata = {
-  title: 'International Distribution - Xana Medtec',
+  title: 'International Distribution',
   description:
     'Partnering with accredited global healthcare distributors to deliver innovative medical device solutions worldwide. From market entry to clinical adoption.',
+  alternates: {
+    canonical: '/international-distribution',
+  },
   openGraph: {
     title: 'International Distribution - Xana Medtec',
     description:
       'Partnering with accredited global healthcare distributors to deliver innovative medical device solutions worldwide.',
+    url: 'https://www.xanamedtec.com/international-distribution',
     images: ['/images/assets/03-intl-distribution-banner.png'],
   },
 };
@@ -303,7 +307,7 @@ export default function InternationalDistributionPage() {
           </h2>
 
           <p className="text-base sm:text-lg text-[#606367] leading-relaxed max-w-2xl mx-auto mb-10">
-            Whether you are a manufacturer looking to enter new territories or a distributor seeking pre-vetted medtech solutions, let's discuss your roadmap.
+            Whether you are a manufacturer looking to enter new territories or a distributor seeking pre-vetted medtech solutions, let&apos;s discuss your roadmap.
           </p>
 
           <ModalTriggerButton
