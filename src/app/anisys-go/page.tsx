@@ -1,8 +1,7 @@
 import React from 'react';
 import type { Metadata } from 'next';
 import Image from 'next/image';
-import Link from 'next/link';
-import { ExternalLink, Activity, Cpu, FileText, MapPin, ArrowRight } from 'lucide-react';
+import { ExternalLink, Activity, Cpu, FileText, MapPin } from 'lucide-react';
 import { ModalTriggerButton } from '@/components/ui/ModalTriggerButton';
 
 export const metadata: Metadata = {

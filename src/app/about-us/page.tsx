@@ -1,7 +1,7 @@
 import React from 'react';
 import type { Metadata } from 'next';
 import Image from 'next/image';
-import { Target, Compass, Award, ShieldCheck, MapPin, Mail, ArrowRight, HeartPulse } from 'lucide-react';
+import { Target, Award, MapPin, Mail, HeartPulse } from 'lucide-react';
 import { ModalTriggerButton } from '@/components/ui/ModalTriggerButton';
 
 export const metadata: Metadata = {

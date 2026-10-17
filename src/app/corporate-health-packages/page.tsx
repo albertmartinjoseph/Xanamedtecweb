@@ -1,6 +1,6 @@
 import React from 'react';
 import type { Metadata } from 'next';
-import { Building2, ShieldCheck, Users, HeartPulse, Award, ArrowRight } from 'lucide-react';
+import { ShieldCheck, Users, HeartPulse } from 'lucide-react';
 import { ModalTriggerButton } from '@/components/ui/ModalTriggerButton';
 
 export const metadata: Metadata = {

@@ -2,7 +2,7 @@
 
 import React, { useState } from 'react';
 import Link from 'next/link';
-import { Search, ArrowRight, ShieldCheck, Clock, FlaskConical, Filter } from 'lucide-react';
+import { Search, ArrowRight } from 'lucide-react';
 import { testsData } from '@/data/testsData';
 import { ModalTriggerButton } from '@/components/ui/ModalTriggerButton';
 import { ClinicContactBanner } from '@/components/ui/ClinicContactBanner';

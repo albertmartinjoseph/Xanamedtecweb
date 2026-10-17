@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState } from 'react';
-import { ChevronDown, ChevronUp, HelpCircle } from 'lucide-react';
+import { ChevronDown, ChevronUp } from 'lucide-react';
 import { ModalTriggerButton } from '@/components/ui/ModalTriggerButton';
 
 const faqs = [

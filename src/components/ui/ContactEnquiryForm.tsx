@@ -48,8 +48,8 @@ export const ContactEnquiryForm: React.FC<ContactEnquiryFormProps> = ({
     setSubmitting(true);
 
     try {
-      // Send to contact API
-      const res = await fetch('/api/contact', {
+      // Send to contact handler (prefers static /contact.php on cPanel Apache, falls back to /api/contact in local dev)
+      let res = await fetch('/contact.php', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
@@ -58,6 +58,19 @@ export const ContactEnquiryForm: React.FC<ContactEnquiryFormProps> = ({
           recipient: 'info@xanamedtec.com',
         }),
       });
+
+      // If /contact.php is not found (e.g. running under next dev), fall back to /api/contact
+      if (res.status === 404) {
+        res = await fetch('/api/contact', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            ...formData,
+            enquiryType: category,
+            recipient: 'info@xanamedtec.com',
+          }),
+        });
+      }
 
       if (!res.ok) {
         const errData = await res.json().catch(() => null);

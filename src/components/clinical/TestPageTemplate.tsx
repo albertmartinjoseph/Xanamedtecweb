@@ -5,12 +5,8 @@ import {
   FlaskConical,
   Coffee,
   CheckCircle2,
-  CalendarCheck,
-  ShieldCheck,
-  Award,
   ChevronRight,
   ArrowRight,
-  PhoneCall,
 } from 'lucide-react';
 import { TestDetail, testsData } from '@/data/testsData';
 import { ModalTriggerButton } from '@/components/ui/ModalTriggerButton';

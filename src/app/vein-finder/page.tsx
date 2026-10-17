@@ -1,7 +1,7 @@
 import React from 'react';
 import type { Metadata } from 'next';
 import Image from 'next/image';
-import { CheckCircle2, ShieldCheck, Zap, Activity, Armchair, HelpCircle } from 'lucide-react';
+import { CheckCircle2 } from 'lucide-react';
 import { ModalTriggerButton } from '@/components/ui/ModalTriggerButton';
 
 export const metadata: Metadata = {

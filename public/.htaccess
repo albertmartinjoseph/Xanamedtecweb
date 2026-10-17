@@ -1,0 +1,190 @@
+# ==============================================================================
+# Xana Medtec Ltd — Production Apache .htaccess Configuration
+# Optimized for TechBrein Linux Shared Hosting (cPanel / Apache 2.4+)
+# ==============================================================================
+
+Options -Indexes +FollowSymLinks
+DirectoryIndex index.html
+
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  RewriteBase /
+
+  # ----------------------------------------------------------------------------
+  # 1. Force HTTPS
+  # ----------------------------------------------------------------------------
+  RewriteCond %{HTTPS} !=on
+  RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+
+  # ----------------------------------------------------------------------------
+  # 2. Legacy WordPress 301 Permanent Redirects (52 Mapped URLs)
+  # ----------------------------------------------------------------------------
+
+  # Primary Navigation & CPT Archives
+  RewriteRule ^about-xanamedtec/?$ /about-us/ [R=301,L]
+  RewriteRule ^medical-devices/?$ /international-distribution/ [R=301,L]
+  RewriteRule ^all-man-all-woman/?$ /well-man-well-woman/ [R=301,L]
+  RewriteRule ^services-archives/all-man-all-woman/?$ /well-man-well-woman/ [R=301,L]
+  RewriteRule ^services-archives/biochemistry/?$ /biochemistry/ [R=301,L]
+  RewriteRule ^services-archives/hepatitis-b-profile/?$ /hepatitis-b-profile/ [R=301,L]
+  RewriteRule ^services-archives/hormone-profile/?$ /hormone-profile/ [R=301,L]
+  RewriteRule ^services-archives/testosterone-monitoring/?$ /testosterone-monitoring/ [R=301,L]
+  RewriteRule ^services-archives/thyroid-profile/?$ /thyroid-profile/ [R=301,L]
+  RewriteRule ^services-category/popular-health-tests/?$ /tests-list-page/ [R=301,L]
+
+  # Booking & Payment Endpoints (Decommissioned)
+  RewriteRule ^xana-medtec-booking/?$ / [R=301,L]
+  RewriteRule ^guest-checkout/?$ / [R=301,L]
+  RewriteRule ^bookingpress-complete-payment/?$ / [R=301,L]
+  RewriteRule ^thank-you/?$ / [R=301,L]
+  RewriteRule ^appointment-reschedule/?$ / [R=301,L]
+  RewriteRule ^cancel-appointment/?$ / [R=301,L]
+  RewriteRule ^appointment-cancellation-confirmation/?$ / [R=301,L]
+  RewriteRule ^cancel-payment/?$ / [R=301,L]
+
+  # Account & Auth Endpoints
+  RewriteRule ^login/?$ / [R=301,L]
+  RewriteRule ^register/?$ / [R=301,L]
+  RewriteRule ^password-reset/?$ / [R=301,L]
+  RewriteRule ^account/?$ / [R=301,L]
+  RewriteRule ^user(/.*)?$ / [R=301,L]
+  RewriteRule ^logout/?$ / [R=301,L]
+
+  # Shop Taxonomy (WooCommerce)
+  RewriteRule ^shop/?$ /tests-list-page/ [R=301,L]
+  RewriteRule ^cart/?$ /tests-list-page/ [R=301,L]
+  RewriteRule ^checkout/?$ /tests-list-page/ [R=301,L]
+  RewriteRule ^product-category/all-tests/?$ /tests-list-page/ [R=301,L]
+  RewriteRule ^product-category/cognitive-healthcare/?$ /tests-list-page/ [R=301,L]
+  RewriteRule ^product-category/food-intolerance-gut-health-test/?$ /tests-list-page/ [R=301,L]
+  RewriteRule ^product-category/general-health/?$ /tests-list-page/ [R=301,L]
+  RewriteRule ^product-category/gut-health/?$ /tests-list-page/ [R=301,L]
+  RewriteRule ^product-category/home-tests/?$ /tests-list-page/ [R=301,L]
+  RewriteRule ^product-category/hormones/?$ /hormone-profile/ [R=301,L]
+  RewriteRule ^product-category/mens-health/?$ /well-man-well-woman/ [R=301,L]
+  RewriteRule ^product-category/sexual-health/?$ /tests-list-page/ [R=301,L]
+  RewriteRule ^product-category/supplements/?$ /tests-list-page/ [R=301,L]
+  RewriteRule ^product-category/womans-health/?$ /well-man-well-woman/ [R=301,L]
+  RewriteRule ^product-tag(/.*)?$ /tests-list-page/ [R=301,L]
+
+  # Individual WooCommerce Products (28 Products)
+  RewriteRule ^product/pcos-hormone-test/?$ /hormone-profile/ [R=301,L]
+  RewriteRule ^product/kidney-function-test/?$ /biochemistry/ [R=301,L]
+  RewriteRule ^product/clarity/?$ /tests-list-page/ [R=301,L]
+  RewriteRule ^product/zone/?$ /tests-list-page/ [R=301,L]
+  RewriteRule ^product/serenity/?$ /tests-list-page/ [R=301,L]
+  RewriteRule ^product/progesterone-day-21-ovulation-test/?$ /hormone-profile/ [R=301,L]
+  RewriteRule ^product/menopause-hormone-test/?$ /hormone-profile/ [R=301,L]
+  RewriteRule ^product/male-sexual-health-sti/?$ /tests-list-page/ [R=301,L]
+  RewriteRule ^product/erectile-dysfunction-test/?$ /testosterone-monitoring/ [R=301,L]
+  RewriteRule ^product/prostate-profile/?$ /well-man-well-woman/ [R=301,L]
+  RewriteRule ^product/testosterone-plus/?$ /testosterone-monitoring/ [R=301,L]
+  RewriteRule ^product/female-fertility-hormones/?$ /hormone-profile/ [R=301,L]
+  RewriteRule ^product/testosterone-check/?$ /testosterone-monitoring/ [R=301,L]
+  RewriteRule ^product/food-intolerance-gut-health-test/?$ /tests-list-page/ [R=301,L]
+  RewriteRule ^product/pregnancy-test-beta-hcg/?$ /hormone-profile/ [R=301,L]
+  RewriteRule ^product/heart-health/?$ /lipids-hba1c/ [R=301,L]
+  RewriteRule ^product/covid-antibodies-igg-vaccine-immune-response/?$ /tests-list-page/ [R=301,L]
+  RewriteRule ^product/male-hormones/?$ /testosterone-monitoring/ [R=301,L]
+  RewriteRule ^product/allergy-complete-295-allergens-tested/?$ /tests-list-page/ [R=301,L]
+  RewriteRule ^product/cholesterol-test/?$ /lipids-hba1c/ [R=301,L]
+  RewriteRule ^product/diabetes-diagnosis-and-monitoring/?$ /lipids-hba1c/ [R=301,L]
+  RewriteRule ^product/vitamin-profile/?$ /biochemistry/ [R=301,L]
+  RewriteRule ^product/vitamin-b12/?$ /biochemistry/ [R=301,L]
+  RewriteRule ^product/iron-status/?$ /biochemistry/ [R=301,L]
+  RewriteRule ^product/thyroid-health/?$ /thyroid-profile/ [R=301,L]
+  RewriteRule ^product/liver-function-test/?$ /biochemistry/ [R=301,L]
+  RewriteRule ^product/general-health-test/?$ /tests-list-page/ [R=301,L]
+  RewriteRule ^product/female-sexual-health-sti/?$ /tests-list-page/ [R=301,L]
+
+  # Blog Feeds & Authors
+  RewriteRule ^health-hub/?$ /clinical-services/ [R=301,L]
+  RewriteRule ^author(/.*)?$ /about-us/ [R=301,L]
+  RewriteRule ^feed/?$ / [R=301,L]
+  RewriteRule ^comments/feed/?$ / [R=301,L]
+
+  # ----------------------------------------------------------------------------
+  # 3. Static Routing & Clean URL Handling
+  # ----------------------------------------------------------------------------
+  # If requested resource is an existing file or directory, serve directly
+  RewriteCond %{REQUEST_FILENAME} -f [OR]
+  RewriteCond %{REQUEST_FILENAME} -d
+  RewriteRule ^ - [L]
+
+  # Allow contact.php script execution
+  RewriteRule ^contact\.php$ - [L]
+
+  # Check if directory index exists (with trailing slash)
+  RewriteCond %{REQUEST_FILENAME}/index.html -f
+  RewriteRule ^(.*)/$ $1/index.html [L]
+
+  # If visited without trailing slash, redirect to trailing slash
+  RewriteCond %{DOCUMENT_ROOT}/$1/index.html -f
+  RewriteRule ^(.*)$ /$1/ [R=301,L]
+</IfModule>
+
+# ------------------------------------------------------------------------------
+# 4. Custom Error Documents
+# ------------------------------------------------------------------------------
+ErrorDocument 404 /404.html
+
+# ------------------------------------------------------------------------------
+# 5. Security Headers
+# ------------------------------------------------------------------------------
+<IfModule mod_headers.c>
+  Header always set X-Content-Type-Options "nosniff"
+  Header always set X-Frame-Options "SAMEORIGIN"
+  Header always set Referrer-Policy "strict-origin-when-cross-origin"
+  Header always set Strict-Transport-Security "max-age=31536000; includeSubDomains; preload"
+  Header always set Permissions-Policy "camera=(), microphone=(), geolocation=(), browsing-topics=()"
+  Header always set X-DNS-Prefetch-Control "on"
+  Header always set X-Permitted-Cross-Domain-Policies "none"
+</IfModule>
+
+# ------------------------------------------------------------------------------
+# 6. Performance Caching (mod_expires & Cache-Control)
+# ------------------------------------------------------------------------------
+<IfModule mod_expires.c>
+  ExpiresActive On
+
+  # Default fallback: 1 hour
+  ExpiresDefault "access plus 1 hour"
+
+  # HTML documents (short cache for quick updates)
+  ExpiresByType text/html "access plus 1 hour"
+
+  # Static Next.js compiled chunks (hashed, immutable)
+  ExpiresByType application/javascript "access plus 1 year"
+  ExpiresByType text/javascript "access plus 1 year"
+  ExpiresByType text/css "access plus 1 year"
+
+  # Media & Images
+  ExpiresByType image/jpeg "access plus 1 month"
+  ExpiresByType image/png "access plus 1 month"
+  ExpiresByType image/webp "access plus 1 month"
+  ExpiresByType image/svg+xml "access plus 1 month"
+  ExpiresByType image/x-icon "access plus 1 year"
+  ExpiresByType video/mp4 "access plus 1 month"
+
+  # Web Fonts
+  ExpiresByType font/woff "access plus 1 year"
+  ExpiresByType font/woff2 "access plus 1 year"
+  ExpiresByType application/font-woff2 "access plus 1 year"
+</IfModule>
+
+# ------------------------------------------------------------------------------
+# 7. Gzip Compression (mod_deflate)
+# ------------------------------------------------------------------------------
+<IfModule mod_deflate.c>
+  AddOutputFilterByType DEFLATE text/plain
+  AddOutputFilterByType DEFLATE text/html
+  AddOutputFilterByType DEFLATE text/xml
+  AddOutputFilterByType DEFLATE text/css
+  AddOutputFilterByType DEFLATE application/xml
+  AddOutputFilterByType DEFLATE application/xhtml+xml
+  AddOutputFilterByType DEFLATE application/rss+xml
+  AddOutputFilterByType DEFLATE application/javascript
+  AddOutputFilterByType DEFLATE application/x-javascript
+  AddOutputFilterByType DEFLATE application/json
+  AddOutputFilterByType DEFLATE image/svg+xml
+</IfModule>

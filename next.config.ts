@@ -3,6 +3,11 @@ import type { NextConfig } from "next";
 const portalUrl = process.env.NEXT_PUBLIC_PATIENT_PORTAL_URL || '/';
 
 const nextConfig: NextConfig = {
+  output: 'export',
+  trailingSlash: true,
+  images: {
+    unoptimized: true,
+  },
   turbopack: {
     rules: {
       "*.css": {

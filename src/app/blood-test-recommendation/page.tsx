@@ -2,7 +2,7 @@
 
 import React, { useState } from 'react';
 import Link from 'next/link';
-import { Sparkles, ArrowRight, CheckCircle2, Stethoscope, Heart, Zap, Shield, Flame } from 'lucide-react';
+import { CheckCircle2, Stethoscope, Heart, Zap, Shield, Flame } from 'lucide-react';
 import { testsData } from '@/data/testsData';
 import { ModalTriggerButton } from '@/components/ui/ModalTriggerButton';
 

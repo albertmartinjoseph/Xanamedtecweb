@@ -16,10 +16,7 @@ import {
   Mail,
   MapPin,
   CheckCircle2,
-  Calendar,
   Building2,
-  Compass,
-  ShieldCheck,
 } from 'lucide-react';
 
 export default function Stage2ShowcasePage() {

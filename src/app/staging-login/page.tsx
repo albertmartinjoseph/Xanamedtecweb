@@ -3,7 +3,7 @@
 import React, { useState, Suspense } from 'react';
 import Image from 'next/image';
 import { useRouter, useSearchParams } from 'next/navigation';
-import { Lock, ArrowRight, ShieldCheck, AlertCircle, Sparkles } from 'lucide-react';
+import { Lock, ArrowRight, AlertCircle, Sparkles } from 'lucide-react';
 
 function StagingLoginContent() {
   const router = useRouter();
