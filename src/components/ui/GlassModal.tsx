@@ -22,11 +22,53 @@ export const GlassModal: React.FC<GlassModalProps> = ({
   const emailAddress = 'info@xanamedtec.com';
   const companyAddress = 'Xana Medtec Ltd, Bartle House, Oxford Court, Manchester, M2 3WQ';
 
-  // Handle Escape key to close
+  const closeButtonRef = React.useRef<HTMLButtonElement>(null);
+  const modalRef = React.useRef<HTMLDivElement>(null);
+  const previousActiveElement = React.useRef<HTMLElement | null>(null);
+
+  // Store previous active element and auto-focus close button
+  useEffect(() => {
+    if (isOpen) {
+      previousActiveElement.current = document.activeElement as HTMLElement | null;
+      // Slight delay to allow animation frame
+      requestAnimationFrame(() => {
+        closeButtonRef.current?.focus();
+      });
+    } else if (previousActiveElement.current) {
+      previousActiveElement.current.focus();
+    }
+  }, [isOpen]);
+
+  // Handle Escape key and Tab focus trap
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
-      if (e.key === 'Escape' && isOpen) {
+      if (!isOpen) return;
+
+      if (e.key === 'Escape') {
         onClose();
+        return;
+      }
+
+      if (e.key === 'Tab' && modalRef.current) {
+        const focusableElements = modalRef.current.querySelectorAll<HTMLElement>(
+          'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'
+        );
+        if (focusableElements.length === 0) return;
+
+        const firstElement = focusableElements[0];
+        const lastElement = focusableElements[focusableElements.length - 1];
+
+        if (e.shiftKey) {
+          if (document.activeElement === firstElement) {
+            e.preventDefault();
+            lastElement.focus();
+          }
+        } else {
+          if (document.activeElement === lastElement) {
+            e.preventDefault();
+            firstElement.focus();
+          }
+        }
       }
     };
     window.addEventListener('keydown', handleKeyDown);
@@ -64,6 +106,8 @@ export const GlassModal: React.FC<GlassModalProps> = ({
       className="fixed inset-0 z-[9999] flex items-center justify-center p-4 sm:p-6 transition-all duration-300"
       role="dialog"
       aria-modal="true"
+      aria-labelledby="glass-modal-title"
+      aria-describedby="glass-modal-desc"
     >
       {/* Restrained Backdrop Blur (backdrop blur over page) */}
       <div
@@ -73,9 +117,13 @@ export const GlassModal: React.FC<GlassModalProps> = ({
       />
 
       {/* Translucent Panel with thin light border */}
-      <div className="relative w-full max-w-lg bg-white/95 backdrop-blur-2xl rounded-[24px] border border-white/60 shadow-[0_25px_60px_-15px_rgba(0,45,98,0.35)] p-6 sm:p-8 z-10 animate-in fade-in zoom-in-95 duration-200">
+      <div
+        ref={modalRef}
+        className="relative w-full max-w-lg bg-white/95 backdrop-blur-2xl rounded-[24px] border border-white/60 shadow-[0_25px_60px_-15px_rgba(0,45,98,0.35)] p-6 sm:p-8 z-10 animate-in fade-in zoom-in-95 duration-200"
+      >
         {/* Close Button */}
         <button
+          ref={closeButtonRef}
           onClick={onClose}
           type="button"
           aria-label="Close dialog"
@@ -89,10 +137,10 @@ export const GlassModal: React.FC<GlassModalProps> = ({
           <span className="inline-block px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider bg-[#20B2AA]/15 text-[#20B2AA] mb-2">
             Direct Contact
           </span>
-          <h2 className="text-xl sm:text-2xl font-bold text-[#002D62] tracking-tight">
+          <h2 id="glass-modal-title" className="text-xl sm:text-2xl font-bold text-[#002D62] tracking-tight">
             {title}
           </h2>
-          <p className="mt-1 text-sm text-[#606367] leading-relaxed">{subtitle}</p>
+          <p id="glass-modal-desc" className="mt-1 text-sm text-[#606367] leading-relaxed">{subtitle}</p>
         </div>
 
         {/* Contact Cards: Email & Location */}
