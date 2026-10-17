@@ -5,6 +5,7 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
+    "postbuild": "node scripts/fix-rsc-payloads.js",
     "export": "next build",
     "start": "npx serve out",
     "lint": "eslint src"

@@ -11,9 +11,12 @@ DirectoryIndex index.html
   RewriteBase /
 
   # ----------------------------------------------------------------------------
-  # 1. Force HTTPS
+  # 1. Force HTTPS (Skip localhost / 127.0.0.1 for local testing)
   # ----------------------------------------------------------------------------
   RewriteCond %{HTTPS} !=on
+  RewriteCond %{HTTP:X-Forwarded-Proto} !https
+  RewriteCond %{HTTP_HOST} !^localhost [NC]
+  RewriteCond %{HTTP_HOST} !^127\.0\.0\.1 [NC]
   RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
 
   # ----------------------------------------------------------------------------
@@ -106,19 +109,34 @@ DirectoryIndex index.html
   # ----------------------------------------------------------------------------
   # 3. Static Routing & Clean URL Handling
   # ----------------------------------------------------------------------------
+  # Next.js 16 RSC segment payload resolution: support both flat and nested payload formats
+  # Case A: Request is for flat __next.<slug>.__PAGE__.txt but only nested directory file exists
+  RewriteCond %{REQUEST_FILENAME} !-f
+  RewriteCond %{DOCUMENT_ROOT}/$1/$2/$3 -f
+  RewriteRule ^(.*)/(__next\.[^/]+)\.(__PAGE__\.txt)$ $1/$2/$3 [L]
+
+  # Case B: Request is for nested __next.<slug>/__PAGE__.txt but only flat file exists
+  RewriteCond %{REQUEST_FILENAME} !-f
+  RewriteCond %{DOCUMENT_ROOT}/$1/$2.$3 -f
+  RewriteRule ^(.*)/(__next\.[^/]+)/(__PAGE__\.txt)$ $1/$2.$3 [L]
+
+  # Direct access to .txt files (RSC payloads, robots.txt, index.txt) should never be rewritten
+  RewriteRule \.txt$ - [L]
+
+  # Allow contact.php script execution
+  RewriteRule ^contact\.php$ - [L]
+
   # If requested resource is an existing file or directory, serve directly
   RewriteCond %{REQUEST_FILENAME} -f [OR]
   RewriteCond %{REQUEST_FILENAME} -d
   RewriteRule ^ - [L]
 
-  # Allow contact.php script execution
-  RewriteRule ^contact\.php$ - [L]
-
   # Check if directory index exists (with trailing slash)
   RewriteCond %{REQUEST_FILENAME}/index.html -f
   RewriteRule ^(.*)/$ $1/index.html [L]
 
-  # If visited without trailing slash, redirect to trailing slash
+  # If visited without trailing slash, redirect to trailing slash (exclude existing files and .txt)
+  RewriteCond %{REQUEST_URI} !\.txt$
   RewriteCond %{DOCUMENT_ROOT}/$1/index.html -f
   RewriteRule ^(.*)$ /$1/ [R=301,L]
 </IfModule>
@@ -153,6 +171,9 @@ ErrorDocument 404 /404.html
   # HTML documents (short cache for quick updates)
   ExpiresByType text/html "access plus 1 hour"
 
+  # RSC payload documents & plain text
+  ExpiresByType text/plain "access plus 1 hour"
+
   # Static Next.js compiled chunks (hashed, immutable)
   ExpiresByType application/javascript "access plus 1 year"
   ExpiresByType text/javascript "access plus 1 year"
@@ -176,15 +197,17 @@ ErrorDocument 404 /404.html
 # 7. Gzip Compression (mod_deflate)
 # ------------------------------------------------------------------------------
 <IfModule mod_deflate.c>
-  AddOutputFilterByType DEFLATE text/plain
-  AddOutputFilterByType DEFLATE text/html
-  AddOutputFilterByType DEFLATE text/xml
-  AddOutputFilterByType DEFLATE text/css
-  AddOutputFilterByType DEFLATE application/xml
-  AddOutputFilterByType DEFLATE application/xhtml+xml
-  AddOutputFilterByType DEFLATE application/rss+xml
-  AddOutputFilterByType DEFLATE application/javascript
-  AddOutputFilterByType DEFLATE application/x-javascript
-  AddOutputFilterByType DEFLATE application/json
-  AddOutputFilterByType DEFLATE image/svg+xml
+  <IfModule mod_filter.c>
+    AddOutputFilterByType DEFLATE text/plain
+    AddOutputFilterByType DEFLATE text/html
+    AddOutputFilterByType DEFLATE text/xml
+    AddOutputFilterByType DEFLATE text/css
+    AddOutputFilterByType DEFLATE application/xml
+    AddOutputFilterByType DEFLATE application/xhtml+xml
+    AddOutputFilterByType DEFLATE application/rss+xml
+    AddOutputFilterByType DEFLATE application/javascript
+    AddOutputFilterByType DEFLATE application/x-javascript
+    AddOutputFilterByType DEFLATE application/json
+    AddOutputFilterByType DEFLATE image/svg+xml
+  </IfModule>
 </IfModule>

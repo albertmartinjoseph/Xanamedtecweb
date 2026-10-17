@@ -12,6 +12,7 @@ const eslintConfig = [
       "next-env.d.ts",
       "scratch/**",
       "reference/**",
+      "scripts/**",
       "server.js",
     ],
   },
