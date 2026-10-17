@@ -14,7 +14,10 @@ header('X-Frame-Options: SAMEORIGIN');
 // Only allow POST requests
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
     http_response_code(405);
-    echo json_encode(['error' => 'Method Not Allowed']);
+    echo json_encode([
+        'success' => false,
+        'error' => 'Method Not Allowed'
+    ]);
     exit;
 }
 
@@ -43,7 +46,10 @@ $name = trim((string)($data['name'] ?? ''));
 $name = str_replace(["\r", "\n", "\0"], '', $name);
 if (mb_strlen($name) < 2 || mb_strlen($name) > 100) {
     http_response_code(400);
-    echo json_encode(['error' => 'Please provide a valid full name (2–100 characters).']);
+    echo json_encode([
+        'success' => false,
+        'error' => 'Please provide a valid full name (2–100 characters).'
+    ]);
     exit;
 }
 
@@ -52,7 +58,10 @@ $email = trim((string)($data['email'] ?? ''));
 $email = str_replace(["\r", "\n", "\0"], '', $email);
 if (mb_strlen($email) > 150 || !filter_var($email, FILTER_VALIDATE_EMAIL)) {
     http_response_code(400);
-    echo json_encode(['error' => 'Please provide a valid email address.']);
+    echo json_encode([
+        'success' => false,
+        'error' => 'Please provide a valid email address.'
+    ]);
     exit;
 }
 
@@ -61,7 +70,10 @@ $message = trim((string)($data['message'] ?? ''));
 $message = str_replace("\0", '', $message);
 if (mb_strlen($message) < 5 || mb_strlen($message) > 5000) {
     http_response_code(400);
-    echo json_encode(['error' => 'Please provide a message between 5 and 5,000 characters.']);
+    echo json_encode([
+        'success' => false,
+        'error' => 'Please provide a message between 5 and 5,000 characters.'
+    ]);
     exit;
 }
 
@@ -69,7 +81,10 @@ if (mb_strlen($message) < 5 || mb_strlen($message) > 5000) {
 $consent = $data['consent'] ?? false;
 if ($consent !== true && $consent !== 'true' && $consent !== '1' && $consent !== 1) {
     http_response_code(400);
-    echo json_encode(['error' => 'Privacy consent agreement is required to process your enquiry.']);
+    echo json_encode([
+        'success' => false,
+        'error' => 'Privacy consent agreement is required to process your enquiry.'
+    ]);
     exit;
 }
 
@@ -83,12 +98,24 @@ $company = mb_substr(str_replace(["\r", "\n", "\0"], '', $company), 0, 100);
 $category = trim((string)($data['enquiryType'] ?? 'General'));
 $category = mb_substr(str_replace(["\r", "\n", "\0"], '', $category), 0, 50);
 
-// 7. Compose Email Delivery
+// 7. Escape all user-supplied values inserted into HTML email body
+$escName     = htmlspecialchars($name, ENT_QUOTES, 'UTF-8');
+$escEmail    = htmlspecialchars($email, ENT_QUOTES, 'UTF-8');
+$escPhone    = htmlspecialchars($phone, ENT_QUOTES, 'UTF-8');
+$escCompany  = htmlspecialchars($company, ENT_QUOTES, 'UTF-8');
+$escCategory = htmlspecialchars($category, ENT_QUOTES, 'UTF-8');
+
+// Preserve message line breaks safely
+$escMessage  = nl2br(htmlspecialchars($message, ENT_QUOTES, 'UTF-8'));
+
+// 8. Compose Email Delivery
 $recipient = 'info@xanamedtec.com';
-$subject = "Xana Medtec Enquiry: [{$category}] - {$name}";
+$cleanSubjectCategory = preg_replace('/[\r\n]+/', ' ', $category);
+$cleanSubjectName     = preg_replace('/[\r\n]+/', ' ', $name);
+$subject = "Xana Medtec Enquiry: [{$cleanSubjectCategory}] - {$cleanSubjectName}";
 $timestamp = gmdate('Y-m-d H:i:s') . ' UTC';
 
-// HTML Email Body
+// HTML Email Body with safely escaped variables
 $htmlBody = <<<HTML
 <!DOCTYPE html>
 <html>
@@ -106,33 +133,33 @@ $htmlBody = <<<HTML
       <table style="width: 100%; border-collapse: collapse; font-size: 14px; margin-bottom: 24px;">
         <tr style="border-bottom: 1px solid #f1f5f9;">
           <td style="padding: 10px 0; font-weight: 600; color: #64748b; width: 140px;">Enquiry Purpose:</td>
-          <td style="padding: 10px 0; color: #002D62; font-weight: 700;">{$category}</td>
+          <td style="padding: 10px 0; color: #002D62; font-weight: 700;">{$escCategory}</td>
         </tr>
         <tr style="border-bottom: 1px solid #f1f5f9;">
           <td style="padding: 10px 0; font-weight: 600; color: #64748b;">Full Name:</td>
-          <td style="padding: 10px 0; color: #0f172a; font-weight: 600;">{$name}</td>
+          <td style="padding: 10px 0; color: #0f172a; font-weight: 600;">{$escName}</td>
         </tr>
         <tr style="border-bottom: 1px solid #f1f5f9;">
           <td style="padding: 10px 0; font-weight: 600; color: #64748b;">Email Address:</td>
-          <td style="padding: 10px 0;"><a href="mailto:{$email}" style="color: #20B2AA; text-decoration: none; font-weight: 600;">{$email}</a></td>
+          <td style="padding: 10px 0;"><a href="mailto:{$escEmail}" style="color: #20B2AA; text-decoration: none; font-weight: 600;">{$escEmail}</a></td>
         </tr>
         <tr style="border-bottom: 1px solid #f1f5f9;">
           <td style="padding: 10px 0; font-weight: 600; color: #64748b;">Phone Number:</td>
-          <td style="padding: 10px 0; color: #0f172a;">{$phone}</td>
+          <td style="padding: 10px 0; color: #0f172a;">{$escPhone}</td>
         </tr>
         <tr style="border-bottom: 1px solid #f1f5f9;">
           <td style="padding: 10px 0; font-weight: 600; color: #64748b;">Organization / Clinic:</td>
-          <td style="padding: 10px 0; color: #0f172a;">{$company}</td>
+          <td style="padding: 10px 0; color: #0f172a;">{$escCompany}</td>
         </tr>
       </table>
       
       <div style="margin-top: 16px;">
         <h4 style="color: #002D62; font-size: 14px; font-weight: 700; margin: 0 0 8px; text-transform: uppercase; letter-spacing: 0.05em;">Message / Requirements:</h4>
-        <div style="background-color: #f8fafc; border: 1px solid #e2e8f0; border-radius: 8px; padding: 16px; font-size: 14px; line-height: 1.6; color: #334155; white-space: pre-wrap;">{$message}</div>
+        <div style="background-color: #f8fafc; border: 1px solid #e2e8f0; border-radius: 8px; padding: 16px; font-size: 14px; line-height: 1.6; color: #334155;">{$escMessage}</div>
       </div>
       
       <div style="margin-top: 24px; padding-top: 16px; border-top: 1px solid #f1f5f9; font-size: 12px; color: #94a3b8;">
-        User agreed to Xana Medtec Privacy Policy. Direct replies to this notification will route directly to <strong>{$email}</strong>.
+        User agreed to Xana Medtec Privacy Policy. Direct replies to this notification will route directly to <strong>{$escEmail}</strong>.
       </div>
     </div>
   </div>
@@ -145,17 +172,28 @@ $headers = [
     'MIME-Version: 1.0',
     'Content-Type: text/html; charset=UTF-8',
     'From: Xana Medtec Web <no-reply@xanamedtec.com>',
-    'Reply-To: ' . $name . ' <' . $email . '>',
+    'Reply-To: ' . preg_replace('/[\r\n]+/', '', $name) . ' <' . preg_replace('/[\r\n]+/', '', $email) . '>',
     'X-Mailer: PHP/' . phpversion(),
     'X-Originating-IP: ' . ($_SERVER['REMOTE_ADDR'] ?? '127.0.0.1')
 ];
 
+// Execute mail dispatch
 $mailSent = @mail($recipient, $subject, $htmlBody, implode("\r\n", $headers));
 
-// Log submission for auditability
-error_log("[Xana Medtec Enquiry] From: {$email} | Category: {$category} | MailSent: " . ($mailSent ? 'YES' : 'NO'));
+// Log submission status safely without leaking credentials or private content
+error_log("[Xana Medtec Enquiry] Category: {$category} | Status: " . ($mailSent ? 'SENT' : 'FAILED'));
 
-// Always return structured JSON
+// Check result of mail() - fail securely if sending fails
+if (!$mailSent) {
+    http_response_code(500);
+    echo json_encode([
+        'success' => false,
+        'error' => 'Unable to send your enquiry due to a mail delivery issue. Please contact info@xanamedtec.com directly.'
+    ]);
+    exit;
+}
+
+// Return structured success response
 http_response_code(200);
 echo json_encode([
     'success' => true,
