@@ -21,7 +21,7 @@ export const metadata: Metadata = {
 
 export default function AboutUsPage() {
   return (
-    <div className="min-h-screen bg-[#F8F9FA] text-[#323232] font-sans">
+    <div className="min-h-screen bg-[#F8F9FA] dark:bg-[#070e1b] text-[#323232] dark:text-slate-100 font-sans transition-colors duration-200">
       {/* 1. Page Banner */}
       <section className="relative bg-[#002D62] text-white pt-36 sm:pt-40 lg:pt-44 pb-28 sm:pb-32 overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-r from-[#002D62]/95 via-[#002D62]/85 to-[#002678]/80 pointer-events-none" />
@@ -47,13 +47,13 @@ export default function AboutUsPage() {
 
       {/* 2. Company Achievements & Industry Recognition */}
       <section className="relative z-20 -mt-10 sm:-mt-12 container-boxed mb-12">
-        <div className="bg-white rounded-[28px] p-6 sm:p-8 lg:p-10 border border-gray-200/90 shadow-[0_15px_45px_-10px_rgba(0,45,98,0.08)] flex flex-col items-center">
-          <div className="flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider bg-amber-50 text-amber-800 border border-amber-200 mb-6 self-start sm:self-center">
-            <Award className="w-3.5 h-3.5 text-amber-600" />
+        <div className="bg-white dark:bg-[#0c1626] rounded-[28px] p-6 sm:p-8 lg:p-10 border border-gray-200/90 dark:border-white/10 shadow-[0_15px_45px_-10px_rgba(0,45,98,0.08)] dark:shadow-[0_15px_45px_-10px_rgba(0,0,0,0.5)] flex flex-col items-center">
+          <div className="flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider bg-amber-50 dark:bg-amber-950/60 text-amber-800 dark:text-amber-300 border border-amber-200 dark:border-amber-800/50 mb-6 self-start sm:self-center">
+            <Award className="w-3.5 h-3.5 text-amber-600 dark:text-amber-400" />
             <span>Industry Recognition & Achievements</span>
           </div>
 
-          <div className="w-full max-w-4xl overflow-hidden rounded-2xl bg-gradient-to-br from-slate-50 via-white to-slate-50 p-2 sm:p-4 border border-gray-100 flex justify-center items-center">
+          <div className="w-full max-w-4xl overflow-hidden rounded-2xl bg-gradient-to-br from-slate-50 via-white to-slate-50 dark:from-slate-900 dark:via-slate-800 dark:to-slate-900 p-2 sm:p-4 border border-gray-100 dark:border-white/10 flex justify-center items-center">
             <Image
               src="/images/about/company-achievements.png"
               alt="Xana Medtec - Healthcare Testing Company of the Year 2023 UK Award Winner by Global Healthcare & Pharma"
@@ -68,20 +68,20 @@ export default function AboutUsPage() {
 
       {/* 3. Mission Statement Card */}
       <section className="container-boxed mb-20">
-        <div className="bg-white rounded-[28px] p-8 sm:p-12 lg:p-16 border border-gray-200/90 shadow-[0_15px_45px_-10px_rgba(0,45,98,0.08)]">
-          <span className="inline-block px-3.5 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider bg-teal-50 text-teal-700 border border-teal-200 mb-6">
+        <div className="bg-white dark:bg-[#0c1626] rounded-[28px] p-8 sm:p-12 lg:p-16 border border-gray-200/90 dark:border-white/10 shadow-[0_15px_45px_-10px_rgba(0,45,98,0.08)] dark:shadow-[0_15px_45px_-10px_rgba(0,0,0,0.5)]">
+          <span className="inline-block px-3.5 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider bg-teal-50 dark:bg-teal-950/60 text-teal-700 dark:text-teal-300 border border-teal-200 dark:border-teal-800/50 mb-6">
             CORE MISSION
           </span>
 
-          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-[#002D62] tracking-tight leading-tight mb-8">
+          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-[#002D62] dark:text-white tracking-tight leading-tight mb-8">
             Moving beyond basic distribution agreements to build routine medical adoption.
           </h2>
 
-          <p className="text-base sm:text-lg text-[#606367] leading-relaxed mb-6 font-medium">
+          <p className="text-base sm:text-lg text-[#606367] dark:text-slate-300 leading-relaxed mb-6 font-medium">
             Xana Medtec is a market development partner for innovative medical device manufacturers scaling internationally. Moving beyond basic distribution agreements, we bridge the gap between market entry and sustainable clinical adoption.
           </p>
 
-          <p className="text-base sm:text-lg text-[#606367] leading-relaxed">
+          <p className="text-base sm:text-lg text-[#606367] dark:text-slate-300 leading-relaxed">
             By combining strategy with targeted clinical engagement, we work alongside manufacturers and local distributors across the entire lifecycle—turning early interest into routine medical practice and long-term commercial success.
           </p>
         </div>
@@ -90,38 +90,38 @@ export default function AboutUsPage() {
       {/* 3. Three Core Pillars */}
       <section className="container-boxed py-12 mb-20">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          <div className="bg-white rounded-[24px] p-8 border border-gray-200/80 shadow-sm hover:shadow-md transition-all">
-            <div className="w-12 h-12 rounded-2xl bg-teal-50 text-teal-600 flex items-center justify-center mb-6">
+          <div className="bg-white dark:bg-[#0c1626] rounded-[24px] p-8 border border-gray-200/80 dark:border-white/10 shadow-sm hover:shadow-md transition-all">
+            <div className="w-12 h-12 rounded-2xl bg-teal-50 dark:bg-white/10 text-teal-600 dark:text-teal-300 flex items-center justify-center mb-6">
               <Target className="w-6 h-6" />
             </div>
-            <h3 className="text-xl font-bold text-[#002D62] mb-3">
+            <h3 className="text-xl font-bold text-[#002D62] dark:text-white mb-3">
               Strategic Alignment
             </h3>
-            <p className="text-sm text-[#606367] leading-relaxed">
+            <p className="text-sm text-[#606367] dark:text-slate-300 leading-relaxed">
               We align regulatory requirements, reimbursement pathways, and hospital procurement criteria with qualified international distributor networks.
             </p>
           </div>
 
-          <div className="bg-white rounded-[24px] p-8 border border-gray-200/80 shadow-sm hover:shadow-md transition-all">
-            <div className="w-12 h-12 rounded-2xl bg-blue-50 text-blue-700 flex items-center justify-center mb-6">
+          <div className="bg-white dark:bg-[#0c1626] rounded-[24px] p-8 border border-gray-200/80 dark:border-white/10 shadow-sm hover:shadow-md transition-all">
+            <div className="w-12 h-12 rounded-2xl bg-blue-50 dark:bg-white/10 text-blue-700 dark:text-teal-300 flex items-center justify-center mb-6">
               <HeartPulse className="w-6 h-6" />
             </div>
-            <h3 className="text-xl font-bold text-[#002D62] mb-3">
+            <h3 className="text-xl font-bold text-[#002D62] dark:text-white mb-3">
               Clinical Engagement
             </h3>
-            <p className="text-sm text-[#606367] leading-relaxed">
+            <p className="text-sm text-[#606367] dark:text-slate-300 leading-relaxed">
               We connect healthcare professionals with real clinical trials, in-hospital demonstrations, and KOL advocacy to build genuine clinical trust.
             </p>
           </div>
 
-          <div className="bg-white rounded-[24px] p-8 border border-gray-200/80 shadow-sm hover:shadow-md transition-all">
-            <div className="w-12 h-12 rounded-2xl bg-teal-50 text-teal-600 flex items-center justify-center mb-6">
+          <div className="bg-white dark:bg-[#0c1626] rounded-[24px] p-8 border border-gray-200/80 dark:border-white/10 shadow-sm hover:shadow-md transition-all">
+            <div className="w-12 h-12 rounded-2xl bg-teal-50 dark:bg-white/10 text-teal-600 dark:text-teal-300 flex items-center justify-center mb-6">
               <Award className="w-6 h-6" />
             </div>
-            <h3 className="text-xl font-bold text-[#002D62] mb-3">
+            <h3 className="text-xl font-bold text-[#002D62] dark:text-white mb-3">
               Long-Term Adoption
             </h3>
-            <p className="text-sm text-[#606367] leading-relaxed">
+            <p className="text-sm text-[#606367] dark:text-slate-300 leading-relaxed">
               We remain actively involved well beyond the first sale, supporting continuous clinician training, distributor enablement, and market scale.
             </p>
           </div>

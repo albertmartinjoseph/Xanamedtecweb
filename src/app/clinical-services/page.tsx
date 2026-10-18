@@ -129,7 +129,7 @@ const testimonials = [
 
 export default function ClinicalServicesPage() {
   return (
-    <div className="min-h-screen bg-[#F8F9FA] text-[#323232] font-sans">
+    <div className="min-h-screen bg-[#F8F9FA] dark:bg-[#070e1b] text-[#323232] dark:text-slate-100 font-sans transition-colors duration-200">
       {/* 1. Hero Banner */}
       <section className="relative bg-[#002D62] text-white pt-36 sm:pt-40 lg:pt-44 pb-28 sm:pb-32 overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-r from-[#002D62]/95 via-[#002D62]/85 to-[#002678]/80 pointer-events-none" />
@@ -168,34 +168,34 @@ export default function ClinicalServicesPage() {
 
       {/* 2. Key Pillars Strip */}
       <section className="relative z-20 -mt-10 container-boxed mb-16">
-        <div className="bg-white rounded-[24px] p-6 sm:p-8 border border-gray-200/90 shadow-[0_12px_35px_-8px_rgba(0,45,98,0.08)] grid grid-cols-1 sm:grid-cols-3 gap-6 text-center sm:text-left">
+        <div className="bg-white dark:bg-[#0c1626] rounded-[24px] p-6 sm:p-8 border border-gray-200/90 dark:border-white/10 shadow-[0_12px_35px_-8px_rgba(0,45,98,0.08)] dark:shadow-[0_12px_35px_-8px_rgba(0,0,0,0.4)] grid grid-cols-1 sm:grid-cols-3 gap-6 text-center sm:text-left">
           <div className="flex items-center gap-4 p-2">
-            <div className="w-12 h-12 rounded-2xl bg-teal-50 text-teal-600 flex items-center justify-center shrink-0">
+            <div className="w-12 h-12 rounded-2xl bg-teal-50 dark:bg-white/10 text-teal-600 dark:text-teal-300 flex items-center justify-center shrink-0">
               <Clock className="w-6 h-6" />
             </div>
             <div>
-              <div className="font-bold text-[#002D62] text-sm sm:text-base">Fast Turnaround</div>
-              <div className="text-xs text-[#606367]">24 to 48 hour electronic results</div>
+              <div className="font-bold text-[#002D62] dark:text-white text-sm sm:text-base">Fast Turnaround</div>
+              <div className="text-xs text-[#606367] dark:text-slate-300">24 to 48 hour electronic results</div>
             </div>
           </div>
 
-          <div className="flex items-center gap-4 p-2 sm:border-l sm:border-r border-gray-100 sm:px-6">
-            <div className="w-12 h-12 rounded-2xl bg-blue-50 text-blue-700 flex items-center justify-center shrink-0">
+          <div className="flex items-center gap-4 p-2 sm:border-l sm:border-r border-gray-100 dark:border-white/10 sm:px-6">
+            <div className="w-12 h-12 rounded-2xl bg-blue-50 dark:bg-white/10 text-blue-700 dark:text-teal-300 flex items-center justify-center shrink-0">
               <ShieldCheck className="w-6 h-6" />
             </div>
             <div>
-              <div className="font-bold text-[#002D62] text-sm sm:text-base">UKAS Accredited</div>
-              <div className="text-xs text-[#606367]">Certified laboratory quality standards</div>
+              <div className="font-bold text-[#002D62] dark:text-white text-sm sm:text-base">UKAS Accredited</div>
+              <div className="text-xs text-[#606367] dark:text-slate-300">Certified laboratory quality standards</div>
             </div>
           </div>
 
           <div className="flex items-center gap-4 p-2">
-            <div className="w-12 h-12 rounded-2xl bg-teal-50 text-teal-600 flex items-center justify-center shrink-0">
+            <div className="w-12 h-12 rounded-2xl bg-teal-50 dark:bg-white/10 text-teal-600 dark:text-teal-300 flex items-center justify-center shrink-0">
               <Award className="w-6 h-6" />
             </div>
             <div>
-              <div className="font-bold text-[#002D62] text-sm sm:text-base">Clinical Expertise</div>
-              <div className="text-xs text-[#606367]">Doctor-reviewed diagnostic reports</div>
+              <div className="font-bold text-[#002D62] dark:text-white text-sm sm:text-base">Clinical Expertise</div>
+              <div className="text-xs text-[#606367] dark:text-slate-300">Doctor-reviewed diagnostic reports</div>
             </div>
           </div>
         </div>
@@ -205,17 +205,17 @@ export default function ClinicalServicesPage() {
       <section className="container-boxed py-12 sm:py-16">
         <div className="flex flex-col md:flex-row md:items-end justify-between mb-12">
           <div>
-            <span className="inline-block px-3.5 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider bg-teal-50 text-teal-700 border border-teal-200 mb-3">
+            <span className="inline-block px-3.5 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider bg-teal-50 dark:bg-teal-950/60 text-teal-700 dark:text-teal-300 border border-teal-200 dark:border-teal-800/50 mb-3">
               POPULAR HEALTH SCREENINGS
             </span>
-            <h2 className="text-3xl sm:text-4xl font-bold text-[#002D62] tracking-tight">
+            <h2 className="text-3xl sm:text-4xl font-bold text-[#002D62] dark:text-white tracking-tight">
               Featured Health Tests
             </h2>
           </div>
           <div className="mt-4 md:mt-0">
             <Link
               href="/tests-list-page"
-              className="inline-flex items-center font-bold text-sm text-[#20B2AA] hover:text-[#002D62] transition-colors"
+              className="inline-flex items-center font-bold text-sm text-[#20B2AA] hover:text-[#002D62] dark:hover:text-teal-300 transition-colors"
             >
               <span>View All Health Tests</span>
               <ArrowRight className="w-4 h-4 ml-2" />
@@ -223,39 +223,39 @@ export default function ClinicalServicesPage() {
           </div>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {popularTests.map((test) => (
             <div
               key={test.slug}
-              className="bg-white rounded-[26px] p-7 sm:p-8 border border-gray-200/90 shadow-[0_4px_25px_-5px_rgba(0,45,98,0.06)] hover:border-[#20B2AA]/50 hover:shadow-[0_15px_40px_-8px_rgba(0,45,98,0.12)] hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between group"
+              className="bg-white dark:bg-[#0c1626] rounded-[26px] p-7 sm:p-8 border border-gray-200/90 dark:border-white/10 shadow-[0_4px_25px_-5px_rgba(0,45,98,0.06)] dark:shadow-[0_4px_25px_-5px_rgba(0,0,0,0.4)] hover:border-[#20B2AA]/50 dark:hover:border-[#20B2AA]/60 hover:shadow-[0_15px_40px_-8px_rgba(0,45,98,0.12)] hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between group"
             >
               <div>
                 <div className="flex items-center justify-between mb-4">
-                  <span className="text-xs font-bold text-teal-700 bg-teal-50 px-3 py-1 rounded-full uppercase tracking-wider">
+                  <span className="text-xs font-bold text-teal-700 dark:text-teal-300 bg-teal-50 dark:bg-teal-950/60 px-3 py-1 rounded-full uppercase tracking-wider">
                     {test.sample}
                   </span>
-                  <span className="text-xl font-black text-[#002D62]">
+                  <span className="text-xl font-black text-[#002D62] dark:text-white">
                     {test.price}
                   </span>
                 </div>
 
-                <h3 className="text-xl font-bold text-[#002D62] tracking-tight mb-1 group-hover:text-[#20B2AA] transition-colors">
+                <h3 className="text-xl font-bold text-[#002D62] dark:text-white tracking-tight mb-1 group-hover:text-[#20B2AA] transition-colors">
                   {test.name}
                 </h3>
 
-                <div className="text-xs font-semibold text-slate-400 mb-3">
+                <div className="text-xs font-semibold text-slate-400 dark:text-slate-500 mb-3">
                   {test.tagline}
                 </div>
 
-                <p className="text-sm text-[#606367] leading-relaxed mb-6">
+                <p className="text-sm text-[#606367] dark:text-slate-300 leading-relaxed mb-6">
                   {test.description}
                 </p>
               </div>
 
-              <div className="pt-4 border-t border-gray-100 flex items-center justify-between">
+              <div className="pt-4 border-t border-gray-100 dark:border-white/10 flex items-center justify-between">
                 <Link
                   href={`/${test.slug}`}
-                  className="inline-flex items-center text-xs font-bold text-[#002D62] hover:text-[#20B2AA] transition-colors"
+                  className="inline-flex items-center text-xs font-bold text-[#002D62] dark:text-teal-300 hover:text-[#20B2AA] transition-colors"
                 >
                   <span>Test Details</span>
                   <ArrowRight className="w-3.5 h-3.5 ml-1" />
@@ -278,13 +278,13 @@ export default function ClinicalServicesPage() {
       {/* 5. Patient Reviews Section (Preserving real feedback & star ratings) */}
       <section className="container-boxed py-16 sm:py-24">
         <div className="text-center max-w-2xl mx-auto mb-16">
-          <span className="inline-block px-3.5 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider bg-teal-50 text-teal-700 border border-teal-200 mb-3">
+          <span className="inline-block px-3.5 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider bg-teal-50 dark:bg-teal-950/60 text-teal-700 dark:text-teal-300 border border-teal-200 dark:border-teal-800/50 mb-3">
             VERIFIED PATIENT FEEDBACK
           </span>
-          <h2 className="text-3xl sm:text-4xl font-bold text-[#002D62] tracking-tight mb-3">
+          <h2 className="text-3xl sm:text-4xl font-bold text-[#002D62] dark:text-white tracking-tight mb-3">
             What Our Patients Say
           </h2>
-          <p className="text-base text-[#606367]">
+          <p className="text-base text-[#606367] dark:text-slate-300">
             Trusted by individuals and healthcare providers across the UK.
           </p>
         </div>
@@ -293,7 +293,7 @@ export default function ClinicalServicesPage() {
           {testimonials.map((t, idx) => (
             <div
               key={idx}
-              className="bg-white rounded-[24px] p-7 border border-gray-200/90 shadow-[0_4px_25px_-5px_rgba(0,45,98,0.06)] hover:shadow-md transition-shadow flex flex-col justify-between"
+              className="bg-white dark:bg-[#0c1626] rounded-[24px] p-7 border border-gray-200/90 dark:border-white/10 shadow-[0_4px_25px_-5px_rgba(0,45,98,0.06)] dark:shadow-[0_4px_25px_-5px_rgba(0,0,0,0.4)] hover:shadow-md transition-shadow flex flex-col justify-between"
             >
               <div>
                 <div className="flex items-center gap-1 text-amber-400 mb-4">
@@ -302,14 +302,14 @@ export default function ClinicalServicesPage() {
                   ))}
                 </div>
 
-                <p className="text-xs sm:text-sm text-[#606367] leading-relaxed italic mb-6">
+                <p className="text-xs sm:text-sm text-[#606367] dark:text-slate-300 leading-relaxed italic mb-6">
                   &ldquo;{t.review}&rdquo;
                 </p>
               </div>
 
-              <div className="pt-4 border-t border-gray-100 flex items-center justify-between">
-                <span className="text-xs font-bold text-[#002D62]">{t.name}</span>
-                <span className="text-[10px] font-semibold text-teal-600 bg-teal-50 px-2.5 py-0.5 rounded-full">
+              <div className="pt-4 border-t border-gray-100 dark:border-white/10 flex items-center justify-between">
+                <span className="text-xs font-bold text-[#002D62] dark:text-white">{t.name}</span>
+                <span className="text-[10px] font-semibold text-teal-600 dark:text-teal-300 bg-teal-50 dark:bg-teal-950/60 px-2.5 py-0.5 rounded-full">
                   Verified Patient
                 </span>
               </div>

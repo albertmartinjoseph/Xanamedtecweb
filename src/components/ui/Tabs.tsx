@@ -54,7 +54,7 @@ export const Tabs: React.FC<TabsProps> = ({
         <div
           role="tablist"
           aria-label="Partner options"
-          className="inline-flex p-1.5 bg-[#F8F9FA] rounded-[30px] border border-gray-200/70 shadow-inner"
+          className="inline-flex p-1.5 bg-[#F8F9FA] dark:bg-[#0c1626] rounded-[30px] border border-gray-200/70 dark:border-white/10 shadow-inner"
         >
           {tabs.map((tab, idx) => {
             const isActive = activeTab === tab.id;
@@ -74,8 +74,8 @@ export const Tabs: React.FC<TabsProps> = ({
                 onKeyDown={(e) => handleKeyDown(e, idx)}
                 className={`px-6 sm:px-8 py-2.5 rounded-[24px] text-sm sm:text-base font-semibold transition-all duration-300 cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-[#20B2AA] ${
                   isActive
-                    ? 'bg-[#002D62] text-white shadow-md'
-                    : 'text-[#606367] hover:text-[#002D62]'
+                    ? 'bg-[#002D62] dark:bg-[#20B2AA] text-white shadow-md'
+                    : 'text-[#606367] dark:text-slate-300 hover:text-[#002D62] dark:hover:text-white'
                 }`}
               >
                 {tab.label}

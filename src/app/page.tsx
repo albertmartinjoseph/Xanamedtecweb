@@ -23,7 +23,7 @@ export default function HomePage() {
   const { openModal } = useModal();
 
   return (
-    <div className="min-h-screen bg-[#F8F9FA] text-[#323232] font-sans">
+    <div className="min-h-screen bg-[#F8F9FA] dark:bg-[#070e1b] text-[#323232] dark:text-slate-100 font-sans transition-colors duration-200">
       {/* 1. Hero Section (Spec Section 4: Dark Navy, Background Video, Geometric Typography, Small Teal Pill) */}
       <section className="relative bg-[#002D62] text-white pt-36 sm:pt-40 lg:pt-44 pb-36 sm:pb-40 lg:pb-44 overflow-hidden">
         {/* Background Video Layer from Reference Folder - Vivid & Colorful */}
@@ -70,26 +70,26 @@ export default function HomePage() {
           {/* Card 1: International Distribution */}
           <Link
             href="/international-distribution"
-            className="group block bg-white rounded-[24px] p-8 sm:p-10 border border-gray-200/90 shadow-[0_10px_35px_-5px_rgba(0,45,98,0.08)] hover:shadow-[0_20px_45px_-5px_rgba(0,45,98,0.14)] hover:border-[#20B2AA]/50 hover:-translate-y-1 transition-all duration-300"
+            className="group block bg-white dark:bg-[#0c1626] rounded-[24px] p-8 sm:p-10 border border-gray-200/90 dark:border-white/10 shadow-[0_10px_35px_-5px_rgba(0,45,98,0.08)] dark:shadow-[0_10px_35px_-5px_rgba(0,0,0,0.4)] hover:shadow-[0_20px_45px_-5px_rgba(0,45,98,0.14)] hover:border-[#20B2AA]/50 dark:hover:border-[#20B2AA]/60 hover:-translate-y-1 transition-all duration-300"
           >
             <div className="flex items-center justify-between mb-6">
-              <div className="w-14 h-14 rounded-2xl bg-[#002D62]/10 text-[#002D62] group-hover:bg-[#20B2AA]/15 group-hover:text-[#20B2AA] flex items-center justify-center transition-colors">
+              <div className="w-14 h-14 rounded-2xl bg-[#002D62]/10 dark:bg-white/10 text-[#002D62] dark:text-teal-400 group-hover:bg-[#20B2AA]/15 group-hover:text-[#20B2AA] flex items-center justify-center transition-colors">
                 <Globe2 className="w-7 h-7" />
               </div>
-              <span className="text-xs font-bold uppercase tracking-wider text-teal-600 bg-teal-50 px-3 py-1 rounded-full">
+              <span className="text-xs font-bold uppercase tracking-wider text-teal-600 dark:text-teal-300 bg-teal-50 dark:bg-teal-950/60 dark:border dark:border-teal-850/50 px-3 py-1 rounded-full">
                 Global Network
               </span>
             </div>
 
-            <h2 className="text-2xl sm:text-3xl font-bold text-[#002D62] tracking-tight group-hover:text-[#002678] transition-colors mb-3">
+            <h2 className="text-2xl sm:text-3xl font-bold text-[#002D62] dark:text-white tracking-tight group-hover:text-[#002678] dark:group-hover:text-teal-300 transition-colors mb-3">
               International Distribution
             </h2>
 
-            <p className="text-sm sm:text-base text-[#606367] leading-relaxed mb-6">
+            <p className="text-sm sm:text-base text-[#606367] dark:text-slate-300 leading-relaxed mb-6">
               Partnering with accredited global healthcare distributors to deliver solutions worldwide.
             </p>
 
-            <div className="inline-flex items-center font-bold text-sm text-[#20B2AA] group-hover:text-[#1a938c] transition-colors">
+            <div className="inline-flex items-center font-bold text-sm text-[#20B2AA] group-hover:text-[#1a938c] dark:group-hover:text-teal-300 transition-colors">
               <span>Explore Network</span>
               <ArrowRight className="w-4 h-4 ml-2 transition-transform duration-200 group-hover:translate-x-1" />
             </div>
@@ -98,26 +98,26 @@ export default function HomePage() {
           {/* Card 2: Clinical Services */}
           <Link
             href="/clinical-services"
-            className="group block bg-white rounded-[24px] p-8 sm:p-10 border border-gray-200/90 shadow-[0_10px_35px_-5px_rgba(0,45,98,0.08)] hover:shadow-[0_20px_45px_-5px_rgba(0,45,98,0.14)] hover:border-[#20B2AA]/50 hover:-translate-y-1 transition-all duration-300"
+            className="group block bg-white dark:bg-[#0c1626] rounded-[24px] p-8 sm:p-10 border border-gray-200/90 dark:border-white/10 shadow-[0_10px_35px_-5px_rgba(0,45,98,0.08)] dark:shadow-[0_10px_35px_-5px_rgba(0,0,0,0.4)] hover:shadow-[0_20px_45px_-5px_rgba(0,45,98,0.14)] hover:border-[#20B2AA]/50 dark:hover:border-[#20B2AA]/60 hover:-translate-y-1 transition-all duration-300"
           >
             <div className="flex items-center justify-between mb-6">
-              <div className="w-14 h-14 rounded-2xl bg-[#20B2AA]/10 text-[#20B2AA] group-hover:bg-[#002D62]/10 group-hover:text-[#002D62] flex items-center justify-center transition-colors">
+              <div className="w-14 h-14 rounded-2xl bg-[#20B2AA]/10 dark:bg-white/10 text-[#20B2AA] dark:text-teal-400 group-hover:bg-[#002D62]/10 group-hover:text-[#002D62] flex items-center justify-center transition-colors">
                 <Stethoscope className="w-7 h-7" />
               </div>
-              <span className="text-xs font-bold uppercase tracking-wider text-blue-800 bg-blue-50 px-3 py-1 rounded-full">
+              <span className="text-xs font-bold uppercase tracking-wider text-blue-800 dark:text-blue-300 bg-blue-50 dark:bg-blue-950/60 dark:border dark:border-blue-850/50 px-3 py-1 rounded-full">
                 Diagnostic & Clinical
               </span>
             </div>
 
-            <h2 className="text-2xl sm:text-3xl font-bold text-[#002D62] tracking-tight group-hover:text-[#002678] transition-colors mb-3">
+            <h2 className="text-2xl sm:text-3xl font-bold text-[#002D62] dark:text-white tracking-tight group-hover:text-[#002678] dark:group-hover:text-teal-300 transition-colors mb-3">
               Clinical Services
             </h2>
 
-            <p className="text-sm sm:text-base text-[#606367] leading-relaxed mb-6">
+            <p className="text-sm sm:text-base text-[#606367] dark:text-slate-300 leading-relaxed mb-6">
               Comprehensive diagnostic support, equipment integration, and workflow assistance.
             </p>
 
-            <div className="inline-flex items-center font-bold text-sm text-[#20B2AA] group-hover:text-[#1a938c] transition-colors">
+            <div className="inline-flex items-center font-bold text-sm text-[#20B2AA] group-hover:text-[#1a938c] dark:group-hover:text-teal-300 transition-colors">
               <span>View Services</span>
               <ArrowRight className="w-4 h-4 ml-2 transition-transform duration-200 group-hover:translate-x-1" />
             </div>
@@ -146,16 +146,16 @@ export default function HomePage() {
       </FlowingHexBackground>
 
       {/* 4. Section: One Partner, Two Ways to Win (Tabs inside one panel) */}
-      <section className="container-boxed py-16 sm:py-24 border-t border-gray-200/80 mb-12">
-        <div className="bg-white rounded-[28px] p-8 sm:p-12 lg:p-16 border border-gray-200/90 shadow-[0_15px_45px_-10px_rgba(0,45,98,0.08)]">
+      <section className="container-boxed py-16 sm:py-24 border-t border-gray-200/80 dark:border-white/10 mb-12">
+        <div className="bg-white dark:bg-[#0c1626] rounded-[28px] p-8 sm:p-12 lg:p-16 border border-gray-200/90 dark:border-white/10 shadow-[0_15px_45px_-10px_rgba(0,45,98,0.08)] dark:shadow-[0_15px_45px_-10px_rgba(0,0,0,0.5)]">
           <div className="text-center max-w-2xl mx-auto mb-10">
-            <span className="inline-block px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider bg-[#002D62]/10 text-[#002D62] mb-3">
+            <span className="inline-block px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider bg-[#002D62]/10 dark:bg-white/10 text-[#002D62] dark:text-teal-300 mb-3">
               Strategic Collaboration
             </span>
-            <h2 className="text-3xl sm:text-4xl font-black text-[#002D62] tracking-tight mb-3">
+            <h2 className="text-3xl sm:text-4xl font-black text-[#002D62] dark:text-white tracking-tight mb-3">
               One Partner, Two Ways to Win
             </h2>
-            <p className="text-sm sm:text-base text-[#606367]">
+            <p className="text-sm sm:text-base text-[#606367] dark:text-slate-300">
               Tailored commercial pathways designed specifically for international medical distributors and device manufacturers.
             </p>
           </div>
@@ -169,10 +169,10 @@ export default function HomePage() {
                 content: (
                   <div className="pt-6 animate-in fade-in duration-200">
                     <div className="max-w-2xl mx-auto text-center mb-10">
-                      <h3 className="text-2xl font-bold text-[#002D62] tracking-tight mb-2">
+                      <h3 className="text-2xl font-bold text-[#002D62] dark:text-white tracking-tight mb-2">
                         Distributor Partnership Network
                       </h3>
-                      <p className="text-sm sm:text-base text-[#606367]">
+                      <p className="text-sm sm:text-base text-[#606367] dark:text-slate-300">
                         Scale your portfolio with certified, cutting-edge med-tech solutions tailored for your region.
                       </p>
                     </div>
@@ -185,10 +185,10 @@ export default function HomePage() {
                           </span>
                           <Award className="w-5 h-5 text-[#20B2AA]" />
                         </div>
-                        <h4 className="text-lg font-bold text-[#002D62] mb-2">
+                        <h4 className="text-lg font-bold text-[#002D62] dark:text-white mb-2">
                           Exclusive Territory
                         </h4>
-                        <p className="text-sm text-[#606367] leading-relaxed">
+                        <p className="text-sm text-[#606367] dark:text-slate-300 leading-relaxed">
                           Secured market exclusivity to protect and drive your local distribution growth.
                         </p>
                       </Card>
@@ -200,10 +200,10 @@ export default function HomePage() {
                           </span>
                           <ShieldCheck className="w-5 h-5 text-[#20B2AA]" />
                         </div>
-                        <h4 className="text-lg font-bold text-[#002D62] mb-2">
+                        <h4 className="text-lg font-bold text-[#002D62] dark:text-white mb-2">
                           Regulatory Support
                         </h4>
-                        <p className="text-sm text-[#606367] leading-relaxed">
+                        <p className="text-sm text-[#606367] dark:text-slate-300 leading-relaxed">
                           Comprehensive compliance and certification documentation ready for swift onboarding.
                         </p>
                       </Card>
@@ -215,10 +215,10 @@ export default function HomePage() {
                           </span>
                           <BookOpen className="w-5 h-5 text-[#20B2AA]" />
                         </div>
-                        <h4 className="text-lg font-bold text-[#002D62] mb-2">
+                        <h4 className="text-lg font-bold text-[#002D62] dark:text-white mb-2">
                           Sales & Training
                         </h4>
-                        <p className="text-sm text-[#606367] leading-relaxed">
+                        <p className="text-sm text-[#606367] dark:text-slate-300 leading-relaxed">
                           Dedicated technical training and continuous marketing collateral for your team.
                         </p>
                       </Card>
@@ -233,7 +233,7 @@ export default function HomePage() {
                             'Partner with Xana Medtec to distribute certified innovative medical devices in your territory.'
                           )
                         }
-                        className="inline-flex items-center justify-center font-bold text-xs uppercase tracking-wider rounded-[24px] px-7 py-3.5 bg-[#002D62] text-white hover:bg-[#20B2AA] transition-colors shadow-md group cursor-pointer"
+                        className="inline-flex items-center justify-center font-bold text-xs uppercase tracking-wider rounded-[24px] px-7 py-3.5 bg-[#002D62] dark:bg-teal-600 text-white hover:bg-[#20B2AA] dark:hover:bg-teal-500 transition-colors shadow-md group cursor-pointer"
                       >
                         <span>Join Distribution Network</span>
                         <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />
@@ -248,10 +248,10 @@ export default function HomePage() {
                 content: (
                   <div className="pt-6 animate-in fade-in duration-200">
                     <div className="max-w-2xl mx-auto text-center mb-10">
-                      <h3 className="text-2xl font-bold text-[#002D62] tracking-tight mb-2">
+                      <h3 className="text-2xl font-bold text-[#002D62] dark:text-white tracking-tight mb-2">
                         Global Market Expansion
                       </h3>
-                      <p className="text-sm sm:text-base text-[#606367]">
+                      <p className="text-sm sm:text-base text-[#606367] dark:text-slate-300">
                         Connect your healthcare innovations directly with vetted international distribution partners.
                       </p>
                     </div>
@@ -264,10 +264,10 @@ export default function HomePage() {
                           </span>
                           <Target className="w-5 h-5 text-[#20B2AA]" />
                         </div>
-                        <h4 className="text-lg font-bold text-[#002D62] mb-2">
+                        <h4 className="text-lg font-bold text-[#002D62] dark:text-white mb-2">
                           Targeted Placement
                         </h4>
-                        <p className="text-sm text-[#606367] leading-relaxed">
+                        <p className="text-sm text-[#606367] dark:text-slate-300 leading-relaxed">
                           Match your technology with pre-vetted distributors seeking active clinical solutions.
                         </p>
                       </Card>
@@ -279,10 +279,10 @@ export default function HomePage() {
                           </span>
                           <Truck className="w-5 h-5 text-[#20B2AA]" />
                         </div>
-                        <h4 className="text-lg font-bold text-[#002D62] mb-2">
+                        <h4 className="text-lg font-bold text-[#002D62] dark:text-white mb-2">
                           Streamlined Logistics
                         </h4>
-                        <p className="text-sm text-[#606367] leading-relaxed">
+                        <p className="text-sm text-[#606367] dark:text-slate-300 leading-relaxed">
                           End-to-end management from initial product trial to global supply chain rollout.
                         </p>
                       </Card>
@@ -294,10 +294,10 @@ export default function HomePage() {
                           </span>
                           <TrendingUp className="w-5 h-5 text-[#20B2AA]" />
                         </div>
-                        <h4 className="text-lg font-bold text-[#002D62] mb-2">
+                        <h4 className="text-lg font-bold text-[#002D62] dark:text-white mb-2">
                           Accelerated Growth
                         </h4>
-                        <p className="text-sm text-[#606367] leading-relaxed">
+                        <p className="text-sm text-[#606367] dark:text-slate-300 leading-relaxed">
                           Minimize time-to-market across target international healthcare networks.
                         </p>
                       </Card>
@@ -312,7 +312,7 @@ export default function HomePage() {
                             'Discuss how Xana Medtec can take your medical technology from market entry to clinical adoption.'
                           )
                         }
-                        className="inline-flex items-center justify-center font-bold text-xs uppercase tracking-wider rounded-[24px] px-7 py-3.5 bg-[#002D62] text-white hover:bg-[#20B2AA] transition-colors shadow-md group cursor-pointer"
+                        className="inline-flex items-center justify-center font-bold text-xs uppercase tracking-wider rounded-[24px] px-7 py-3.5 bg-[#002D62] dark:bg-teal-600 text-white hover:bg-[#20B2AA] dark:hover:bg-teal-500 transition-colors shadow-md group cursor-pointer"
                       >
                         <span>Discuss Your Roadmap</span>
                         <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />

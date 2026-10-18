@@ -84,7 +84,7 @@ export const Header: React.FC = () => {
   };
 
   return (
-    <header className="sticky top-0 z-40 w-full bg-white transition-all duration-300">
+    <header className="sticky top-0 z-40 w-full bg-white dark:bg-[#071328] transition-all duration-300">
       {/* 1. Header Top Bar (Purged phone, clinic address, hours, Help & FAQs; kept LinkedIn & X only) */}
       <div className="bg-[#002D62] text-white py-2 px-4 border-b border-white/10 text-xs">
         <div className="container-boxed flex items-center justify-between">
@@ -125,12 +125,12 @@ export const Header: React.FC = () => {
       <div
         className={`transition-all duration-300 ${
           isScrolled
-            ? 'py-2.5 shadow-[0_4px_20px_-4px_rgba(0,45,98,0.08)] border-b border-gray-150'
-            : 'py-4 border-b border-gray-100'
+            ? 'py-2.5 shadow-[0_4px_20px_-4px_rgba(0,45,98,0.08)] dark:shadow-[0_4px_20px_-4px_rgba(0,0,0,0.5)] border-b border-gray-150 dark:border-white/10'
+            : 'py-4 border-b border-gray-100 dark:border-white/10'
         }`}
       >
         <div className="container-boxed flex items-center justify-between">
-          {/* Logo */}
+          {/* Logo with light and dark mode visibility variants */}
           <Link href="/" className="relative flex items-center shrink-0">
             <div className="relative w-48 sm:w-56 h-12 sm:h-14">
               <Image
@@ -138,17 +138,24 @@ export const Header: React.FC = () => {
                 alt="Xana Medtec Logo"
                 fill
                 priority
-                className="object-contain object-left"
+                className="object-contain object-left dark:hidden"
+              />
+              <Image
+                src="/images/logo-dark-bg.png"
+                alt="Xana Medtec Logo"
+                fill
+                priority
+                className="object-contain object-left hidden dark:block"
               />
             </div>
           </Link>
 
           {/* Desktop Navigation Links (Section 1 of Spec) */}
-          <nav className="hidden lg:flex items-center gap-1 xl:gap-2 text-[14px] font-semibold text-[#323232]">
+          <nav className="hidden lg:flex items-center gap-1 xl:gap-2 text-[14px] font-semibold text-[#323232] dark:text-slate-100">
             {/* 1. About Us */}
             <Link
               href="/about-us"
-              className="px-3 py-2 rounded-full text-[#323232] hover:text-[#002D62] hover:bg-[#F8F9FA] transition-colors"
+              className="px-3 py-2 rounded-full text-[#323232] dark:text-slate-100 hover:text-[#002D62] dark:hover:text-[#20B2AA] hover:bg-[#F8F9FA] dark:hover:bg-white/5 transition-colors"
             >
               About Us
             </Link>
@@ -162,20 +169,20 @@ export const Header: React.FC = () => {
               <button
                 type="button"
                 onClick={() => setOpenDropdown(openDropdown === 'devices' ? null : 'devices')}
-                className="flex items-center gap-1 px-3 py-2 rounded-full text-[#323232] hover:text-[#002D62] hover:bg-[#F8F9FA] transition-colors cursor-pointer"
+                className="flex items-center gap-1 px-3 py-2 rounded-full text-[#323232] dark:text-slate-100 hover:text-[#002D62] dark:hover:text-[#20B2AA] hover:bg-[#F8F9FA] dark:hover:bg-white/5 transition-colors cursor-pointer"
                 aria-expanded={openDropdown === 'devices'}
               >
                 <span>Medical Devices</span>
                 <ChevronDown
                   className={`w-3.5 h-3.5 transition-transform duration-200 ${
-                    openDropdown === 'devices' ? 'rotate-180 text-[#20B2AA]' : 'text-gray-400'
+                    openDropdown === 'devices' ? 'rotate-180 text-[#20B2AA]' : 'text-gray-400 dark:text-slate-400'
                   }`}
                 />
               </button>
 
               {/* Devices Dropdown Menu */}
               <div
-                className={`absolute top-full left-0 mt-1.5 w-64 bg-white rounded-2xl shadow-[0_15px_35px_-5px_rgba(0,45,98,0.15)] border border-gray-100 p-2 z-50 transition-all duration-200 ${
+                className={`absolute top-full left-0 mt-1.5 w-64 bg-white dark:bg-[#0b162c] rounded-2xl shadow-[0_15px_35px_-5px_rgba(0,45,98,0.15)] dark:shadow-[0_15px_35px_-5px_rgba(0,0,0,0.6)] border border-gray-100 dark:border-white/10 p-2 z-50 transition-all duration-200 ${
                   openDropdown === 'devices'
                     ? 'opacity-100 visible translate-y-0 pointer-events-auto'
                     : 'opacity-0 invisible -translate-y-1.5 pointer-events-none'
@@ -183,36 +190,36 @@ export const Header: React.FC = () => {
               >
                 <Link
                   href="/international-distribution"
-                  className="flex flex-col p-2.5 rounded-xl hover:bg-[#F8F9FA] hover:text-[#002D62] transition-colors group/item"
+                  className="flex flex-col p-2.5 rounded-xl hover:bg-[#F8F9FA] dark:hover:bg-white/5 hover:text-[#002D62] dark:hover:text-[#20B2AA] transition-colors group/item"
                 >
-                  <span className="font-bold text-[#002D62] group-hover/item:text-[#20B2AA] text-sm">
+                  <span className="font-bold text-[#002D62] dark:text-white group-hover/item:text-[#20B2AA] text-sm">
                     International Distribution
                   </span>
-                  <span className="text-xs text-[#606367] mt-0.5">
+                  <span className="text-xs text-[#606367] dark:text-slate-400 mt-0.5">
                     Global market entry & partner network
                   </span>
                 </Link>
 
                 <Link
                   href="/anisys-go"
-                  className="flex flex-col p-2.5 rounded-xl hover:bg-[#F8F9FA] hover:text-[#002D62] transition-colors group/item"
+                  className="flex flex-col p-2.5 rounded-xl hover:bg-[#F8F9FA] dark:hover:bg-white/5 hover:text-[#002D62] dark:hover:text-[#20B2AA] transition-colors group/item"
                 >
-                  <span className="font-bold text-[#002D62] group-hover/item:text-[#20B2AA] text-sm">
+                  <span className="font-bold text-[#002D62] dark:text-white group-hover/item:text-[#20B2AA] text-sm">
                     Anisys Go
                   </span>
-                  <span className="text-xs text-[#606367] mt-0.5">
+                  <span className="text-xs text-[#606367] dark:text-slate-400 mt-0.5">
                     High-resolution anorectal physiology
                   </span>
                 </Link>
 
                 <Link
                   href="/vein-finder"
-                  className="flex flex-col p-2.5 rounded-xl hover:bg-[#F8F9FA] hover:text-[#002D62] transition-colors group/item"
+                  className="flex flex-col p-2.5 rounded-xl hover:bg-[#F8F9FA] dark:hover:bg-white/5 hover:text-[#002D62] dark:hover:text-[#20B2AA] transition-colors group/item"
                 >
-                  <span className="font-bold text-[#002D62] group-hover/item:text-[#20B2AA] text-sm">
+                  <span className="font-bold text-[#002D62] dark:text-white group-hover/item:text-[#20B2AA] text-sm">
                     Vein Finder
                   </span>
-                  <span className="text-xs text-[#606367] mt-0.5">
+                  <span className="text-xs text-[#606367] dark:text-slate-400 mt-0.5">
                     Zero-latency real-time 1:1 vascular mapping
                   </span>
                 </Link>
@@ -228,20 +235,20 @@ export const Header: React.FC = () => {
               <button
                 type="button"
                 onClick={() => setOpenDropdown(openDropdown === 'clinical' ? null : 'clinical')}
-                className="flex items-center gap-1 px-3 py-2 rounded-full text-[#323232] hover:text-[#002D62] hover:bg-[#F8F9FA] transition-colors cursor-pointer"
+                className="flex items-center gap-1 px-3 py-2 rounded-full text-[#323232] dark:text-slate-100 hover:text-[#002D62] dark:hover:text-[#20B2AA] hover:bg-[#F8F9FA] dark:hover:bg-white/5 transition-colors cursor-pointer"
                 aria-expanded={openDropdown === 'clinical'}
               >
                 <span>Clinical Services</span>
                 <ChevronDown
                   className={`w-3.5 h-3.5 transition-transform duration-200 ${
-                    openDropdown === 'clinical' ? 'rotate-180 text-[#20B2AA]' : 'text-gray-400'
+                    openDropdown === 'clinical' ? 'rotate-180 text-[#20B2AA]' : 'text-gray-400 dark:text-slate-400'
                   }`}
                 />
               </button>
 
               {/* Clinical Services Dropdown Menu */}
               <div
-                className={`absolute top-full left-0 mt-1.5 w-72 bg-white rounded-2xl shadow-[0_15px_35px_-5px_rgba(0,45,98,0.15)] border border-gray-100 p-2 z-50 transition-all duration-200 ${
+                className={`absolute top-full left-0 mt-1.5 w-72 bg-white dark:bg-[#0b162c] rounded-2xl shadow-[0_15px_35px_-5px_rgba(0,45,98,0.15)] dark:shadow-[0_15px_35px_-5px_rgba(0,0,0,0.6)] border border-gray-100 dark:border-white/10 p-2 z-50 transition-all duration-200 ${
                   openDropdown === 'clinical'
                     ? 'opacity-100 visible translate-y-0 pointer-events-auto'
                     : 'opacity-0 invisible -translate-y-1.5 pointer-events-none'
@@ -253,27 +260,27 @@ export const Header: React.FC = () => {
                   onMouseEnter={() => setOpenSubmenu(true)}
                   onMouseLeave={() => setOpenSubmenu(false)}
                 >
-                  <div className="flex items-center justify-between p-2.5 rounded-xl hover:bg-[#F8F9FA] text-[#002D62] hover:text-[#20B2AA] transition-colors cursor-pointer font-bold text-sm group/pop">
+                  <div className="flex items-center justify-between p-2.5 rounded-xl hover:bg-[#F8F9FA] dark:hover:bg-white/5 text-[#002D62] dark:text-white hover:text-[#20B2AA] transition-colors cursor-pointer font-bold text-sm group/pop">
                     <span>Popular Test</span>
                     <ChevronRight className="w-4 h-4 text-gray-400 group-hover/pop:text-[#20B2AA] group-hover/pop:translate-x-0.5 transition-transform" />
                   </div>
 
                   {/* Flyout Submenu (7 Popular Tests) */}
                   <div
-                    className={`absolute top-0 left-full ml-1 w-64 bg-white rounded-2xl shadow-[0_15px_35px_-5px_rgba(0,45,98,0.18)] border border-gray-100 p-2 z-50 transition-all duration-150 ${
+                    className={`absolute top-0 left-full ml-1 w-64 bg-white dark:bg-[#0b162c] rounded-2xl shadow-[0_15px_35px_-5px_rgba(0,45,98,0.18)] dark:shadow-[0_15px_35px_-5px_rgba(0,0,0,0.6)] border border-gray-100 dark:border-white/10 p-2 z-50 transition-all duration-150 ${
                       openSubmenu
                         ? 'opacity-100 visible translate-x-0 pointer-events-auto'
                         : 'opacity-0 invisible -translate-x-1 pointer-events-none'
                     }`}
                   >
-                    <div className="px-2 py-1 text-[11px] font-bold text-[#606367] uppercase tracking-wider border-b border-gray-100 mb-1">
+                    <div className="px-2 py-1 text-[11px] font-bold text-[#606367] dark:text-slate-400 uppercase tracking-wider border-b border-gray-100 dark:border-white/10 mb-1">
                       The 7 Featured Profiles
                     </div>
                     {popularTests.map((test) => (
                       <Link
                         key={test.href}
                         href={test.href}
-                        className="block px-2.5 py-1.5 rounded-lg text-xs font-semibold text-[#323232] hover:text-[#002D62] hover:bg-[#F8F9FA] transition-colors"
+                        className="block px-2.5 py-1.5 rounded-lg text-xs font-semibold text-[#323232] dark:text-slate-200 hover:text-[#002D62] dark:hover:text-[#20B2AA] hover:bg-[#F8F9FA] dark:hover:bg-white/5 transition-colors"
                       >
                         {test.name}
                       </Link>
@@ -281,28 +288,28 @@ export const Header: React.FC = () => {
                   </div>
                 </div>
 
-                <div className="my-1 border-t border-gray-100" />
+                <div className="my-1 border-t border-gray-100 dark:border-white/10" />
 
                 <Link
                   href="/tests-list-page"
-                  className="flex flex-col p-2.5 rounded-xl hover:bg-[#F8F9FA] hover:text-[#002D62] transition-colors group/item"
+                  className="flex flex-col p-2.5 rounded-xl hover:bg-[#F8F9FA] dark:hover:bg-white/5 hover:text-[#002D62] dark:hover:text-[#20B2AA] transition-colors group/item"
                 >
-                  <span className="font-bold text-[#002D62] group-hover/item:text-[#20B2AA] text-sm">
+                  <span className="font-bold text-[#002D62] dark:text-white group-hover/item:text-[#20B2AA] text-sm">
                     View All Health Tests
                   </span>
-                  <span className="text-xs text-[#606367]">
+                  <span className="text-xs text-[#606367] dark:text-slate-400">
                     Browse our comprehensive diagnostic directory
                   </span>
                 </Link>
 
                 <Link
                   href="/blood-test-recommendation"
-                  className="flex flex-col p-2.5 rounded-xl hover:bg-[#F8F9FA] hover:text-[#002D62] transition-colors group/item"
+                  className="flex flex-col p-2.5 rounded-xl hover:bg-[#F8F9FA] dark:hover:bg-white/5 hover:text-[#002D62] dark:hover:text-[#20B2AA] transition-colors group/item"
                 >
-                  <span className="font-bold text-[#002D62] group-hover/item:text-[#20B2AA] text-sm">
+                  <span className="font-bold text-[#002D62] dark:text-white group-hover/item:text-[#20B2AA] text-sm">
                     Find Your Test
                   </span>
-                  <span className="text-xs text-[#606367]">
+                  <span className="text-xs text-[#606367] dark:text-slate-400">
                     Interactive recommendation guidance
                   </span>
                 </Link>
@@ -321,7 +328,7 @@ export const Header: React.FC = () => {
                     Book Appointment
                     <Sparkles className="w-3.5 h-3.5" />
                   </span>
-                  <span className="text-xs text-[#606367]">
+                  <span className="text-xs text-[#606367] dark:text-slate-400">
                     Direct clinical booking & consultation
                   </span>
                 </button>
@@ -352,7 +359,7 @@ export const Header: React.FC = () => {
               type="button"
               onClick={() => setMobileMenuOpen(true)}
               aria-label="Open navigation menu"
-              className="p-2 rounded-xl text-[#002D62] hover:bg-gray-100 transition-colors"
+              className="p-2 rounded-xl text-[#002D62] dark:text-white hover:bg-gray-100 dark:hover:bg-white/10 transition-colors"
             >
               <Menu className="w-6 h-6" />
             </button>
@@ -378,23 +385,29 @@ export const Header: React.FC = () => {
           />
 
           {/* Slide-out Panel */}
-          <div className="fixed inset-y-0 right-0 w-full max-w-sm bg-white shadow-2xl p-6 flex flex-col justify-between overflow-y-auto animate-in slide-in-from-right duration-300">
+          <div className="fixed inset-y-0 right-0 w-full max-w-sm bg-white dark:bg-[#071328] shadow-2xl p-6 flex flex-col justify-between overflow-y-auto animate-in slide-in-from-right duration-300 border-l dark:border-white/10">
             <div>
               {/* Header inside mobile drawer */}
-              <div className="flex items-center justify-between pb-4 border-b border-gray-100">
+              <div className="flex items-center justify-between pb-4 border-b border-gray-100 dark:border-white/10">
                 <div className="relative w-44 h-11">
                   <Image
                     src="/images/logo-light-bg.png"
                     alt="Xana Medtec"
                     fill
-                    className="object-contain object-left"
+                    className="object-contain object-left dark:hidden"
+                  />
+                  <Image
+                    src="/images/logo-dark-bg.png"
+                    alt="Xana Medtec"
+                    fill
+                    className="object-contain object-left hidden dark:block"
                   />
                 </div>
                 <button
                   type="button"
                   onClick={() => setMobileMenuOpen(false)}
                   aria-label="Close navigation menu"
-                  className="p-2 rounded-full text-gray-500 hover:bg-gray-100 transition-colors"
+                  className="p-2 rounded-full text-gray-500 dark:text-slate-400 hover:bg-gray-100 dark:hover:bg-white/10 transition-colors"
                 >
                   <CloseIcon className="w-5 h-5" />
                 </button>
@@ -406,7 +419,7 @@ export const Header: React.FC = () => {
                 <Link
                   href="/about-us"
                   onClick={() => setMobileMenuOpen(false)}
-                  className="block px-3 py-2.5 rounded-xl text-[#323232] hover:bg-gray-50 hover:text-[#002D62]"
+                  className="block px-3 py-2.5 rounded-xl text-[#323232] dark:text-slate-200 hover:bg-gray-50 dark:hover:bg-white/5 hover:text-[#002D62] dark:hover:text-[#20B2AA]"
                 >
                   About Us
                 </Link>
@@ -416,35 +429,35 @@ export const Header: React.FC = () => {
                   <button
                     type="button"
                     onClick={() => setMobileDevicesOpen(!mobileDevicesOpen)}
-                    className="w-full flex items-center justify-between px-3 py-2.5 rounded-xl text-[#323232] hover:bg-gray-50 hover:text-[#002D62]"
+                    className="w-full flex items-center justify-between px-3 py-2.5 rounded-xl text-[#323232] dark:text-slate-200 hover:bg-gray-50 dark:hover:bg-white/5 hover:text-[#002D62] dark:hover:text-[#20B2AA]"
                   >
                     <span>Medical Devices</span>
                     <ChevronDown
                       className={`w-4 h-4 transition-transform duration-200 ${
-                        mobileDevicesOpen ? 'rotate-180 text-[#20B2AA]' : 'text-gray-400'
+                        mobileDevicesOpen ? 'rotate-180 text-[#20B2AA]' : 'text-gray-400 dark:text-slate-400'
                       }`}
                     />
                   </button>
                   {mobileDevicesOpen && (
-                    <div className="pl-4 pr-2 py-1 space-y-1 bg-gray-50/70 rounded-xl mt-1">
+                    <div className="pl-4 pr-2 py-1 space-y-1 bg-gray-50/70 dark:bg-white/5 rounded-xl mt-1">
                       <Link
                         href="/international-distribution"
                         onClick={() => setMobileMenuOpen(false)}
-                        className="block px-3 py-2 text-xs text-[#606367] hover:text-[#002D62]"
+                        className="block px-3 py-2 text-xs text-[#606367] dark:text-slate-300 hover:text-[#002D62] dark:hover:text-teal-300"
                       >
                         • International Distribution
                       </Link>
                       <Link
                         href="/anisys-go"
                         onClick={() => setMobileMenuOpen(false)}
-                        className="block px-3 py-2 text-xs text-[#606367] hover:text-[#002D62]"
+                        className="block px-3 py-2 text-xs text-[#606367] dark:text-slate-300 hover:text-[#002D62] dark:hover:text-teal-300"
                       >
                         • Anisys Go
                       </Link>
                       <Link
                         href="/vein-finder"
                         onClick={() => setMobileMenuOpen(false)}
-                        className="block px-3 py-2 text-xs text-[#606367] hover:text-[#002D62]"
+                        className="block px-3 py-2 text-xs text-[#606367] dark:text-slate-300 hover:text-[#002D62] dark:hover:text-teal-300"
                       >
                         • Vein Finder
                       </Link>
@@ -457,28 +470,28 @@ export const Header: React.FC = () => {
                   <button
                     type="button"
                     onClick={() => setMobileClinicalOpen(!mobileClinicalOpen)}
-                    className="w-full flex items-center justify-between px-3 py-2.5 rounded-xl text-[#323232] hover:bg-gray-50 hover:text-[#002D62]"
+                    className="w-full flex items-center justify-between px-3 py-2.5 rounded-xl text-[#323232] dark:text-slate-200 hover:bg-gray-50 dark:hover:bg-white/5 hover:text-[#002D62] dark:hover:text-[#20B2AA]"
                   >
                     <span>Clinical Services</span>
                     <ChevronDown
                       className={`w-4 h-4 transition-transform duration-200 ${
-                        mobileClinicalOpen ? 'rotate-180 text-[#20B2AA]' : 'text-gray-400'
+                        mobileClinicalOpen ? 'rotate-180 text-[#20B2AA]' : 'text-gray-400 dark:text-slate-400'
                       }`}
                     />
                   </button>
                   {mobileClinicalOpen && (
-                    <div className="pl-4 pr-2 py-1 space-y-1 bg-gray-50/70 rounded-xl mt-1">
+                    <div className="pl-4 pr-2 py-1 space-y-1 bg-gray-50/70 dark:bg-white/5 rounded-xl mt-1">
                       {/* Nested Popular Tests */}
                       <div>
                         <button
                           type="button"
                           onClick={() => setMobileTestsOpen(!mobileTestsOpen)}
-                          className="w-full flex items-center justify-between px-3 py-2 text-xs font-bold text-[#002D62]"
+                          className="w-full flex items-center justify-between px-3 py-2 text-xs font-bold text-[#002D62] dark:text-teal-300"
                         >
                           <span>Popular Test (7 Profiles)</span>
                           <ChevronDown
                             className={`w-3.5 h-3.5 transition-transform duration-200 ${
-                              mobileTestsOpen ? 'rotate-180 text-[#20B2AA]' : 'text-gray-400'
+                              mobileTestsOpen ? 'rotate-180 text-[#20B2AA]' : 'text-gray-400 dark:text-slate-400'
                             }`}
                           />
                         </button>
@@ -489,7 +502,7 @@ export const Header: React.FC = () => {
                                 key={test.href}
                                 href={test.href}
                                 onClick={() => setMobileMenuOpen(false)}
-                                className="block px-2 py-1 text-[11px] text-[#606367] hover:text-[#002D62]"
+                                className="block px-2 py-1 text-[11px] text-[#606367] dark:text-slate-300 hover:text-[#002D62] dark:hover:text-teal-300"
                               >
                                 {test.name}
                               </Link>
@@ -501,14 +514,14 @@ export const Header: React.FC = () => {
                       <Link
                         href="/tests-list-page"
                         onClick={() => setMobileMenuOpen(false)}
-                        className="block px-3 py-2 text-xs text-[#606367] hover:text-[#002D62]"
+                        className="block px-3 py-2 text-xs text-[#606367] dark:text-slate-300 hover:text-[#002D62] dark:hover:text-teal-300"
                       >
                         • View All Health Tests
                       </Link>
                       <Link
                         href="/blood-test-recommendation"
                         onClick={() => setMobileMenuOpen(false)}
-                        className="block px-3 py-2 text-xs text-[#606367] hover:text-[#002D62]"
+                        className="block px-3 py-2 text-xs text-[#606367] dark:text-slate-300 hover:text-[#002D62] dark:hover:text-teal-300"
                       >
                         • Find Your Test
                       </Link>
@@ -519,7 +532,7 @@ export const Header: React.FC = () => {
             </div>
 
             {/* Mobile Footer CTAs */}
-            <div className="pt-6 border-t border-gray-100 space-y-4">
+            <div className="pt-6 border-t border-gray-100 dark:border-white/10 space-y-4">
               <button
                 type="button"
                 onClick={() => {
@@ -532,7 +545,7 @@ export const Header: React.FC = () => {
                 <ArrowRight className="w-4 h-4" />
               </button>
 
-              <div className="flex items-center justify-center gap-4 text-gray-500 pt-2">
+              <div className="flex items-center justify-center gap-4 text-gray-500 dark:text-slate-400 pt-2">
                 <a
                   href="https://www.linkedin.com/company/xana-medtec/home/"
                   target="_blank"

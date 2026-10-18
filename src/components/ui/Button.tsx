@@ -22,19 +22,19 @@ export const Button: React.FC<ButtonProps> = ({
   const variants = {
     // Primary Navy Pill CTA: #002D62 -> hover #20B2AA
     primary:
-      'bg-[#002D62] text-white border border-[#002D62] hover:bg-[#20B2AA] hover:border-[#20B2AA] rounded-[24px] shadow-sm',
+      'bg-[#002D62] dark:bg-[#12427a] text-white border border-[#002D62] dark:border-[#20B2AA]/40 hover:bg-[#20B2AA] hover:border-[#20B2AA] rounded-[24px] shadow-sm',
     // Accent Teal Pill CTA: #20B2AA -> hover #002D62
     accent:
-      'bg-[#20B2AA] text-white font-bold border-none hover:bg-[#002D62] rounded-[40px] shadow-sm',
+      'bg-[#20B2AA] text-white font-bold border-none hover:bg-[#002D62] dark:hover:bg-[#12427a] rounded-[40px] shadow-sm',
     // Form Submit Button: #20B2AA -> hover #002D62, radius 20px
     submit:
-      'bg-[#20B2AA] text-white font-semibold hover:bg-[#002D62] rounded-[20px] shadow-sm',
+      'bg-[#20B2AA] text-white font-semibold hover:bg-[#002D62] dark:hover:bg-[#12427a] rounded-[20px] shadow-sm',
     // Outline Button
     outline:
-      'bg-transparent text-[#002D62] border border-[#002D62] hover:bg-[#002D62] hover:text-white rounded-[24px]',
+      'bg-transparent text-[#002D62] dark:text-teal-300 border border-[#002D62] dark:border-teal-400 hover:bg-[#002D62] dark:hover:bg-[#20B2AA] hover:text-white rounded-[24px]',
     // White Button for dark hero
     white:
-      'bg-white text-[#002D62] font-semibold hover:bg-[#20B2AA] hover:text-white rounded-[24px] shadow-sm',
+      'bg-white dark:bg-slate-800 text-[#002D62] dark:text-white font-semibold hover:bg-[#20B2AA] hover:text-white rounded-[24px] shadow-sm',
   };
 
   const sizes = {

@@ -41,7 +41,7 @@ const technicalSpecs = [
 
 export default function VeinFinderPage() {
   return (
-    <div className="min-h-screen bg-[#F8F9FA] text-[#323232] font-sans">
+    <div className="min-h-screen bg-[#F8F9FA] dark:bg-[#070e1b] text-[#323232] dark:text-slate-100 font-sans transition-colors duration-200">
       {/* 1. Page Banner with Image 07 and Title "Vein Finder System" */}
       <section className="relative bg-[#002D62] text-white pt-36 sm:pt-40 lg:pt-44 pb-28 sm:pb-32 overflow-hidden">
         <div className="absolute inset-0 z-0 pointer-events-none">
@@ -77,12 +77,12 @@ export default function VeinFinderPage() {
 
       {/* 2. Section: Clinical Benefits with Image 09 supporting visual */}
       <section className="container-boxed py-16 sm:py-24">
-        <div className="bg-white rounded-[28px] p-8 sm:p-12 lg:p-16 border border-gray-200/90 shadow-[0_15px_45px_-10px_rgba(0,45,98,0.08)] mb-20">
+        <div className="bg-white dark:bg-[#0c1626] rounded-[28px] p-8 sm:p-12 lg:p-16 border border-gray-200/90 dark:border-white/10 shadow-[0_15px_45px_-10px_rgba(0,45,98,0.08)] dark:shadow-[0_15px_45px_-10px_rgba(0,0,0,0.5)] mb-20">
           <div className="text-center max-w-3xl mx-auto mb-16">
-            <span className="inline-block px-3.5 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider bg-teal-50 text-teal-700 border border-teal-200 mb-3">
+            <span className="inline-block px-3.5 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider bg-teal-50 dark:bg-teal-950/60 text-teal-700 dark:text-teal-300 border border-teal-200 dark:border-teal-800/50 mb-3">
               CLINICAL EVIDENCE & BENEFITS
             </span>
-            <h2 className="text-3xl sm:text-4xl font-bold text-[#002D62] tracking-tight">
+            <h2 className="text-3xl sm:text-4xl font-bold text-[#002D62] dark:text-white tracking-tight">
               Clinical Benefits
             </h2>
           </div>
@@ -93,16 +93,16 @@ export default function VeinFinderPage() {
               {clinicalBenefits.map((benefit, idx) => (
                 <div
                   key={idx}
-                  className="flex items-start gap-4 p-4 rounded-2xl bg-slate-50/70 border border-slate-100 hover:border-[#20B2AA]/40 hover:bg-white hover:shadow-sm transition-all"
+                  className="flex items-start gap-4 p-4 rounded-2xl bg-slate-50/70 dark:bg-slate-900/60 border border-slate-100 dark:border-white/10 hover:border-[#20B2AA]/40 hover:bg-white dark:hover:bg-slate-900 transition-all"
                 >
                   <div className="w-8 h-8 rounded-xl bg-[#20B2AA]/15 text-[#20B2AA] flex items-center justify-center shrink-0 mt-0.5">
                     <CheckCircle2 className="w-5 h-5 text-[#20B2AA]" />
                   </div>
                   <div>
-                    <span className="text-xs font-bold uppercase tracking-wider text-slate-400 block mb-1">
+                    <span className="text-xs font-bold uppercase tracking-wider text-slate-400 dark:text-slate-500 block mb-1">
                       Benefit 0{idx + 1}
                     </span>
-                    <p className="text-sm sm:text-base text-[#323232] font-medium leading-relaxed">
+                    <p className="text-sm sm:text-base text-[#323232] dark:text-slate-200 font-medium leading-relaxed">
                       {benefit}
                     </p>
                   </div>

@@ -106,7 +106,7 @@ export const ContactEnquiryForm: React.FC<ContactEnquiryFormProps> = ({
     <form onSubmit={handleSubmit} className={`space-y-4 ${className}`}>
       {/* Category Selector */}
       <div>
-        <label className="block text-xs font-bold uppercase tracking-wider text-[#002D62] mb-2">
+        <label className="block text-xs font-bold uppercase tracking-wider text-[#002D62] dark:text-teal-300 mb-2">
           Enquiry Purpose
         </label>
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-2">
@@ -121,8 +121,8 @@ export const ContactEnquiryForm: React.FC<ContactEnquiryFormProps> = ({
               onClick={() => setCategory(item.id as 'clinical' | 'distribution' | 'devices')}
               className={`px-3 py-2 text-xs font-semibold rounded-lg border text-left transition-all ${
                 category === item.id
-                  ? 'border-[#20B2AA] bg-[#20B2AA]/10 text-[#002D62] font-bold shadow-sm'
-                  : 'border-gray-200 text-[#606367] hover:border-gray-300'
+                  ? 'border-[#20B2AA] bg-[#20B2AA]/10 dark:bg-[#20B2AA]/20 text-[#002D62] dark:text-teal-300 font-bold shadow-sm'
+                  : 'border-gray-200 dark:border-white/10 text-[#606367] dark:text-slate-300 hover:border-gray-300 dark:hover:border-slate-500'
               }`}
             >
               {item.label}
@@ -146,7 +146,7 @@ export const ContactEnquiryForm: React.FC<ContactEnquiryFormProps> = ({
       {/* Name & Email */}
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
         <div>
-          <label className="block text-xs font-medium text-[#606367] mb-1">Full Name *</label>
+          <label className="block text-xs font-medium text-[#606367] dark:text-slate-300 mb-1">Full Name *</label>
           <input
             type="text"
             required
@@ -154,11 +154,11 @@ export const ContactEnquiryForm: React.FC<ContactEnquiryFormProps> = ({
             value={formData.name}
             onChange={(e) => setFormData({ ...formData, name: e.target.value })}
             placeholder="e.g. Dr. Jane Smith"
-            className="w-full px-4 py-2.5 rounded-lg border border-gray-200 focus:outline-none focus:border-[#20B2AA] focus:ring-1 focus:ring-[#20B2AA] text-sm text-[#323232]"
+            className="w-full px-4 py-2.5 rounded-lg border border-gray-200 dark:border-white/15 dark:bg-[#070f1e] dark:text-slate-100 dark:placeholder-slate-500 focus:outline-none focus:border-[#20B2AA] focus:ring-1 focus:ring-[#20B2AA] text-sm text-[#323232]"
           />
         </div>
         <div>
-          <label className="block text-xs font-medium text-[#606367] mb-1">Email Address *</label>
+          <label className="block text-xs font-medium text-[#606367] dark:text-slate-300 mb-1">Email Address *</label>
           <input
             type="email"
             required
@@ -166,7 +166,7 @@ export const ContactEnquiryForm: React.FC<ContactEnquiryFormProps> = ({
             value={formData.email}
             onChange={(e) => setFormData({ ...formData, email: e.target.value })}
             placeholder="jane@example.com"
-            className="w-full px-4 py-2.5 rounded-lg border border-gray-200 focus:outline-none focus:border-[#20B2AA] focus:ring-1 focus:ring-[#20B2AA] text-sm text-[#323232]"
+            className="w-full px-4 py-2.5 rounded-lg border border-gray-200 dark:border-white/15 dark:bg-[#070f1e] dark:text-slate-100 dark:placeholder-slate-500 focus:outline-none focus:border-[#20B2AA] focus:ring-1 focus:ring-[#20B2AA] text-sm text-[#323232]"
           />
         </div>
       </div>
@@ -174,32 +174,32 @@ export const ContactEnquiryForm: React.FC<ContactEnquiryFormProps> = ({
       {/* Phone & Organization */}
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
         <div>
-          <label className="block text-xs font-medium text-[#606367] mb-1">Phone Number (Optional)</label>
+          <label className="block text-xs font-medium text-[#606367] dark:text-slate-300 mb-1">Phone Number (Optional)</label>
           <input
             type="tel"
             maxLength={50}
             value={formData.phone}
             onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
             placeholder="+44 7123 456789"
-            className="w-full px-4 py-2.5 rounded-lg border border-gray-200 focus:outline-none focus:border-[#20B2AA] focus:ring-1 focus:ring-[#20B2AA] text-sm text-[#323232]"
+            className="w-full px-4 py-2.5 rounded-lg border border-gray-200 dark:border-white/15 dark:bg-[#070f1e] dark:text-slate-100 dark:placeholder-slate-500 focus:outline-none focus:border-[#20B2AA] focus:ring-1 focus:ring-[#20B2AA] text-sm text-[#323232]"
           />
         </div>
         <div>
-          <label className="block text-xs font-medium text-[#606367] mb-1">Organization / Clinic</label>
+          <label className="block text-xs font-medium text-[#606367] dark:text-slate-300 mb-1">Organization / Clinic</label>
           <input
             type="text"
             maxLength={100}
             value={formData.company}
             onChange={(e) => setFormData({ ...formData, company: e.target.value })}
             placeholder="e.g. Manchester Health Trust"
-            className="w-full px-4 py-2.5 rounded-lg border border-gray-200 focus:outline-none focus:border-[#20B2AA] focus:ring-1 focus:ring-[#20B2AA] text-sm text-[#323232]"
+            className="w-full px-4 py-2.5 rounded-lg border border-gray-200 dark:border-white/15 dark:bg-[#070f1e] dark:text-slate-100 dark:placeholder-slate-500 focus:outline-none focus:border-[#20B2AA] focus:ring-1 focus:ring-[#20B2AA] text-sm text-[#323232]"
           />
         </div>
       </div>
 
       {/* Message */}
       <div>
-        <label className="block text-xs font-medium text-[#606367] mb-1">Message / Requirements *</label>
+        <label className="block text-xs font-medium text-[#606367] dark:text-slate-300 mb-1">Message / Requirements *</label>
         <textarea
           required
           rows={3}
@@ -207,7 +207,7 @@ export const ContactEnquiryForm: React.FC<ContactEnquiryFormProps> = ({
           value={formData.message}
           onChange={(e) => setFormData({ ...formData, message: e.target.value })}
           placeholder="Please describe your enquiry, requested testing services, or distribution region..."
-          className="w-full px-4 py-2.5 rounded-lg border border-gray-200 focus:outline-none focus:border-[#20B2AA] focus:ring-1 focus:ring-[#20B2AA] text-sm text-[#323232]"
+          className="w-full px-4 py-2.5 rounded-lg border border-gray-200 dark:border-white/15 dark:bg-[#070f1e] dark:text-slate-100 dark:placeholder-slate-500 focus:outline-none focus:border-[#20B2AA] focus:ring-1 focus:ring-[#20B2AA] text-sm text-[#323232]"
         />
       </div>
 
@@ -219,11 +219,11 @@ export const ContactEnquiryForm: React.FC<ContactEnquiryFormProps> = ({
           required
           checked={formData.consent}
           onChange={(e) => setFormData({ ...formData, consent: e.target.checked })}
-          className="mt-1 h-4 w-4 rounded border-gray-300 text-[#20B2AA] focus:ring-[#20B2AA] cursor-pointer"
+          className="mt-1 h-4 w-4 rounded border-gray-300 dark:border-slate-600 text-[#20B2AA] focus:ring-[#20B2AA] cursor-pointer"
         />
-        <label htmlFor="consent-check" className="text-xs text-[#606367] leading-relaxed cursor-pointer">
+        <label htmlFor="consent-check" className="text-xs text-[#606367] dark:text-slate-400 leading-relaxed cursor-pointer">
           I consent to Xana Medtec Ltd processing my information to respond to this enquiry in accordance with the{' '}
-          <Link href="/privacy-policy" className="text-[#002D62] font-semibold underline hover:text-[#20B2AA]">
+          <Link href="/privacy-policy" className="text-[#002D62] dark:text-teal-300 font-semibold underline hover:text-[#20B2AA]">
             Privacy Policy
           </Link>
           .
@@ -231,7 +231,7 @@ export const ContactEnquiryForm: React.FC<ContactEnquiryFormProps> = ({
       </div>
 
       {error && (
-        <div className="flex items-center gap-2 p-3 bg-red-50 text-red-700 text-xs rounded-lg">
+        <div className="flex items-center gap-2 p-3 bg-red-50 dark:bg-red-950/40 text-red-700 dark:text-red-300 text-xs rounded-lg border border-red-200 dark:border-red-800">
           <AlertCircle className="w-4 h-4 shrink-0" />
           <span>{error}</span>
         </div>
