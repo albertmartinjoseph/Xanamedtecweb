@@ -53,7 +53,7 @@ const highlights = [
 
 export default function AnisysGoPage() {
   return (
-    <div className="min-h-screen bg-[#F8F9FA] text-[#323232] font-sans">
+    <div className="min-h-screen bg-[#F8F9FA] dark:bg-[#070e1b] text-[#323232] dark:text-slate-100 font-sans transition-colors duration-200">
       {/* 1. Page Banner with Image 06 and Title "Anisys Go" */}
       <section className="relative bg-[#002D62] text-white pt-36 sm:pt-40 lg:pt-44 pb-28 sm:pb-32 overflow-hidden">
         <div className="absolute inset-0 z-0 pointer-events-none">
@@ -89,32 +89,32 @@ export default function AnisysGoPage() {
 
       {/* 2. Main Feature & Product Visual Section */}
       <section className="container-boxed py-16 sm:py-24">
-        <div className="bg-white rounded-[28px] p-8 sm:p-12 lg:p-16 border border-gray-200/90 shadow-[0_15px_45px_-10px_rgba(0,45,98,0.08)] mb-16 sm:mb-20">
+        <div className="bg-white dark:bg-[#0c1626] rounded-[28px] p-8 sm:p-12 lg:p-16 border border-gray-200/90 dark:border-white/10 shadow-[0_15px_45px_-10px_rgba(0,45,98,0.08)] dark:shadow-[0_15px_45px_-10px_rgba(0,0,0,0.5)] mb-16 sm:mb-20">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
             {/* Left Column: Heading and Authentic Copy */}
             <div className="lg:col-span-7">
-              <div className="inline-block px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider text-teal-700 bg-teal-50 mb-4">
+              <div className="inline-block px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider text-teal-700 dark:text-teal-300 bg-teal-50 dark:bg-teal-950/60 mb-4">
                 CLINICAL PORTABILITY
               </div>
 
-              <h2 className="text-3xl sm:text-4xl font-bold text-[#002D62] tracking-tight leading-tight mb-6">
+              <h2 className="text-3xl sm:text-4xl font-bold text-[#002D62] dark:text-white tracking-tight leading-tight mb-6">
                 High-resolution anorectal physiology and biofeedback therapy.
               </h2>
 
-              <p className="text-base sm:text-lg text-[#606367] leading-relaxed mb-8">
+              <p className="text-base sm:text-lg text-[#606367] dark:text-slate-300 leading-relaxed mb-8">
                 A smaller, more cost-effective and easier-to-use device that brings care closer to the patient&apos;s home. Developed in Manchester by clinicians, it uses 13 sensors to record sphincter function and rectal sensitivity in real time, with detailed colour-mapped reports and secure transfer to electronic patient records.
               </p>
 
               {/* Mandatory External Link Line from Spec */}
-              <div className="pt-4 border-t border-gray-100 flex flex-col sm:flex-row sm:items-center gap-4">
-                <span className="text-sm font-semibold text-[#323232]">
+              <div className="pt-4 border-t border-gray-100 dark:border-white/10 flex flex-col sm:flex-row sm:items-center gap-4">
+                <span className="text-sm font-semibold text-[#323232] dark:text-slate-200">
                   For more details visit:
                 </span>
                 <a
                   href="https://www.anisys.co.uk/"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center text-sm font-bold text-[#20B2AA] hover:text-[#002D62] transition-colors underline underline-offset-4"
+                  className="inline-flex items-center text-sm font-bold text-[#20B2AA] hover:text-[#002D62] dark:hover:text-teal-300 transition-colors underline underline-offset-4"
                 >
                   <span>https://www.anisys.co.uk/</span>
                   <ExternalLink className="w-4 h-4 ml-1.5" />
@@ -124,7 +124,7 @@ export default function AnisysGoPage() {
 
             {/* Right Column: Product Image 08 */}
             <div className="lg:col-span-5 flex justify-center">
-              <div className="relative w-full max-w-md aspect-square rounded-2xl bg-gradient-to-br from-slate-50 to-teal-50/30 p-6 border border-gray-100 shadow-sm flex items-center justify-center group">
+              <div className="relative w-full max-w-md aspect-square rounded-2xl bg-gradient-to-br from-slate-50 to-teal-50/30 dark:from-slate-900 dark:to-teal-950/20 p-6 border border-gray-100 dark:border-white/10 shadow-sm flex items-center justify-center group">
                 <Image
                   src="/images/assets/08-anisys-go-product.png"
                   alt="Anisys Go Product Console and Sensor Handpiece"
@@ -140,10 +140,10 @@ export default function AnisysGoPage() {
         {/* 3. Four Highlight Tiles (Large Figure / Icon + Label) */}
         <div className="mb-20">
           <div className="text-center max-w-2xl mx-auto mb-12">
-            <span className="inline-block px-3.5 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider bg-teal-50 text-teal-700 border border-teal-200 mb-3">
+            <span className="inline-block px-3.5 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider bg-teal-50 dark:bg-teal-950/60 text-teal-700 dark:text-teal-300 border border-teal-200 dark:border-teal-800/50 mb-3">
               TECHNOLOGY ADVANTAGES
             </span>
-            <h3 className="text-2xl sm:text-3xl font-bold text-[#002D62] tracking-tight">
+            <h3 className="text-2xl sm:text-3xl font-bold text-[#002D62] dark:text-white tracking-tight">
               Engineered for Clinical Precision
             </h3>
           </div>
@@ -154,18 +154,18 @@ export default function AnisysGoPage() {
               return (
                 <div
                   key={i}
-                  className="bg-white rounded-[24px] p-7 border border-gray-200/90 shadow-[0_4px_25px_-5px_rgba(0,45,98,0.06)] hover:border-[#20B2AA]/50 hover:shadow-[0_12px_35px_-8px_rgba(0,45,98,0.12)] hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between"
+                  className="bg-white dark:bg-[#0c1626] rounded-[24px] p-7 border border-gray-200/90 dark:border-white/10 shadow-[0_4px_25px_-5px_rgba(0,45,98,0.06)] dark:shadow-[0_4px_25px_-5px_rgba(0,0,0,0.4)] hover:border-[#20B2AA]/50 dark:hover:border-[#20B2AA]/60 hover:shadow-[0_12px_35px_-8px_rgba(0,45,98,0.12)] hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between"
                 >
                   <div>
                     <div className="flex items-center justify-between mb-5">
-                      <div className="w-12 h-12 rounded-xl bg-[#20B2AA]/10 text-[#20B2AA] flex items-center justify-center">
+                      <div className="w-12 h-12 rounded-xl bg-[#20B2AA]/10 dark:bg-white/10 text-[#20B2AA] dark:text-teal-400 flex items-center justify-center">
                         <Icon className="w-6 h-6" />
                       </div>
                       <span className="text-xs font-bold text-slate-400">0{i + 1}</span>
                     </div>
 
                     <div className="flex items-baseline gap-1.5 mb-1">
-                      <span className="text-2xl sm:text-3xl font-black text-[#002D62] tracking-tight">
+                      <span className="text-2xl sm:text-3xl font-black text-[#002D62] dark:text-white tracking-tight">
                         {tile.figure}
                       </span>
                       {tile.suffix && (
@@ -175,11 +175,11 @@ export default function AnisysGoPage() {
                       )}
                     </div>
 
-                    <div className="text-sm font-bold text-[#323232] mb-3">
+                    <div className="text-sm font-bold text-[#323232] dark:text-slate-100 mb-3">
                       {tile.label}
                     </div>
 
-                    <p className="text-xs text-[#606367] leading-relaxed">
+                    <p className="text-xs text-[#606367] dark:text-slate-300 leading-relaxed">
                       {tile.description}
                     </p>
                   </div>

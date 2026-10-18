@@ -51,7 +51,7 @@ export default function BloodTestRecommendationPage() {
   const recommendedTest = testsData[currentGoal.recommendedSlug];
 
   return (
-    <div className="min-h-screen bg-[#F8F9FA] text-[#323232] font-sans">
+    <div className="min-h-screen bg-[#F8F9FA] dark:bg-[#070e1b] text-[#323232] dark:text-slate-100 font-sans transition-colors duration-200">
       {/* 1. Header Banner */}
       <section className="relative bg-[#002D62] text-white pt-36 sm:pt-40 lg:pt-44 pb-28 sm:pb-32 overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-r from-[#002D62]/95 via-[#002D62]/85 to-[#002678]/80 pointer-events-none" />
@@ -80,7 +80,7 @@ export default function BloodTestRecommendationPage() {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-start">
           {/* Left: Health Focus Selector */}
           <div className="lg:col-span-6 space-y-4">
-            <h2 className="text-xl font-bold text-[#002D62] mb-6">
+            <h2 className="text-xl font-bold text-[#002D62] dark:text-white mb-6">
               Step 1: Select Your Primary Health Concern
             </h2>
 
@@ -93,22 +93,22 @@ export default function BloodTestRecommendationPage() {
                   onClick={() => setSelectedGoal(goal.id)}
                   className={`w-full text-left p-6 rounded-[22px] border transition-all duration-300 flex items-start gap-5 cursor-pointer ${
                     isSelected
-                      ? 'bg-white border-[#20B2AA] shadow-[0_10px_30px_-5px_rgba(32,178,170,0.25)] translate-x-2'
-                      : 'bg-white/70 border-gray-200 hover:border-gray-300 hover:bg-white'
+                      ? 'bg-white dark:bg-[#0c1626] border-[#20B2AA] shadow-[0_10px_30px_-5px_rgba(32,178,170,0.25)] translate-x-2'
+                      : 'bg-white/70 dark:bg-[#0c1626]/70 border-gray-200 dark:border-white/10 hover:border-gray-300 dark:hover:border-white/20 hover:bg-white dark:hover:bg-[#0c1626]'
                   }`}
                 >
                   <div
                     className={`w-12 h-12 rounded-xl flex items-center justify-center shrink-0 ${
-                      isSelected ? 'bg-[#20B2AA] text-white' : 'bg-slate-100 text-[#002D62]'
+                      isSelected ? 'bg-[#20B2AA] text-white' : 'bg-slate-100 dark:bg-white/10 text-[#002D62] dark:text-teal-300'
                     }`}
                   >
                     <Icon className="w-6 h-6" />
                   </div>
                   <div>
-                    <h3 className="font-bold text-[#002D62] text-base mb-1">
+                    <h3 className="font-bold text-[#002D62] dark:text-white text-base mb-1">
                       {goal.title}
                     </h3>
-                    <p className="text-xs text-[#606367] leading-relaxed">
+                    <p className="text-xs text-[#606367] dark:text-slate-300 leading-relaxed">
                       {goal.description}
                     </p>
                   </div>
@@ -119,38 +119,38 @@ export default function BloodTestRecommendationPage() {
 
           {/* Right: Recommended Test Card */}
           <div className="lg:col-span-6 sticky top-36">
-            <h2 className="text-xl font-bold text-[#002D62] mb-6">
+            <h2 className="text-xl font-bold text-[#002D62] dark:text-white mb-6">
               Step 2: Recommended Clinical Profile
             </h2>
 
             {recommendedTest && (
-              <div className="bg-white rounded-[28px] p-8 sm:p-10 border-2 border-[#20B2AA]/50 shadow-[0_15px_45px_-10px_rgba(0,45,98,0.12)] relative overflow-hidden">
+              <div className="bg-white dark:bg-[#0c1626] rounded-[28px] p-8 sm:p-10 border-2 border-[#20B2AA]/50 shadow-[0_15px_45px_-10px_rgba(0,45,98,0.12)] relative overflow-hidden">
                 <div className="absolute top-0 right-0 bg-[#20B2AA] text-white text-[11px] font-extrabold uppercase px-4 py-1.5 rounded-bl-2xl">
                   Best Match
                 </div>
 
-                <span className="text-xs font-bold text-teal-700 bg-teal-50 px-3 py-1 rounded-full uppercase tracking-wider inline-block mb-4">
+                <span className="text-xs font-bold text-teal-700 dark:text-teal-300 bg-teal-50 dark:bg-teal-950/60 px-3 py-1 rounded-full uppercase tracking-wider inline-block mb-4">
                   {recommendedTest.turnaround}
                 </span>
 
-                <h3 className="text-2xl sm:text-3xl font-black text-[#002D62] tracking-tight mb-2">
+                <h3 className="text-2xl sm:text-3xl font-black text-[#002D62] dark:text-white tracking-tight mb-2">
                   {recommendedTest.name}
                 </h3>
 
-                <p className="text-sm font-semibold text-slate-400 mb-6">
+                <p className="text-sm font-semibold text-slate-400 dark:text-slate-500 mb-6">
                   {recommendedTest.subtitle}
                 </p>
 
-                <p className="text-sm text-[#606367] leading-relaxed mb-6">
+                <p className="text-sm text-[#606367] dark:text-slate-300 leading-relaxed mb-6">
                   {recommendedTest.overview}
                 </p>
 
-                <div className="space-y-3 mb-8 pb-6 border-b border-gray-100">
-                  <div className="text-xs font-bold uppercase tracking-wider text-[#002D62]">
+                <div className="space-y-3 mb-8 pb-6 border-b border-gray-100 dark:border-white/10">
+                  <div className="text-xs font-bold uppercase tracking-wider text-[#002D62] dark:text-white">
                     Key Biomarkers Tested:
                   </div>
                   {recommendedTest.whatItMeasures.slice(0, 3).map((item, idx) => (
-                    <div key={idx} className="flex items-start gap-2.5 text-xs text-[#323232]">
+                    <div key={idx} className="flex items-start gap-2.5 text-xs text-[#323232] dark:text-slate-200">
                       <CheckCircle2 className="w-4 h-4 text-[#20B2AA] shrink-0 mt-0.5" />
                       <span>{item}</span>
                     </div>
@@ -160,7 +160,7 @@ export default function BloodTestRecommendationPage() {
                 <div className="flex items-center justify-between pt-2">
                   <div>
                     <div className="text-xs text-slate-400">Total Price</div>
-                    <div className="text-3xl font-black text-[#002D62]">
+                    <div className="text-3xl font-black text-[#002D62] dark:text-white">
                       {recommendedTest.price}
                     </div>
                   </div>
@@ -168,7 +168,7 @@ export default function BloodTestRecommendationPage() {
                   <div className="flex items-center gap-3">
                     <Link
                       href={`/${recommendedTest.slug}`}
-                      className="px-5 py-3 rounded-full text-xs font-bold text-[#002D62] hover:bg-slate-100 transition-colors"
+                      className="px-5 py-3 rounded-full text-xs font-bold text-[#002D62] dark:text-white hover:bg-slate-100 dark:hover:bg-white/10 transition-colors"
                     >
                       View Details
                     </Link>

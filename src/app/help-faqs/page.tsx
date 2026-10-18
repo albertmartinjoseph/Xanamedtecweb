@@ -39,7 +39,7 @@ export default function HelpFaqsPage() {
   };
 
   return (
-    <div className="min-h-screen bg-[#F8F9FA] text-[#323232] font-sans">
+    <div className="min-h-screen bg-[#F8F9FA] dark:bg-[#070e1b] text-[#323232] dark:text-slate-100 font-sans transition-colors duration-200">
       <section className="relative bg-[#002D62] text-white pt-36 sm:pt-40 lg:pt-44 pb-28 sm:pb-32 overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-r from-[#002D62]/95 via-[#002D62]/85 to-[#002678]/80 pointer-events-none" />
         <div className="container-boxed relative z-10">
@@ -64,12 +64,12 @@ export default function HelpFaqsPage() {
             return (
               <div
                 key={idx}
-                className="bg-white rounded-[22px] border border-gray-200/90 shadow-sm overflow-hidden transition-all duration-200"
+                className="bg-white dark:bg-[#0c1626] rounded-[22px] border border-gray-200/90 dark:border-white/10 shadow-sm overflow-hidden transition-all duration-200"
               >
                 <button
                   type="button"
                   onClick={() => toggle(idx)}
-                  className="w-full text-left p-6 sm:p-7 flex items-center justify-between gap-4 font-bold text-base sm:text-lg text-[#002D62] cursor-pointer hover:text-[#20B2AA] transition-colors"
+                  className="w-full text-left p-6 sm:p-7 flex items-center justify-between gap-4 font-bold text-base sm:text-lg text-[#002D62] dark:text-white cursor-pointer hover:text-[#20B2AA] dark:hover:text-teal-300 transition-colors"
                 >
                   <span>{faq.q}</span>
                   {isOpen ? (
@@ -79,7 +79,7 @@ export default function HelpFaqsPage() {
                   )}
                 </button>
                 {isOpen && (
-                  <div className="px-6 pb-6 sm:px-7 sm:pb-7 text-sm sm:text-base text-[#606367] leading-relaxed border-t border-gray-100 pt-4">
+                  <div className="px-6 pb-6 sm:px-7 sm:pb-7 text-sm sm:text-base text-[#606367] dark:text-slate-300 leading-relaxed border-t border-gray-100 dark:border-white/10 pt-4">
                     {faq.a}
                   </div>
                 )}
@@ -89,9 +89,9 @@ export default function HelpFaqsPage() {
         </div>
 
         {/* Still have questions CTA */}
-        <div className="mt-16 text-center max-w-xl mx-auto p-8 rounded-[24px] bg-white border border-gray-200/90 shadow-sm">
-          <h3 className="text-xl font-bold text-[#002D62] mb-2">Have further questions?</h3>
-          <p className="text-sm text-[#606367] mb-6">
+        <div className="mt-16 text-center max-w-xl mx-auto p-8 rounded-[24px] bg-white dark:bg-[#0c1626] border border-gray-200/90 dark:border-white/10 shadow-sm">
+          <h3 className="text-xl font-bold text-[#002D62] dark:text-white mb-2">Have further questions?</h3>
+          <p className="text-sm text-[#606367] dark:text-slate-300 mb-6">
             Our clinical and commercial teams in Manchester are ready to assist you.
           </p>
           <ModalTriggerButton variant="teal" size="md">

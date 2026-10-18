@@ -101,7 +101,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className={`${lato.variable} ${lexend.variable}`}>
-      <body className="min-h-screen bg-white text-[#323232] font-sans antialiased flex flex-col justify-between">
+      <body className="min-h-screen bg-white dark:bg-[#070e1b] text-[#323232] dark:text-slate-100 font-sans antialiased flex flex-col justify-between transition-colors duration-200">
         <ModalProvider>
           <Header />
           <div className="flex-1">
