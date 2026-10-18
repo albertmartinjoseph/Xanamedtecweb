@@ -13,6 +13,7 @@ import {
   ArrowRight,
   Sparkles,
 } from 'lucide-react';
+import { ThemeToggle } from '@/components/ui/ThemeToggle';
 
 const popularTests = [
   { name: 'Hepatitis B Profile', href: '/hepatitis-b-profile' },
@@ -336,8 +337,9 @@ export const Header: React.FC = () => {
             </div>
           </nav>
 
-          {/* Desktop Right Actions: Direct Modal Trigger Button */}
+          {/* Desktop Right Actions: Direct Modal Trigger Button & Theme Toggle */}
           <div className="hidden lg:flex items-center gap-3">
+            <ThemeToggle />
             <button
               type="button"
               onClick={() =>
@@ -353,8 +355,9 @@ export const Header: React.FC = () => {
             </button>
           </div>
 
-          {/* Mobile Hamburger Button */}
+          {/* Mobile Hamburger & Theme Toggle Button */}
           <div className="lg:hidden flex items-center gap-2">
+            <ThemeToggle />
             <button
               type="button"
               onClick={() => setMobileMenuOpen(true)}
@@ -403,14 +406,17 @@ export const Header: React.FC = () => {
                     className="object-contain object-left hidden dark:block"
                   />
                 </div>
-                <button
-                  type="button"
-                  onClick={() => setMobileMenuOpen(false)}
-                  aria-label="Close navigation menu"
-                  className="p-2 rounded-full text-gray-500 dark:text-slate-400 hover:bg-gray-100 dark:hover:bg-white/10 transition-colors"
-                >
-                  <CloseIcon className="w-5 h-5" />
-                </button>
+                <div className="flex items-center gap-2">
+                  <ThemeToggle />
+                  <button
+                    type="button"
+                    onClick={() => setMobileMenuOpen(false)}
+                    aria-label="Close navigation menu"
+                    className="p-2 rounded-full text-gray-500 dark:text-slate-400 hover:bg-gray-100 dark:hover:bg-white/10 transition-colors"
+                  >
+                    <CloseIcon className="w-5 h-5" />
+                  </button>
+                </div>
               </div>
 
               {/* Mobile Navigation List */}

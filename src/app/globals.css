@@ -1,6 +1,6 @@
 @import "tailwindcss";
 
-@custom-variant dark (&:where(.dark, .dark *), @media (prefers-color-scheme: dark));
+@custom-variant dark (&:where(.dark, .dark *));
 
 @theme {
   --color-brand-navy: #002D62;
@@ -25,6 +25,7 @@
 }
 
 :root {
+  color-scheme: light;
   --background: #ffffff;
   --foreground: #323232;
   --card-bg: #ffffff;
@@ -39,21 +40,20 @@
   --input-border: #e2e8f0;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #090e17;
-    --foreground: #f1f5f9;
-    --card-bg: #0f172a;
-    --card-border: rgba(255, 255, 255, 0.1);
-    --header-bg: #070d19;
-    --header-border: rgba(255, 255, 255, 0.08);
-    --header-text: #f1f5f9;
-    --header-text-hover: #20B2AA;
-    --subtext: #94a3b8;
-    --section-alt-bg: #0c1424;
-    --input-bg: #0f172a;
-    --input-border: rgba(255, 255, 255, 0.15);
-  }
+.dark {
+  color-scheme: dark;
+  --background: #090e17;
+  --foreground: #f1f5f9;
+  --card-bg: #0f172a;
+  --card-border: rgba(255, 255, 255, 0.1);
+  --header-bg: #070d19;
+  --header-border: rgba(255, 255, 255, 0.08);
+  --header-text: #f1f5f9;
+  --header-text-hover: #20B2AA;
+  --subtext: #94a3b8;
+  --section-alt-bg: #0c1424;
+  --input-bg: #0f172a;
+  --input-border: rgba(255, 255, 255, 0.15);
 }
 
 html {
